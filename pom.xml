@@ -9,7 +9,7 @@
         <module>su-admin</module>
     </modules>
 
-    <!-- 继承父级模块 -->
+    <!-- 继承:父级项目坐标 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -36,34 +36,31 @@
     <!-- ======================================== -->
     <!-- 公共依赖 -->
     <!-- ======================================== -->
-<!--    <dependencyManagement>
+    <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.yunqi</groupId>
+                <artifactId>su-common</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
-    </dependencyManagement>-->
-
-    <!-- ======================================== -->
-    <!-- 项目依赖 -->
-    <!-- ======================================== -->
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+    </dependencyManagement>
 
 
     <!-- ======================================== -->
     <!-- maven仓库 -->
     <!-- ======================================== -->
-    <repositories>
+<!--    <repositories>
         <repository>
             <id>nutz</id>
-            <url>http://jfrog.nutz.cn/artifactory/libs-release</url>
+            <url>https://jfrog.nutz.cn/artifactory/libs-release</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
         <repository>
             <id>nutz-snapshots</id>
-            <url>http://jfrog.nutz.cn/artifactory/snapshots</url>
+            <url>https://jfrog.nutz.cn/artifactory/snapshots</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
@@ -72,6 +69,6 @@
                 <enabled>false</enabled>
             </releases>
         </repository>
-    </repositories>
+    </repositories>-->
 
 </project>

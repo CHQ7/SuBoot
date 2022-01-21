@@ -1,0 +1,17 @@
+##############################################
+# 服务端配置
+##############################################
+server:
+  port: 70
+
+##############################################
+# spring
+##############################################
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/suboot?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    username: ENC(x0jY0g478sC7qMnAMOmvgA==)
+    password: ENC(x0jY0g478sC7qMnAMOmvgA==)
+
