@@ -5,7 +5,7 @@ import cn.dev33.satoken.exception.NotPermissionException;
 import com.yunqi.common.base.result.Result;
 import com.yunqi.common.base.result.ResultCode;
 import com.yunqi.common.config.exception.BizException;
-import com.yunqi.common.utils.ThrowableUtil;
+import com.yunqi.common.utils.Lang;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -34,7 +34,7 @@ public class GlobalException {
     @ExceptionHandler(Exception.class)
     public Object handleException(Exception e) {
         // 打印堆栈信息
-        log.error(ThrowableUtil.getStackTrace(e));
+        log.error(Lang.getStackTrace(e));
         return Result.error(e.getMessage());
     }
 
@@ -47,7 +47,7 @@ public class GlobalException {
     @ExceptionHandler({BindException.class, MethodArgumentNotValidException.class, ConstraintViolationException.class})
     public Object handleConstraintViolationException(Exception  e) {
         // 打印堆栈信息
-        //log.error(ThrowableUtil.getStackTrace(e));
+        //log.error(Lang.getStackTrace(e));
 
         String errorMsg = "参数验证错误";
         BindingResult bindingResult = null;
@@ -83,7 +83,7 @@ public class GlobalException {
     @ExceptionHandler(BizException.class)
     public Object handleBizException(BizException e) {
         // 打印堆栈信息
-        log.error(ThrowableUtil.getStackTrace(e));
+        log.error(Lang.getStackTrace(e));
         return Result.error(ResultCode.FAILURE, e.getMessage());
     }
 
@@ -96,7 +96,7 @@ public class GlobalException {
     @ExceptionHandler(NotPermissionException.class)
     public Object NotPermissionException(NotPermissionException e) {
         // 打印堆栈信息
-        //log.error(ThrowableUtil.getStackTrace(e));
+        //log.error(Lang.getStackTrace(e));
         return Result.error(ResultCode.USER_NOT_PERMISSION);
     }
 
@@ -110,7 +110,7 @@ public class GlobalException {
     public Object handlerNotLoginException(NotLoginException e) {
 
         // 打印堆栈信息
-        // log.error(ThrowableUtil.getStackTrace(e));
+        // log.error(Lang.getStackTrace(e));
 
         // 判断场景值，定制化异常信息
         ResultCode resultCode;
