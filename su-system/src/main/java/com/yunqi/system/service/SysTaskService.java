@@ -1,0 +1,142 @@
+package com.yunqi.system.service;
+
+
+import com.yunqi.common.base.service.BaseServiceImpl;
+import com.yunqi.common.config.exception.BizException;
+import com.yunqi.common.config.quartz.QuartzManager;
+import com.yunqi.system.models.SysTask;
+import org.nutz.dao.Cnd;
+import org.nutz.lang.Strings;
+import org.quartz.CronExpression;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * Created by @author JsckChin on @date 2019/9/20 2:41 下午.
+ */
+@Service
+public class SysTaskService extends BaseServiceImpl<SysTask> {
+
+
+    @Resource
+    private QuartzManager quartzManager;
+
+    /**
+     * 任务列表
+     * @param pageNumber 页码
+     * @param pageSize   每页几条数据
+     * @param task       name:任务名称
+     * @return           分页列表
+     */
+    public Object list(Integer pageNumber, int pageSize, SysTask task){
+        Cnd cnd =  Cnd.NEW();
+        // 模糊查询:任务名称
+        if(Strings.isNotBlank(task.getName())){
+            cnd.and("name", "like", "%" + task.getName() + "%");
+        }
+        // 创建时间倒序
+        cnd.desc("createdAt");
+        return this.listPage(pageNumber, pageSize, cnd);
+    }
+
+    /**
+     * 初始化任务
+     */
+    public void init() {
+        // 清空所有任务
+        quartzManager.clear();
+        // 加载数据库所有的任务
+        List<SysTask> taskList = this.query(Cnd.NEW());
+        for (SysTask task : taskList) {
+            quartzManager.addJob(task.getId(), task.getJobClass(), task.getCron(),task.getData(), task.isDisabled());
+        }
+    }
+
+
+    /**
+     * 创建任务
+     * @param task 任务
+     */
+    @Transactional
+    public SysTask create(SysTask task) {
+        // 检查:角色名称是否存在
+        if (this.count(Cnd.where("name","=", task.getName())) > 0) {
+            throw new BizException("任务名称已存在");
+        }
+        // 检查Cron表达式的有效性
+        if(!CronExpression.isValidExpression(task.getCron())){
+            throw new BizException("Cron表达式的无效");
+        }
+        // 创建任务
+        task = this.insert(task);
+
+        // --------------
+        // 创建任务
+        // --------------
+        quartzManager.addJob(task.getId(),  task.getJobClass(), task.getCron(),task.getData(), task.isDisabled());
+        return task;
+    }
+
+    /**
+     * 更新任务
+     * @param task 任务
+     * @return     返回更新的记录条数
+     */
+    @Transactional
+    public int update(SysTask task) {
+        SysTask oldTask = this.fetch(task.getId());
+        if(oldTask == null){
+            throw new BizException("未知任务");
+        }
+        // 检查:角色名称是否存在
+        if(!Strings.sBlank(oldTask.getName()).equalsIgnoreCase(task.getName())) {
+            if (this.count(Cnd.where("name","=", task.getName())) > 0) {
+                throw new BizException("任务名称已存在");
+            }
+        }
+        // 检查Cron表达式的有效性
+        if(!CronExpression.isValidExpression(task.getCron())){
+            throw new BizException("Cron表达式的无效");
+        }
+        // --------------
+        // 更新任务
+        // --------------
+        quartzManager.deleteJob(task.getId());
+        quartzManager.addJob(task.getId(),  task.getJobClass(), task.getCron(),task.getData(), task.isDisabled());
+        return this.updateIgnoreNull(task);
+    }
+
+    /**
+     * 删除任务
+     * @param id    任务ID
+     * @return      返回更新的记录条数
+     */
+    @Transactional
+    public int deleteById(String id) {
+        SysTask task = this.fetch(id);
+        // --------------
+        // 删除任务
+        // --------------
+        quartzManager.deleteJob(task.getId());
+        return this.delete(id);
+    }
+
+    /**
+     * 立即执行
+     * @param id
+     */
+    public void run(String id) {
+        SysTask task = this.fetch(id);
+        // --------------
+        // 立即执行
+        // --------------
+        if(!quartzManager.exist(task.getId())){
+            quartzManager.addJob(task.getId(), task.getJobClass(), task.getCron(),task.getData(), task.isDisabled());
+        }
+        quartzManager.runJob(task.getId());
+    }
+
+}

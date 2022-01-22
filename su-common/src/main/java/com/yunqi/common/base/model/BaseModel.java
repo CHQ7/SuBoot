@@ -1,11 +1,13 @@
 package com.yunqi.common.base.model;
 
+import com.yunqi.common.utils.SecurityUtil;
 import lombok.Data;
 import org.nutz.dao.entity.annotation.*;
 import org.nutz.dao.interceptor.annotation.PrevInsert;
 import org.nutz.dao.interceptor.annotation.PrevUpdate;
 import org.nutz.json.Json;
 import org.nutz.json.JsonFormat;
+import org.nutz.lang.Strings;
 
 import java.io.Serializable;
 
@@ -66,43 +68,43 @@ public abstract class BaseModel implements Serializable {
     }
 
 
-   /* *//**
+   /**
      * 获取创建人ID
      * @return
-     *//*
+     */
     public String createdByUid() {
         return getUidString(getCreatedById());
     }
 
-    *//**
+    /**
      * 获取创建人
      * @return
-     *//*
+     */
     public String createdBy() {
         return getUserNickname(getCreatedBy());
     }
 
-    *//**
+    /**
      * 获取修改ID
      * @return
-     *//*
+     */
     public String updatedByUid() {
         return getUidString(getUpdatedById());
     }
 
-    *//**
+    /**
      * 获取修改人
      * @return
-     *//*
+     */
     public String updatedBy() {
         return getUserNickname(getUpdatedBy());
     }
 
-    *//**
+    /**
      * 获取操作员ID
      * @param uid
      * @return
-     *//*
+     */
     private String getUidString(String uid) {
         if (Strings.isNotBlank(uid)) {
             return uid;
@@ -114,11 +116,11 @@ public abstract class BaseModel implements Serializable {
         return "";
     }
 
-    *//**
+    /**
      * 获取操作员姓名
      * @param nickname
      * @return
-     *//*
+     */
     private String getUserNickname(String nickname) {
         if (Strings.isNotBlank(nickname)) {
             return nickname;
@@ -128,5 +130,5 @@ public abstract class BaseModel implements Serializable {
         } catch (Exception e) {
         }
         return "";
-    }*/
+    }
 }

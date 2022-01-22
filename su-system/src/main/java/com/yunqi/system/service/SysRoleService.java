@@ -1,0 +1,163 @@
+package com.yunqi.system.service;
+
+
+import com.yunqi.common.base.service.BaseServiceImpl;
+import com.yunqi.common.config.exception.BizException;
+import com.yunqi.common.constant.GlobalConstant;
+import com.yunqi.system.models.SysMenu;
+import com.yunqi.system.models.SysRole;
+import org.nutz.dao.Chain;
+import org.nutz.dao.Cnd;
+import org.nutz.lang.Strings;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by @author JsckChin on 2021/10/1
+ */
+@Service
+public class SysRoleService extends BaseServiceImpl<SysRole> {
+
+    /**
+     * 角色列表
+     * @param pageNumber 页码
+     * @param pageSize   每页几条数据
+     * @param role       name:角色名称,code:角色唯一编码
+     * @return           分页列表
+     */
+    public Object list(Integer pageNumber, int pageSize, SysRole role) {
+        Cnd cnd =  Cnd.NEW();
+        // 模糊查询:角色名称
+        if(Strings.isNotBlank(role.getName())){
+            cnd.and("name", "like", "%" + role.getName() + "%");
+        }
+        // 模糊查询:角色唯一编码
+        if(Strings.isNotBlank(role.getCode())){
+            cnd.and("code", "like", "%" + role.getCode() + "%");
+        }
+        // 创建时间倒序
+        cnd.desc("location").desc("createdAt");
+        return this.listPage(pageNumber, pageSize, cnd);
+    }
+
+
+    /**
+     * 查询全部角色
+     * @return 角色列表
+     */
+    public List<SysRole>  all() {
+        return this.query(Cnd.NEW().desc("location").asc("createdAt"));
+    }
+
+
+    /**
+     * 创建角色
+     * @param role 角色
+     * @return     插入后的对象
+     */
+    @Transactional
+    public SysRole create(SysRole role) {
+        // 检查:角色名称是否存在
+        if (this.count(Cnd.where("name","=", role.getName())) > 0) {
+            throw new BizException("角色名称已存在");
+        }
+        // 检查:角色唯一编码是否存在
+        if (this.count(Cnd.where("code","=", role.getCode())) > 0) {
+            throw new BizException("角色唯一编码已存在");
+        }
+       return this.insert(role);
+    }
+
+    /**
+     * 更新角色
+     * @param role 角色
+     * @return     返回实际被更新的记录条数，返回 1，否则，返回 0
+     */
+    @Transactional
+    public int update(SysRole role) {
+        SysRole oldRole = this.fetch(role.getId());
+        if(oldRole == null){
+            throw new BizException("未知角色");
+        }
+        // 默认角色禁止操作
+        if(oldRole.getCode().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_ROLE)){
+            throw new BizException("超级管理员角色禁止操作");
+        }
+        // 检查角色名称是否唯一
+        if(!Strings.sBlank(oldRole.getName()).equalsIgnoreCase(role.getName())) {
+            if (this.count(Cnd.where("name","=", role.getName())) > 0) {
+                throw new BizException("角色名称已存在");
+            }
+        }
+        // 检查角色唯一编码是否唯一
+        if (!Strings.sBlank(oldRole.getCode()).equalsIgnoreCase(role.getCode())) {
+            if (this.count(Cnd.where("code","=", role.getCode())) > 0) {
+                throw new BizException("角色唯一编码已存在");
+            }
+        }
+        return this.updateIgnoreNull(role);
+    }
+
+    /**
+     * 删除角色
+     * @param id    角色ID
+     * @return      返回实际被更新的记录条数，返回 1，否则，返回 0
+     */
+    @Transactional
+    public int deleteById(String id) {
+        SysRole role = this.fetch(id);
+        // 默认角色禁止操作
+        if(role != null && role.getCode().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_ROLE)){
+            throw new BizException("超级管理员角色禁止操作");
+        }
+        return this.delete(id);
+    }
+
+    /**
+     * 保存角色菜单
+     * @param menuIds   菜单ID数组字符串
+     * @param roleId    角色ID
+     */
+    @Transactional
+    public void saveMenu(String[] menuIds, String roleId) {
+        SysRole role = this.fetch(roleId);
+        // 默认角色禁止操作
+        if(role != null && role.getCode().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_ROLE)){
+            throw new BizException("超级管理员角色禁止操作");
+        }
+        // 清除角色菜单关联数据
+        this.clear("ims_sys_role_menu", Cnd.where("roleId", "=", roleId));
+        for (String s : menuIds) {
+            // 重新添加角色菜单关联数据
+            this.insert("ims_sys_role_menu", Chain.make("roleId", roleId).add("menuId", s));
+        }
+    }
+
+    /**
+     * 获取角色权限
+     * @param role 角色
+     * @return     权限列表
+     */
+    public List<String> getPermissionList(SysRole role) {
+        // 根据角色查询权限
+        this.fetchLinks(role, "menus", Cnd.where("disabled", "=", true));
+        List<String> list = new ArrayList<>();
+        for (SysMenu menu : role.getMenus()) {
+            if (Strings.isNotBlank(menu.getPermission())) {
+                list.add(menu.getPermission());
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 获取超级管理员角色ID
+     * @return 超级管理员角色ID
+     */
+    public String fetchByDefaultSysadminRoleId() {
+        return this.fetch(Cnd.where("code","=", GlobalConstant.DEFAULT_SYSADMIN_ROLE)).getId();
+    }
+}
