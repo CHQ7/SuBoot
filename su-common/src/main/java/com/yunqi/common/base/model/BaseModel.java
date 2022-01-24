@@ -1,13 +1,13 @@
 package com.yunqi.common.base.model;
 
 import com.yunqi.common.utils.SecurityUtil;
+import com.yunqi.common.utils.Strings;
 import lombok.Data;
 import org.nutz.dao.entity.annotation.*;
 import org.nutz.dao.interceptor.annotation.PrevInsert;
 import org.nutz.dao.interceptor.annotation.PrevUpdate;
 import org.nutz.json.Json;
 import org.nutz.json.JsonFormat;
-import org.nutz.lang.Strings;
 
 import java.io.Serializable;
 
