@@ -1,6 +1,7 @@
-package com.yunqi.common.base.page;
+package com.yunqi.starter.common.page;
 
 /**
+ * 分页接口
  * Created by @author JsckChin on 2022/1/22
  */
 public interface Paginable {
@@ -41,19 +42,46 @@ public interface Paginable {
 
     /**
      * 是否最后一页
+     *
      * @return 是否最后一页
      */
     public boolean isLastPage();
 
     /**
      * 返回下页的页号
+     *
      * @return 返回下页的页号
      */
     public int getNextPage();
 
+
     /**
      * 返回上页的页号
+     *
      * @return 返回上页的页号
      */
     public int getPrePage();
+
+    /**
+     * 设置页码
+     *
+     * @param pageNumber    页码
+     * @return      设置页码
+     */
+    Paginable setPageNo(int pageNumber);
+
+    /**
+     *  设置一页可以有多少条记录
+     *
+     * @param pageSize 每页几条数据
+     * @return  设置每页几条数据
+     */
+    Paginable setPageSize(int pageSize);
+
+    /**
+     *  设置整个查询一共有多少条记录
+     * @param recordCount 一共有多少条记录
+     * @return  设置一共有多少条记录
+     */
+    Paginable setTotalCount(int recordCount);
 }

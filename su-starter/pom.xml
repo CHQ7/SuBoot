@@ -9,6 +9,7 @@
     <artifactId>su-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
+        <module>su-starter-dependencies</module>
         <module>su-starter-common</module>
     </modules>
 
@@ -21,35 +22,19 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <!-- maven仓库 -->
-    <repositories>
-        <repository>
-            <id>nutz</id>
-            <url>https://jfrog.nutz.cn/artifactory/libs-release</url>
-        </repository>
-        <repository>
-            <id>nutz-snapshots</id>
-            <url>https://jfrog.nutz.cn/artifactory/snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>nutzcn-snapshots</id>
-            <url>https://jfrog.nutz.cn/artifactory/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>budwk-release</id>
-            <name>Sonatype Nexus release repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-    </distributionManagement>
+    <!-- ======================================== -->
+    <!-- 公共依赖 -->
+    <!-- ======================================== -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.yunqi.starter</groupId>
+                <artifactId>su-starter-dependencies</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
