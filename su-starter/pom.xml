@@ -12,6 +12,10 @@
     <modules>
         <module>su-starter-dependencies</module>
         <module>su-starter-common</module>
+        <module>su-starter-jasypt</module>
+        <module>su-starter-mail</module>
+        <module>su-starter-jdbc</module>
+        <module>su-starter-database</module>
     </modules>
 
     <!-- 打包类型 -->

@@ -1,13 +1,11 @@
-package com.yunqi.common.utils;
+package com.yunqi.starter.jasypt.utils;
 
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 
 /**
- * <p>
- *     Jasypt安全框架加密类工具包
- * </p>
- * Created by @author JsckChin on 2022/1/22
+ * Jasypt安全框架加密类工具包
+ * Created by @author JsckChin on 2022/1/29
  */
 public class JasyptUtil {
 
@@ -61,11 +59,8 @@ public class JasyptUtil {
 
 
     public static void main(String[] args) {
-        // 原文
         String txt = "root";
-        // 密文
         String ciphertext = JasyptUtil.encrypt("egsnhm", txt);
-        // 打印
-        System.out.printf("原文:%s%n密文:%s%n解密:%s%n", txt, ciphertext, JasyptUtil.decypt("egsnhm","ciphertext"));
+        System.out.printf("原文:%s%n密文:%s%n解密:%s%n", txt, ciphertext, JasyptUtil.decypt("egsnhm",ciphertext));
     }
 }

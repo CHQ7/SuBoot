@@ -82,6 +82,7 @@ public class GlobalException {
      */
     @ExceptionHandler(BizException.class)
     public Object handleBizException(BizException e) {
+
         // 打印堆栈信息
         log.error(Lang.getStackTrace(e));
         return Result.error(ResultCode.FAILURE, e.getMessage());

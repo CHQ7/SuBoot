@@ -59,6 +59,7 @@ public abstract class BaseModel implements Serializable {
 
     @Column
     @Comment("删除标记")
+    @PrevInsert(els = @EL("$me.flag()"))
     @ColDefine(type = ColType.BOOLEAN)
     private Boolean delFlag;
 

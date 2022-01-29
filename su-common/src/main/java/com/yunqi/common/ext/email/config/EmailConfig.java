@@ -23,7 +23,7 @@ public class EmailConfig {
     public static boolean SSL = true;
 
     /** 邮箱昵称 */
-    public static String FROM_NAME = "阿萨德";
+    public static String FROM_NAME = "notice@fir7.com";
 
     /** 编码 */
     public static String CHARSET = "UTF-8";
