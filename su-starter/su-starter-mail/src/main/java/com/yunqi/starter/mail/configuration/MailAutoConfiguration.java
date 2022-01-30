@@ -1,40 +1,32 @@
 package com.yunqi.starter.mail.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.yunqi.starter.mail.service.IMailService;
+import com.yunqi.starter.mail.service.impl.MailServiceImpl;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-
-import java.util.Properties;
 
 /**
  * Created by @author JsckChin on 2022/1/29
  */
+@Slf4j
 @Configuration
+@ConditionalOnClass({MailServiceImpl.class})
 @ConditionalOnExpression("${su.mail.enabled:true}")
 @EnableConfigurationProperties(MailAutoConfigurationProperties.class)
 public class MailAutoConfiguration {
 
-    @Autowired
-    MailAutoConfigurationProperties properties;
+    public MailAutoConfigurationProperties properties;
+
+    public MailAutoConfiguration(MailAutoConfigurationProperties properties){
+        this.properties = properties;
+    }
 
     @Bean
-    public JavaMailSender javaMailSender(){
-        JavaMailSenderImpl email = new JavaMailSenderImpl();
-        email.setHost(properties.getHostName());
-        email.setPort(Integer.parseInt(properties.getSmtpPort()));
-        email.setUsername(properties.getUserName());
-        email.setPassword(properties.getPassword());
-        email.setDefaultEncoding(properties.getCharset());
-        if(properties.isSsl()){
-            Properties prop = new Properties();
-            prop.put("mail.smtp.ssl.enable", properties.isSsl());
-            prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-            email.setJavaMailProperties(prop);
-        }
-        return email;
+    public IMailService iMailService(){
+        return new MailServiceImpl(properties);
     }
 }

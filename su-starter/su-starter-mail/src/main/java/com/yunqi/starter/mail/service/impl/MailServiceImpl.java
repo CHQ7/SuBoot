@@ -5,35 +5,43 @@ import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.mail.configuration.MailAutoConfigurationProperties;
 import com.yunqi.starter.mail.entity.Email;
 import com.yunqi.starter.mail.service.IMailService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.Properties;
 
 /**
  * Created by @author JsckChin on 2022/1/29
  */
-@Service
+@Slf4j
 public class MailServiceImpl implements IMailService {
 
-    private static final Logger log = LoggerFactory.getLogger(MailServiceImpl.class);
+    private MailAutoConfigurationProperties properties;
 
-    @Autowired
-    JavaMailSender javaMailSender;
-
-    @Autowired
-    MailAutoConfigurationProperties properties;
+    public MailServiceImpl(MailAutoConfigurationProperties properties){
+        this.properties = properties;
+    }
 
     @Override
     public void send(Email email) {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+        javaMailSender.setHost(properties.getHostName());
+        javaMailSender.setPort(Integer.parseInt(properties.getSmtpPort()));
+        javaMailSender.setUsername(properties.getUserName());
+        javaMailSender.setPassword(properties.getPassword());
+        javaMailSender.setDefaultEncoding(properties.getCharset());
+        if(properties.isSsl()){
+            Properties prop = new Properties();
+            prop.put("mail.smtp.ssl.enable", properties.isSsl());
+            prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            javaMailSender.setJavaMailProperties(prop);
+        }
         MimeMessage message = javaMailSender.createMimeMessage();
         buildEmail(message, email, false);
         javaMailSender.send(message);
@@ -41,6 +49,18 @@ public class MailServiceImpl implements IMailService {
 
     @Override
     public void sendHtml(Email email) {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+        javaMailSender.setHost(properties.getHostName());
+        javaMailSender.setPort(Integer.parseInt(properties.getSmtpPort()));
+        javaMailSender.setUsername(properties.getUserName());
+        javaMailSender.setPassword(properties.getPassword());
+        javaMailSender.setDefaultEncoding(properties.getCharset());
+        if(properties.isSsl()){
+            Properties prop = new Properties();
+            prop.put("mail.smtp.ssl.enable", properties.isSsl());
+            prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+            javaMailSender.setJavaMailProperties(prop);
+        }
         MimeMessage message = javaMailSender.createMimeMessage();
         buildEmail(message, email, true);
         javaMailSender.send(message);

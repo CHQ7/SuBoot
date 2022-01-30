@@ -1,0 +1,754 @@
+2022-01-30 11:55:05,460 [main] INFO  com.yunqi.EmailUtilTest - Starting EmailUtilTest using Java 11.0.11 on MS-FTAXWMTPMCGU with PID 19184 (started by Administrator in D:\SuBoot\su-admin)
+2022-01-30 11:55:05,460 [main] DEBUG com.yunqi.EmailUtilTest - Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-01-30 11:55:05,460 [main] INFO  com.yunqi.EmailUtilTest - No active profile set, falling back to default profiles: default
+2022-01-30 11:55:06,376 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 11:55:06,378 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-01-30 11:55:06,406 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2022-01-30 11:55:06,422 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 11:55:06,424 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-01-30 11:55:06,441 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2022-01-30 11:55:06,758 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2022-01-30 11:55:06,759 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-01-30 11:55:06,761 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 11:55:06,761 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 11:55:06,761 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-01-30 11:55:06,761 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-01-30 11:55:06,762 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 11:55:06,762 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-01-30 11:55:06,762 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-01-30 11:55:06,762 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 11:55:07,325 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysUser
+2022-01-30 11:55:07,475 [main] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-01-30 11:55:07,488 [main] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-01-30 11:55:07,491 [main] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-01-30 11:55:07,508 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2022-01-30 11:55:07,514 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2022-01-30 11:55:07,521 [main] WARN  o.s.w.context.support.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'stpInterfaceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sysUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dao' defined in class path resource [com/yunqi/common/config/DataSourceConfiguration.class]: Unsatisfied dependency expressed through method 'dao' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+2022-01-30 11:55:07,537 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-01-30 11:55:07,576 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'spring.datasource.password' to java.lang.String:
+
+    Reason: java.lang.IllegalStateException: either 'jasypt.encryptor.password', one of ['jasypt.encryptor.private-key-string', 'jasypt.encryptor.private-key-location'] for asymmetric encryption, or one of ['jasypt.encryptor.gcm-secret-key-string', 'jasypt.encryptor.gcm-secret-key-location', 'jasypt.encryptor.gcm-secret-key-password'] for AES/GCM encryption must be provided for Password-based or Asymmetric encryption
+
+Action:
+
+Update your application's configuration
+
+2022-01-30 11:55:07,583 [main] ERROR o.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@3e14c16d] to prepare test instance [com.yunqi.EmailUtilTest@57e03347]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:107)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:88)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:67)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:52)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:86)
+	at org.junit.platform.launcher.core.DefaultLauncherSession$DelegatingLauncher.execute(DefaultLauncherSession.java:86)
+	at org.junit.platform.launcher.core.SessionPerRequestLauncher.execute(SessionPerRequestLauncher.java:53)
+	at com.intellij.junit5.JUnit5IdeaTestRunner.startRunnerWithArgs(JUnit5IdeaTestRunner.java:71)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+	at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'stpInterfaceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sysUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dao' defined in class path resource [com/yunqi/common/config/DataSourceConfiguration.class]: Unsatisfied dependency expressed through method 'dao' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:121)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	... 71 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sysUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dao' defined in class path resource [com/yunqi/common/config/DataSourceConfiguration.class]: Unsatisfied dependency expressed through method 'dao' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeanByName(AbstractAutowireCapableBeanFactory.java:479)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:550)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 87 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dao' defined in class path resource [com/yunqi/common/config/DataSourceConfiguration.class]: Unsatisfied dependency expressed through method 'dao' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:237)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 101 common frames omitted
+Caused by: org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:92)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.postProcessBeforeInitialization(ConfigurationPropertiesBindingPostProcessor.java:78)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 119 common frames omitted
+Caused by: org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.boot.context.properties.bind.Binder.handleBindError(Binder.java:384)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:344)
+	at org.springframework.boot.context.properties.bind.Binder.lambda$bindDataObject$4(Binder.java:469)
+	at org.springframework.boot.context.properties.bind.JavaBeanBinder.bind(JavaBeanBinder.java:95)
+	at org.springframework.boot.context.properties.bind.JavaBeanBinder.bind(JavaBeanBinder.java:83)
+	at org.springframework.boot.context.properties.bind.JavaBeanBinder.bind(JavaBeanBinder.java:59)
+	at org.springframework.boot.context.properties.bind.Binder.lambda$bindDataObject$5(Binder.java:473)
+	at org.springframework.boot.context.properties.bind.Binder$Context.withIncreasedDepth(Binder.java:587)
+	at org.springframework.boot.context.properties.bind.Binder$Context.withDataObject(Binder.java:573)
+	at org.springframework.boot.context.properties.bind.Binder$Context.access$300(Binder.java:534)
+	at org.springframework.boot.context.properties.bind.Binder.bindDataObject(Binder.java:471)
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:411)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:340)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:329)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:259)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:246)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBinder.bind(ConfigurationPropertiesBinder.java:95)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:89)
+	... 133 common frames omitted
+Caused by: java.lang.IllegalStateException: either 'jasypt.encryptor.password', one of ['jasypt.encryptor.private-key-string', 'jasypt.encryptor.private-key-location'] for asymmetric encryption, or one of ['jasypt.encryptor.gcm-secret-key-string', 'jasypt.encryptor.gcm-secret-key-location', 'jasypt.encryptor.gcm-secret-key-password'] for AES/GCM encryption must be provided for Password-based or Asymmetric encryption
+	at com.ulisesbocchio.jasyptspringboot.configuration.StringEncryptorBuilder.build(StringEncryptorBuilder.java:35)
+	at com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor.createDefault(DefaultLazyEncryptor.java:47)
+	at com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor.lambda$new$2(DefaultLazyEncryptor.java:38)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor.lambda$new$3(DefaultLazyEncryptor.java:33)
+	at com.ulisesbocchio.jasyptspringboot.util.Singleton.lambda$new$6(Singleton.java:42)
+	at com.ulisesbocchio.jasyptspringboot.util.Singleton.get(Singleton.java:53)
+	at com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor.decrypt(DefaultLazyEncryptor.java:57)
+	at com.ulisesbocchio.jasyptspringboot.resolver.DefaultPropertyResolver.lambda$resolvePropertyValue$0(DefaultPropertyResolver.java:44)
+	at java.base/java.util.Optional.map(Optional.java:265)
+	at com.ulisesbocchio.jasyptspringboot.resolver.DefaultPropertyResolver.resolvePropertyValue(DefaultPropertyResolver.java:40)
+	at com.ulisesbocchio.jasyptspringboot.resolver.DefaultLazyPropertyResolver.resolvePropertyValue(DefaultLazyPropertyResolver.java:50)
+	at com.ulisesbocchio.jasyptspringboot.EncryptablePropertySource.getProperty(EncryptablePropertySource.java:28)
+	at com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource.getProperty(CachingDelegateEncryptablePropertySource.java:44)
+	at com.ulisesbocchio.jasyptspringboot.wrapper.EncryptableMapPropertySourceWrapper.getProperty(EncryptableMapPropertySourceWrapper.java:29)
+	at org.springframework.boot.context.properties.source.SpringIterableConfigurationPropertySource.getConfigurationProperty(SpringIterableConfigurationPropertySource.java:105)
+	at org.springframework.boot.context.properties.bind.Binder.findProperty(Binder.java:444)
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:390)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:340)
+	... 149 common frames omitted
+2022-01-30 12:05:24,753 [main] INFO  com.yunqi.EmailUtilTest - Starting EmailUtilTest using Java 11.0.11 on MS-FTAXWMTPMCGU with PID 10352 (started by Administrator in D:\SuBoot\su-admin)
+2022-01-30 12:05:24,754 [main] DEBUG com.yunqi.EmailUtilTest - Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-01-30 12:05:24,754 [main] INFO  com.yunqi.EmailUtilTest - No active profile set, falling back to default profiles: default
+2022-01-30 12:05:25,659 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 12:05:25,660 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-01-30 12:05:25,686 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 0 JDBC repository interfaces.
+2022-01-30 12:05:25,703 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 12:05:25,704 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-01-30 12:05:25,720 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2022-01-30 12:05:26,021 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2022-01-30 12:05:26,022 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-01-30 12:05:26,025 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:05:26,025 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:05:26,025 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-01-30 12:05:26,025 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-01-30 12:05:26,025 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:05:26,025 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-01-30 12:05:26,025 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-01-30 12:05:26,025 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:05:26,616 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysUser
+2022-01-30 12:05:26,785 [main] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-01-30 12:05:26,798 [main] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-01-30 12:05:26,801 [main] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-01-30 12:05:26,860 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@1796b2d4 with name: jasyptStringEncryptor
+2022-01-30 12:05:27,157 [main] DEBUG org.nutz.castor.Castors - Using 107 castor for Castors
+2022-01-30 12:05:27,175 [main] DEBUG org.nutz.dao.jdbc.Jdbcs - Jdbcs init complete
+2022-01-30 12:05:27,175 [main] INFO  org.nutz.dao.jdbc.Jdbcs - Get Connection from DataSource for JdbcExpert, if you lock at here, check your database server and configure
+2022-01-30 12:05:27,489 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-01-30 12:05:27,495 [main] DEBUG org.nutz.dao.impl.DaoSupport - select expert : org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert
+2022-01-30 12:05:27,500 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Driver --> mysql-connector-java-8.0.27 (Revision: e920b979015ae7117d60d72bcc8f077a839cd791)
+2022-01-30 12:05:27,501 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Name   --> MySQL Connector/J
+2022-01-30 12:05:27,501 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC URL    --> jdbc:mysql://127.0.0.1:3306/snboot?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+2022-01-30 12:05:27,726 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_client=utf8mb4
+2022-01-30 12:05:27,726 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_connection=utf8mb4
+2022-01-30 12:05:27,726 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_database=utf8mb3
+2022-01-30 12:05:27,726 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_filesystem=binary
+2022-01-30 12:05:27,726 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_results=
+2022-01-30 12:05:27,726 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_server=utf8mb4
+2022-01-30 12:05:27,726 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_system=utf8mb3
+2022-01-30 12:05:27,726 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_sets_dir=C:\Program Files\MySQL\MySQL Server 8.0\share\charsets\
+2022-01-30 12:05:27,729 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : binlog_format=ROW
+2022-01-30 12:05:27,741 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : database=snboot
+2022-01-30 12:05:27,742 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : user=root@localhost
+2022-01-30 12:05:27,809 [main] DEBUG org.nutz.dao.impl.DaoSupport - Database info --> MYSQL:[MySQL - 8.0.25]
+2022-01-30 12:05:27,838 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysRole
+2022-01-30 12:05:27,909 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysAuthLog
+2022-01-30 12:05:27,981 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysLog
+2022-01-30 12:05:28,019 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysMenu
+2022-01-30 12:05:28,065 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysConfig
+2022-01-30 12:05:28,117 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysDept
+2022-01-30 12:05:28,183 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTask
+2022-01-30 12:05:28,290 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2022-01-30 12:05:28,294 [main] INFO  org.quartz.simpl.SimpleThreadPool - Job execution threads will use class loader of thread: main
+2022-01-30 12:05:28,313 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-01-30 12:05:28,313 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2022-01-30 12:05:28,325 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Using db table-based data access locking (synchronization).
+2022-01-30 12:05:28,328 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - JobStoreCMT initialized.
+2022-01-30 12:05:28,328 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'QuartzScheduler' with instanceId 'MS-FTAXWMTPMCGU1643515528293'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+2022-01-30 12:05:28,328 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'QuartzScheduler' initialized from an externally provided properties instance.
+2022-01-30 12:05:28,328 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2022-01-30 12:05:28,330 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@66314fee
+2022-01-30 12:05:28,395 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTaskLog
+2022-01-30 12:05:28,518 [main] DEBUG org.nutz.resource.Scans - Locations count=149 time use 55ms
+2022-01-30 12:05:28,544 [main] DEBUG org.nutz.resource.Scans - Found 88 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:05:28,748 [main] DEBUG org.nutz.resource.Scans - Found 88 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:05:28,786 [main] DEBUG org.nutz.resource.Scans - Found 0 resource by src( BOOT-INF/classes/com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:05:28,790 [main] DEBUG org.nutz.resource.Scans - Found 0 resource by src( BOOT-INF/classes/com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:05:29,358 [main] INFO  org.nutz.filepool.NutFilePool - Init file-pool by: .temp [0]
+2022-01-30 12:05:29,360 [main] DEBUG org.nutz.filepool.NutFilePool - file-pool.home: 'D:\SuBoot\su-admin\.temp'
+2022-01-30 12:05:29,360 [main] INFO  org.nutz.filepool.NutFilePool - file-pool.cursor: 0
+2022-01-30 12:05:29,480 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @6527ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-01-30 12:05:31,126 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class java.time.OffsetDateTime to class org.springframework.data.jdbc.core.convert.JdbcValue as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-30 12:05:31,534 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Will start Quartz Scheduler [QuartzScheduler] in 3 seconds
+2022-01-30 12:05:31,537 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+2022-01-30 12:05:31,620 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#71ac5723:0/SimpleConnection@c7d173f [delegate=amqp://root@127.0.0.1:5672/, localPort= 61821]
+2022-01-30 12:05:31,693 [main] INFO  com.yunqi.EmailUtilTest - Started EmailUtilTest in 7.426 seconds (JVM running for 8.739)
+2022-01-30 12:05:31,696 [main] INFO  com.yunqi.common.Setup - Initialize system environment
+2022-01-30 12:05:31,698 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT COUNT(*) FROM ims_sys_user 
+2022-01-30 12:05:31,769 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_task 
+2022-01-30 12:05:31,788 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_config 
+2022-01-30 12:05:32,233 [SpringApplicationShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2022-01-30 12:05:32,686 [SpringApplicationShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2022-01-30 12:05:32,714 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2022-01-30 12:05:32,714 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515528293 shutting down.
+2022-01-30 12:05:32,714 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515528293 paused.
+2022-01-30 12:05:32,715 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515528293 shutdown complete.
+2022-01-30 12:05:32,716 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-01-30 12:05:32,726 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-01-30 12:05:44,832 [main] INFO  com.yunqi.EmailUtilTest - Starting EmailUtilTest using Java 11.0.11 on MS-FTAXWMTPMCGU with PID 1460 (started by Administrator in D:\SuBoot\su-admin)
+2022-01-30 12:05:44,832 [main] DEBUG com.yunqi.EmailUtilTest - Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-01-30 12:05:44,832 [main] INFO  com.yunqi.EmailUtilTest - No active profile set, falling back to default profiles: default
+2022-01-30 12:05:45,700 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 12:05:45,702 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-01-30 12:05:45,725 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 0 JDBC repository interfaces.
+2022-01-30 12:05:45,741 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 12:05:45,743 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-01-30 12:05:45,758 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2022-01-30 12:05:46,047 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2022-01-30 12:05:46,048 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-01-30 12:05:46,050 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:05:46,050 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:05:46,050 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-01-30 12:05:46,050 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-01-30 12:05:46,050 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:05:46,051 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-01-30 12:05:46,051 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-01-30 12:05:46,051 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:05:46,615 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysUser
+2022-01-30 12:05:46,768 [main] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-01-30 12:05:46,782 [main] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-01-30 12:05:46,785 [main] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-01-30 12:05:46,838 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@6bf570c with name: jasyptStringEncryptor
+2022-01-30 12:05:47,104 [main] DEBUG org.nutz.castor.Castors - Using 107 castor for Castors
+2022-01-30 12:05:47,123 [main] DEBUG org.nutz.dao.jdbc.Jdbcs - Jdbcs init complete
+2022-01-30 12:05:47,123 [main] INFO  org.nutz.dao.jdbc.Jdbcs - Get Connection from DataSource for JdbcExpert, if you lock at here, check your database server and configure
+2022-01-30 12:05:47,459 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-01-30 12:05:47,464 [main] DEBUG org.nutz.dao.impl.DaoSupport - select expert : org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert
+2022-01-30 12:05:47,469 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Driver --> mysql-connector-java-8.0.27 (Revision: e920b979015ae7117d60d72bcc8f077a839cd791)
+2022-01-30 12:05:47,469 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Name   --> MySQL Connector/J
+2022-01-30 12:05:47,469 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC URL    --> jdbc:mysql://127.0.0.1:3306/snboot?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+2022-01-30 12:05:47,676 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_client=utf8mb4
+2022-01-30 12:05:47,677 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_connection=utf8mb4
+2022-01-30 12:05:47,677 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_database=utf8mb3
+2022-01-30 12:05:47,677 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_filesystem=binary
+2022-01-30 12:05:47,677 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_results=
+2022-01-30 12:05:47,677 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_server=utf8mb4
+2022-01-30 12:05:47,677 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_system=utf8mb3
+2022-01-30 12:05:47,677 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_sets_dir=C:\Program Files\MySQL\MySQL Server 8.0\share\charsets\
+2022-01-30 12:05:47,681 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : binlog_format=ROW
+2022-01-30 12:05:47,693 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : database=snboot
+2022-01-30 12:05:47,694 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : user=root@localhost
+2022-01-30 12:05:47,758 [main] DEBUG org.nutz.dao.impl.DaoSupport - Database info --> MYSQL:[MySQL - 8.0.25]
+2022-01-30 12:05:47,795 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysRole
+2022-01-30 12:05:47,857 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysAuthLog
+2022-01-30 12:05:47,919 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysLog
+2022-01-30 12:05:47,955 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysMenu
+2022-01-30 12:05:48,003 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysConfig
+2022-01-30 12:05:48,049 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysDept
+2022-01-30 12:05:48,112 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTask
+2022-01-30 12:05:48,206 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2022-01-30 12:05:48,208 [main] INFO  org.quartz.simpl.SimpleThreadPool - Job execution threads will use class loader of thread: main
+2022-01-30 12:05:48,223 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-01-30 12:05:48,223 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2022-01-30 12:05:48,233 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Using db table-based data access locking (synchronization).
+2022-01-30 12:05:48,236 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - JobStoreCMT initialized.
+2022-01-30 12:05:48,236 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'QuartzScheduler' with instanceId 'MS-FTAXWMTPMCGU1643515548208'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+2022-01-30 12:05:48,236 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'QuartzScheduler' initialized from an externally provided properties instance.
+2022-01-30 12:05:48,236 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2022-01-30 12:05:48,238 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@6d4502ca
+2022-01-30 12:05:48,285 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTaskLog
+2022-01-30 12:05:48,390 [main] DEBUG org.nutz.resource.Scans - Locations count=149 time use 45ms
+2022-01-30 12:05:48,415 [main] DEBUG org.nutz.resource.Scans - Found 88 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:05:48,569 [main] DEBUG org.nutz.resource.Scans - Found 88 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:05:48,607 [main] DEBUG org.nutz.resource.Scans - Found 0 resource by src( BOOT-INF/classes/com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:05:48,611 [main] DEBUG org.nutz.resource.Scans - Found 0 resource by src( BOOT-INF/classes/com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:05:49,134 [main] INFO  org.nutz.filepool.NutFilePool - Init file-pool by: .temp [0]
+2022-01-30 12:05:49,134 [main] DEBUG org.nutz.filepool.NutFilePool - file-pool.home: 'D:\SuBoot\su-admin\.temp'
+2022-01-30 12:05:49,135 [main] INFO  org.nutz.filepool.NutFilePool - file-pool.cursor: 0
+2022-01-30 12:05:49,257 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @6161ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-01-30 12:05:50,955 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class java.time.OffsetDateTime to class org.springframework.data.jdbc.core.convert.JdbcValue as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-30 12:05:51,272 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Will start Quartz Scheduler [QuartzScheduler] in 3 seconds
+2022-01-30 12:05:51,274 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+2022-01-30 12:05:51,373 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#47400608:0/SimpleConnection@638e8194 [delegate=amqp://root@127.0.0.1:5672/, localPort= 61861]
+2022-01-30 12:05:51,454 [main] INFO  com.yunqi.EmailUtilTest - Started EmailUtilTest in 7.091 seconds (JVM running for 8.358)
+2022-01-30 12:05:51,457 [main] INFO  com.yunqi.common.Setup - Initialize system environment
+2022-01-30 12:05:51,458 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT COUNT(*) FROM ims_sys_user 
+2022-01-30 12:05:51,541 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_task 
+2022-01-30 12:05:51,566 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_config 
+2022-01-30 12:05:54,283 [Quartz Scheduler [QuartzScheduler]] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now, after delay of 3 seconds
+2022-01-30 12:05:54,408 [Quartz Scheduler [QuartzScheduler]] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - ClusterManager: detected 1 failed or restarted instances.
+2022-01-30 12:05:54,408 [Quartz Scheduler [QuartzScheduler]] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - ClusterManager: Scanning for instance "MS-FTAXWMTPMCGU1643515508658"'s failed in-progress jobs.
+2022-01-30 12:05:54,420 [Quartz Scheduler [QuartzScheduler]] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515548208 started.
+2022-01-30 12:06:34,175 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515548208 paused.
+2022-01-30 12:06:34,177 [SpringApplicationShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2022-01-30 12:06:34,476 [SpringApplicationShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2022-01-30 12:06:34,501 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2022-01-30 12:06:34,501 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515548208 shutting down.
+2022-01-30 12:06:34,501 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515548208 paused.
+2022-01-30 12:06:34,502 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515548208 shutdown complete.
+2022-01-30 12:06:34,503 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-01-30 12:06:34,513 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-01-30 12:11:04,170 [main] INFO  com.yunqi.EmailUtilTest - Starting EmailUtilTest using Java 11.0.11 on MS-FTAXWMTPMCGU with PID 18284 (started by Administrator in D:\SuBoot\su-admin)
+2022-01-30 12:11:04,171 [main] DEBUG com.yunqi.EmailUtilTest - Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-01-30 12:11:04,171 [main] INFO  com.yunqi.EmailUtilTest - No active profile set, falling back to default profiles: default
+2022-01-30 12:11:05,057 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 12:11:05,059 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-01-30 12:11:05,084 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 0 JDBC repository interfaces.
+2022-01-30 12:11:05,099 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 12:11:05,101 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-01-30 12:11:05,116 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2022-01-30 12:11:05,413 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2022-01-30 12:11:05,414 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-01-30 12:11:05,417 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:11:05,417 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:11:05,417 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-01-30 12:11:05,417 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-01-30 12:11:05,417 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:11:05,417 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-01-30 12:11:05,417 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-01-30 12:11:05,417 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 12:11:05,992 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysUser
+2022-01-30 12:11:06,161 [main] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-01-30 12:11:06,176 [main] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-01-30 12:11:06,179 [main] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-01-30 12:11:06,239 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@6bf570c with name: jasyptStringEncryptor
+2022-01-30 12:11:06,537 [main] DEBUG org.nutz.castor.Castors - Using 107 castor for Castors
+2022-01-30 12:11:06,557 [main] DEBUG org.nutz.dao.jdbc.Jdbcs - Jdbcs init complete
+2022-01-30 12:11:06,557 [main] INFO  org.nutz.dao.jdbc.Jdbcs - Get Connection from DataSource for JdbcExpert, if you lock at here, check your database server and configure
+2022-01-30 12:11:06,917 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-01-30 12:11:06,923 [main] DEBUG org.nutz.dao.impl.DaoSupport - select expert : org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert
+2022-01-30 12:11:06,929 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Driver --> mysql-connector-java-8.0.27 (Revision: e920b979015ae7117d60d72bcc8f077a839cd791)
+2022-01-30 12:11:06,929 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Name   --> MySQL Connector/J
+2022-01-30 12:11:06,929 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC URL    --> jdbc:mysql://127.0.0.1:3306/snboot?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+2022-01-30 12:11:07,143 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_client=utf8mb4
+2022-01-30 12:11:07,143 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_connection=utf8mb4
+2022-01-30 12:11:07,143 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_database=utf8mb3
+2022-01-30 12:11:07,143 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_filesystem=binary
+2022-01-30 12:11:07,143 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_results=
+2022-01-30 12:11:07,143 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_server=utf8mb4
+2022-01-30 12:11:07,143 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_system=utf8mb3
+2022-01-30 12:11:07,144 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_sets_dir=C:\Program Files\MySQL\MySQL Server 8.0\share\charsets\
+2022-01-30 12:11:07,146 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : binlog_format=ROW
+2022-01-30 12:11:07,159 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : database=snboot
+2022-01-30 12:11:07,160 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : user=root@localhost
+2022-01-30 12:11:07,224 [main] DEBUG org.nutz.dao.impl.DaoSupport - Database info --> MYSQL:[MySQL - 8.0.25]
+2022-01-30 12:11:07,256 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysRole
+2022-01-30 12:11:07,326 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysAuthLog
+2022-01-30 12:11:07,405 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysLog
+2022-01-30 12:11:07,457 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysMenu
+2022-01-30 12:11:07,524 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysConfig
+2022-01-30 12:11:07,575 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysDept
+2022-01-30 12:11:07,638 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTask
+2022-01-30 12:11:07,736 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2022-01-30 12:11:07,739 [main] INFO  org.quartz.simpl.SimpleThreadPool - Job execution threads will use class loader of thread: main
+2022-01-30 12:11:07,757 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-01-30 12:11:07,757 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2022-01-30 12:11:07,764 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Using db table-based data access locking (synchronization).
+2022-01-30 12:11:07,766 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - JobStoreCMT initialized.
+2022-01-30 12:11:07,767 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'QuartzScheduler' with instanceId 'MS-FTAXWMTPMCGU1643515867738'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+2022-01-30 12:11:07,767 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'QuartzScheduler' initialized from an externally provided properties instance.
+2022-01-30 12:11:07,767 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2022-01-30 12:11:07,769 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: org.springframework.scheduling.quartz.AdaptableJobFactory@38ebc866
+2022-01-30 12:11:07,815 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTaskLog
+2022-01-30 12:11:07,950 [main] DEBUG org.nutz.resource.Scans - Locations count=149 time use 63ms
+2022-01-30 12:11:07,974 [main] DEBUG org.nutz.resource.Scans - Found 88 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:11:08,145 [main] DEBUG org.nutz.resource.Scans - Found 88 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:11:08,183 [main] DEBUG org.nutz.resource.Scans - Found 0 resource by src( BOOT-INF/classes/com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:11:08,187 [main] DEBUG org.nutz.resource.Scans - Found 0 resource by src( BOOT-INF/classes/com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-01-30 12:11:08,782 [main] INFO  org.nutz.filepool.NutFilePool - Init file-pool by: .temp [0]
+2022-01-30 12:11:08,782 [main] DEBUG org.nutz.filepool.NutFilePool - file-pool.home: 'D:\SuBoot\su-admin\.temp'
+2022-01-30 12:11:08,783 [main] INFO  org.nutz.filepool.NutFilePool - file-pool.cursor: 0
+2022-01-30 12:11:08,893 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @6512ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-01-30 12:11:10,593 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class java.time.OffsetDateTime to class org.springframework.data.jdbc.core.convert.JdbcValue as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-01-30 12:11:10,910 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Will start Quartz Scheduler [QuartzScheduler] in 3 seconds
+2022-01-30 12:11:10,912 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [127.0.0.1:5672]
+2022-01-30 12:11:10,977 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#b666366:0/SimpleConnection@49994a4 [delegate=amqp://root@127.0.0.1:5672/, localPort= 62405]
+2022-01-30 12:11:11,037 [main] INFO  com.yunqi.EmailUtilTest - Started EmailUtilTest in 7.354 seconds (JVM running for 8.657)
+2022-01-30 12:11:11,039 [main] INFO  com.yunqi.common.Setup - Initialize system environment
+2022-01-30 12:11:11,041 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT COUNT(*) FROM ims_sys_user 
+2022-01-30 12:11:11,114 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_task 
+2022-01-30 12:11:11,134 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_config 
+2022-01-30 12:11:12,836 [SpringApplicationShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Waiting for workers to finish.
+2022-01-30 12:11:13,040 [SpringApplicationShutdownHook] INFO  o.s.a.r.listener.SimpleMessageListenerContainer - Successfully waited for workers to finish.
+2022-01-30 12:11:13,067 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2022-01-30 12:11:13,068 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515867738 shutting down.
+2022-01-30 12:11:13,068 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515867738 paused.
+2022-01-30 12:11:13,068 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MS-FTAXWMTPMCGU1643515867738 shutdown complete.
+2022-01-30 12:11:13,070 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-01-30 12:11:13,080 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-01-30 14:09:03,865 [main] INFO  com.yunqi.EmailUtilTest - Starting EmailUtilTest using Java 11.0.11 on MS-FTAXWMTPMCGU with PID 22044 (started by Administrator in D:\SuBoot\su-admin)
+2022-01-30 14:09:03,865 [main] DEBUG com.yunqi.EmailUtilTest - Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-01-30 14:09:03,865 [main] INFO  com.yunqi.EmailUtilTest - No active profile set, falling back to default profiles: default
+2022-01-30 14:09:04,712 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 14:09:04,715 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-01-30 14:09:04,736 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 0 JDBC repository interfaces.
+2022-01-30 14:09:04,749 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-01-30 14:09:04,750 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-01-30 14:09:04,761 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2022-01-30 14:09:05,027 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2022-01-30 14:09:05,028 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-01-30 14:09:05,031 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 14:09:05,031 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 14:09:05,031 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-01-30 14:09:05,031 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-01-30 14:09:05,031 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 14:09:05,031 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-01-30 14:09:05,032 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-01-30 14:09:05,032 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-01-30 14:09:05,526 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysUser
+2022-01-30 14:09:05,684 [main] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-01-30 14:09:05,699 [main] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-01-30 14:09:05,702 [main] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-01-30 14:09:05,721 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2022-01-30 14:09:05,729 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2022-01-30 14:09:05,738 [main] WARN  o.s.w.context.support.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'stpInterfaceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sysUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dao' defined in class path resource [com/yunqi/common/config/DataSourceConfiguration.class]: Unsatisfied dependency expressed through method 'dao' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+2022-01-30 14:09:05,750 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-01-30 14:09:05,772 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'spring.datasource.password' to java.lang.String:
+
+    Reason: java.lang.IllegalStateException: either 'jasypt.encryptor.password', one of ['jasypt.encryptor.private-key-string', 'jasypt.encryptor.private-key-location'] for asymmetric encryption, or one of ['jasypt.encryptor.gcm-secret-key-string', 'jasypt.encryptor.gcm-secret-key-location', 'jasypt.encryptor.gcm-secret-key-password'] for AES/GCM encryption must be provided for Password-based or Asymmetric encryption
+
+Action:
+
+Update your application's configuration
+
+2022-01-30 14:09:05,778 [main] ERROR o.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener@58c34bb3] to prepare test instance [com.yunqi.EmailUtilTest@505d2bac]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:132)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:195)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1655)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:312)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'stpInterfaceImpl': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sysUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dao' defined in class path resource [com/yunqi/common/config/DataSourceConfiguration.class]: Unsatisfied dependency expressed through method 'dao' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:121)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:99)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
+	... 67 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sysUserService': Injection of resource dependencies failed; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dao' defined in class path resource [com/yunqi/common/config/DataSourceConfiguration.class]: Unsatisfied dependency expressed through method 'dao' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:332)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.resolveBeanByName(AbstractAutowireCapableBeanFactory.java:479)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:550)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:228)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 83 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dao' defined in class path resource [com/yunqi/common/config/DataSourceConfiguration.class]: Unsatisfied dependency expressed through method 'dao' parameter 0; nested exception is org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:544)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:520)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:673)
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:237)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:329)
+	... 97 common frames omitted
+Caused by: org.springframework.boot.context.properties.ConfigurationPropertiesBindException: Error creating bean with name 'dataSource': Could not bind properties to 'DataSource' : prefix=spring.datasource, ignoreInvalidFields=false, ignoreUnknownFields=true; nested exception is org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:92)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.postProcessBeforeInitialization(ConfigurationPropertiesBindingPostProcessor.java:78)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 115 common frames omitted
+Caused by: org.springframework.boot.context.properties.bind.BindException: Failed to bind properties under 'spring.datasource.password' to java.lang.String
+	at org.springframework.boot.context.properties.bind.Binder.handleBindError(Binder.java:384)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:344)
+	at org.springframework.boot.context.properties.bind.Binder.lambda$bindDataObject$4(Binder.java:469)
+	at org.springframework.boot.context.properties.bind.JavaBeanBinder.bind(JavaBeanBinder.java:95)
+	at org.springframework.boot.context.properties.bind.JavaBeanBinder.bind(JavaBeanBinder.java:83)
+	at org.springframework.boot.context.properties.bind.JavaBeanBinder.bind(JavaBeanBinder.java:59)
+	at org.springframework.boot.context.properties.bind.Binder.lambda$bindDataObject$5(Binder.java:473)
+	at org.springframework.boot.context.properties.bind.Binder$Context.withIncreasedDepth(Binder.java:587)
+	at org.springframework.boot.context.properties.bind.Binder$Context.withDataObject(Binder.java:573)
+	at org.springframework.boot.context.properties.bind.Binder$Context.access$300(Binder.java:534)
+	at org.springframework.boot.context.properties.bind.Binder.bindDataObject(Binder.java:471)
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:411)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:340)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:329)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:259)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:246)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBinder.bind(ConfigurationPropertiesBinder.java:95)
+	at org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor.bind(ConfigurationPropertiesBindingPostProcessor.java:89)
+	... 129 common frames omitted
+Caused by: java.lang.IllegalStateException: either 'jasypt.encryptor.password', one of ['jasypt.encryptor.private-key-string', 'jasypt.encryptor.private-key-location'] for asymmetric encryption, or one of ['jasypt.encryptor.gcm-secret-key-string', 'jasypt.encryptor.gcm-secret-key-location', 'jasypt.encryptor.gcm-secret-key-password'] for AES/GCM encryption must be provided for Password-based or Asymmetric encryption
+	at com.ulisesbocchio.jasyptspringboot.configuration.StringEncryptorBuilder.build(StringEncryptorBuilder.java:35)
+	at com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor.createDefault(DefaultLazyEncryptor.java:47)
+	at com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor.lambda$new$2(DefaultLazyEncryptor.java:38)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor.lambda$new$3(DefaultLazyEncryptor.java:33)
+	at com.ulisesbocchio.jasyptspringboot.util.Singleton.lambda$new$6(Singleton.java:42)
+	at com.ulisesbocchio.jasyptspringboot.util.Singleton.get(Singleton.java:53)
+	at com.ulisesbocchio.jasyptspringboot.encryptor.DefaultLazyEncryptor.decrypt(DefaultLazyEncryptor.java:57)
+	at com.ulisesbocchio.jasyptspringboot.resolver.DefaultPropertyResolver.lambda$resolvePropertyValue$0(DefaultPropertyResolver.java:44)
+	at java.base/java.util.Optional.map(Optional.java:265)
+	at com.ulisesbocchio.jasyptspringboot.resolver.DefaultPropertyResolver.resolvePropertyValue(DefaultPropertyResolver.java:40)
+	at com.ulisesbocchio.jasyptspringboot.resolver.DefaultLazyPropertyResolver.resolvePropertyValue(DefaultLazyPropertyResolver.java:50)
+	at com.ulisesbocchio.jasyptspringboot.EncryptablePropertySource.getProperty(EncryptablePropertySource.java:28)
+	at com.ulisesbocchio.jasyptspringboot.caching.CachingDelegateEncryptablePropertySource.getProperty(CachingDelegateEncryptablePropertySource.java:44)
+	at com.ulisesbocchio.jasyptspringboot.wrapper.EncryptableMapPropertySourceWrapper.getProperty(EncryptableMapPropertySourceWrapper.java:29)
+	at org.springframework.boot.context.properties.source.SpringIterableConfigurationPropertySource.getConfigurationProperty(SpringIterableConfigurationPropertySource.java:105)
+	at org.springframework.boot.context.properties.bind.Binder.findProperty(Binder.java:444)
+	at org.springframework.boot.context.properties.bind.Binder.bindObject(Binder.java:390)
+	at org.springframework.boot.context.properties.bind.Binder.bind(Binder.java:340)
+	... 145 common frames omitted

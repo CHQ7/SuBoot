@@ -1,9 +1,10 @@
 package com.yunqi.starter.jasypt.configuration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -12,16 +13,20 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by @author JsckChin on 2022/1/29
  */
+@Slf4j
 @Configuration
-@ConditionalOnExpression("${su.jasypt.enabled:true}")
-@EnableConfigurationProperties(JasyptAutoConfigurationProperties.class)
+@ConditionalOnExpression("${su.jasypt.enabled:true}") // 默认启动组件
+@AutoConfigureAfter({StringEncryptor.class})
+@EnableConfigurationProperties(JasyptAutoConfigurationProperties.class) //使配置文件生效
 public class JasyptAutoConfiguration {
 
+    public JasyptAutoConfigurationProperties properties;
 
-    @Autowired
-    JasyptAutoConfigurationProperties properties;
+    public JasyptAutoConfiguration(JasyptAutoConfigurationProperties properties){
+        this.properties = properties;
+    }
 
-    @Bean
+    @Bean("jasyptStringEncryptor")
     public StringEncryptor stringEncryptor() {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();

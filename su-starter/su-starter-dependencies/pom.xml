@@ -33,12 +33,6 @@
     <!-- ======================================== -->
     <dependencyManagement>
         <dependencies>
-            <!-- 公共模块 -->
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>su-starter-common</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-            </dependency>
             <!-- web核心依赖 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -136,6 +130,24 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>1.2.8</version>
+            </dependency>
+            <!-- 公共模块 -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>su-starter-common</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <!-- jasypt -->
+            <dependency>
+                <groupId>com.yunqi.starter</groupId>
+                <artifactId>su-starter-jasypt</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <!-- mail -->
+            <dependency>
+                <groupId>com.yunqi.starter</groupId>
+                <artifactId>su-starter-mail</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

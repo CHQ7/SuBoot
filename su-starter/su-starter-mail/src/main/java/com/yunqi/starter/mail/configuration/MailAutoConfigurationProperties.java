@@ -14,11 +14,11 @@ public class MailAutoConfigurationProperties {
 
     String hostName = "smtp.qiye.aliyun.com";
 
-    String smtpPort = "4655";
+    String smtpPort = "465";
 
     String userName = "notice@fir7.com";
 
-    String password = "";
+    String password = "Ng1259900";
 
     boolean ssl = true;
 
