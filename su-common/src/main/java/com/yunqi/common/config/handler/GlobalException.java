@@ -5,7 +5,7 @@ import cn.dev33.satoken.exception.NotPermissionException;
 import com.yunqi.common.base.result.Result;
 import com.yunqi.common.base.result.ResultCode;
 import com.yunqi.common.config.exception.BizException;
-import com.yunqi.common.utils.Lang;
+import com.yunqi.starter.common.lang.Lang;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;

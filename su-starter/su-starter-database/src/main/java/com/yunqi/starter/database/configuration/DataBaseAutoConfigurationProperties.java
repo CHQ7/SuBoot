@@ -1,4 +1,4 @@
-package com.yunqi.starter.database.config;
+package com.yunqi.starter.database.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

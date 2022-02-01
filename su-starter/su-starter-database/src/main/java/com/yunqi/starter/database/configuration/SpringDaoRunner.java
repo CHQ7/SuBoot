@@ -1,4 +1,4 @@
-package com.yunqi.common.config.nutz;
+package com.yunqi.starter.database.configuration;
 
 import org.nutz.dao.ConnCallback;
 import org.nutz.dao.impl.sql.run.NutDaoRunner;
@@ -9,10 +9,8 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 
 /**
- * <p>
- *     集成Nutz事务和拦截链
- * </p>
- * Created by @author JsckChin on 2022/1/22
+ * 集成Nutz事务和拦截链
+ * Created by @author JsckChin on 2022/1/29
  */
 public class SpringDaoRunner extends NutDaoRunner {
 
@@ -30,5 +28,4 @@ public class SpringDaoRunner extends NutDaoRunner {
             DataSourceUtils.releaseConnection(con, dataSource);
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.yunqi.starter.database.config;
+package com.yunqi.starter.database.configuration;
 
 import org.nutz.resource.NutResource;
 import org.nutz.resource.impl.ResourceLocation;
@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
+ * 资源定位
  * Created by @author JsckChin on 2022/1/29
  */
 public class SpringResourceLoaction extends ResourceLocation implements ApplicationContextAware {

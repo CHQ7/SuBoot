@@ -18,32 +18,29 @@
     <!-- 项目依赖 -->
     <!-- ======================================== -->
     <dependencies>
-        <!-- web核心依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
-        <!-- jdbc -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <!-- druid  -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.8</version>
         </dependency>
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-        </dependency>
-        <!-- nutz -->
-        <dependency>
-            <groupId>org.nutz</groupId>
-            <artifactId>nutz</artifactId>
         </dependency>
     </dependencies>
 

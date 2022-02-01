@@ -55,4 +55,8 @@ logging:
     org.nutz: debug
     com.yunqi: debug
 
+su:
+  database:
+    runtime:
+      basepackage: com.yunqi
 

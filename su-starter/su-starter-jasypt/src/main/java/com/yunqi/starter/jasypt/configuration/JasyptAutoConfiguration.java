@@ -1,6 +1,5 @@
 package com.yunqi.starter.jasypt.configuration;
 
-import lombok.extern.slf4j.Slf4j;
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by @author JsckChin on 2022/1/29
  */
-@Slf4j
 @Configuration
 @ConditionalOnExpression("${su.jasypt.enabled:true}") // 默认启动组件
 @AutoConfigureAfter({StringEncryptor.class})

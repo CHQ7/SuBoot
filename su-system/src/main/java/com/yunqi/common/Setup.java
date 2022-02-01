@@ -1,7 +1,7 @@
 package com.yunqi.common;
 
-import com.yunqi.common.constant.GlobalConstant;
 import com.yunqi.common.utils.SpringUtil;
+import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.system.models.SysDept;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.models.SysUser;
