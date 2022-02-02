@@ -47,6 +47,14 @@ spring:
         acknowledge-mode: manual
 
 ##############################################
+# Su配置
+##############################################
+su:
+  database:
+    runtime:
+      basepackage: com.yunqi
+
+##############################################
 # 日志配置
 ##############################################
 logging:
@@ -54,9 +62,7 @@ logging:
     com.alibaba.druid: debug
     org.nutz: debug
     com.yunqi: debug
+    com.yunqi.starter: debug
 
-su:
-  database:
-    runtime:
-      basepackage: com.yunqi
+
 

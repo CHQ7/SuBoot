@@ -3,7 +3,8 @@ package com.yunqi.system.service;
 
 import com.yunqi.common.base.service.BaseServiceImpl;
 import com.yunqi.common.config.exception.BizException;
-import com.yunqi.common.config.quartz.QuartzManager;
+import com.yunqi.starter.quartz.entity.QuartzJob;
+import com.yunqi.starter.quartz.service.QuartzManager;
 import com.yunqi.system.models.SysTask;
 import org.nutz.dao.Cnd;
 import org.nutz.lang.Strings;
@@ -51,7 +52,13 @@ public class SysTaskService extends BaseServiceImpl<SysTask> {
         // 加载数据库所有的任务
         List<SysTask> taskList = this.query(Cnd.NEW());
         for (SysTask task : taskList) {
-            quartzManager.addJob(task.getId(), task.getJobClass(), task.getCron(),task.getData(), task.isDisabled());
+            QuartzJob qj = formatQuartzJob(task);
+            // 添加任务
+            quartzManager.add(qj);
+            // 暂停任务
+            if(!task.isDisabled()){
+                quartzManager.pause(qj);
+            }
         }
     }
 
@@ -73,10 +80,16 @@ public class SysTaskService extends BaseServiceImpl<SysTask> {
         // 创建任务
         task = this.insert(task);
 
-        // --------------
+        //#==========================
         // 创建任务
-        // --------------
-        quartzManager.addJob(task.getId(),  task.getJobClass(), task.getCron(),task.getData(), task.isDisabled());
+        //#==========================
+        QuartzJob qj = formatQuartzJob(task);
+        quartzManager.delete(qj);
+        quartzManager.add(qj);
+        // 暂停任务
+        if(!task.isDisabled()){
+            quartzManager.pause(qj);
+        }
         return task;
     }
 
@@ -101,11 +114,15 @@ public class SysTaskService extends BaseServiceImpl<SysTask> {
         if(!CronExpression.isValidExpression(task.getCron())){
             throw new BizException("Cron表达式的无效");
         }
-        // --------------
+        //#==========================
         // 更新任务
-        // --------------
-        quartzManager.deleteJob(task.getId());
-        quartzManager.addJob(task.getId(),  task.getJobClass(), task.getCron(),task.getData(), task.isDisabled());
+        //#==========================
+        QuartzJob qj = formatQuartzJob(task);
+        quartzManager.delete(qj);
+        quartzManager.add(qj);
+        if(!task.isDisabled()){
+            quartzManager.pause(qj);
+        }
         return this.updateIgnoreNull(task);
     }
 
@@ -117,10 +134,10 @@ public class SysTaskService extends BaseServiceImpl<SysTask> {
     @Transactional
     public int deleteById(String id) {
         SysTask task = this.fetch(id);
-        // --------------
+        //#==========================
         // 删除任务
-        // --------------
-        quartzManager.deleteJob(task.getId());
+        //#==========================
+        quartzManager.delete(formatQuartzJob(task));
         return this.delete(id);
     }
 
@@ -130,13 +147,27 @@ public class SysTaskService extends BaseServiceImpl<SysTask> {
      */
     public void run(String id) {
         SysTask task = this.fetch(id);
-        // --------------
+        //#==========================
         // 立即执行
-        // --------------
-        if(!quartzManager.exist(task.getId())){
-            quartzManager.addJob(task.getId(), task.getJobClass(), task.getCron(),task.getData(), task.isDisabled());
+        //#==========================
+        QuartzJob qj = formatQuartzJob(task);
+        if(!quartzManager.exist(qj)){
+            quartzManager.add(qj);
+            if(!task.isDisabled()){
+                quartzManager.pause(qj);
+            }
         }
-        quartzManager.runJob(task.getId());
+        quartzManager.run(qj);
     }
 
+    private QuartzJob formatQuartzJob(SysTask task) {
+        QuartzJob qj = new QuartzJob();
+        qj.setJobName(task.getId());
+        qj.setJobGroup(task.getId());
+        qj.setClassName(task.getJobClass());
+        qj.setCron(task.getCron());
+        qj.setComment(task.getNote());
+        qj.setDataMap(task.getData());
+        return qj;
+    }
 }

@@ -16,6 +16,8 @@
         <module>su-starter-mail</module>
         <module>su-starter-jdbc</module>
         <module>su-starter-database</module>
+        <module>su-starter-quartz</module>
+        <module>su-starter-redis</module>
     </modules>
 
     <!-- 打包类型 -->

@@ -36,7 +36,7 @@ public class Setup implements ApplicationRunner {
         // 初始化数据表
         initSys(dao);
         // 初始化定时任务
-        initSysTask(dao);
+        initSysTask();
 
         // 初始化系统全局变量
         SysConfigService sysConfigService= SpringUtil.getBean(SysConfigService.class);
@@ -100,20 +100,8 @@ public class Setup implements ApplicationRunner {
     /**
      * 初始化定时任务
      */
-    private void initSysTask(Dao dao) {
+    private void initSysTask() {
         SysTaskService sysTaskService= SpringUtil.getBean(SysTaskService.class);
-        if (!dao.exists("ims_sys_qrtz_triggers")) {
-            log.info("执行Quartz SQL脚本");
-            //执行Quartz SQL脚本
-            String dbType = dao.getJdbcExpert().getDatabaseType();
-            log.debug("dbType:::" + dbType);
-            FileSqlManager fmq = new FileSqlManager("quartz/" + dbType.toLowerCase() + ".sql");
-            List<Sql> sqlListq = fmq.createCombo(fmq.keys());
-            Sql[] sqlsq = sqlListq.toArray(new Sql[sqlListq.size()]);
-            for (Sql sql : sqlsq) {
-                dao.execute(sql);
-            }
-        }
         // 初始化定时任务
         sysTaskService.init();
     }

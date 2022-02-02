@@ -11,17 +11,26 @@
 
     <!-- GVA -->
     <groupId>com.yunqi.starter</groupId>
-    <artifactId>su-starter-common</artifactId>
+    <artifactId>su-starter-quartz</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <!-- ======================================== -->
     <!-- 项目依赖 -->
     <!-- ======================================== -->
     <dependencies>
-        <!-- web核心依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- quartz 定时任务 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
         <!-- lombok -->
         <dependency>
@@ -29,17 +38,16 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- Hutool 工具类库 -->
+        <!-- 公共模块 -->
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>su-starter-common</artifactId>
         </dependency>
-        <!-- nutz -->
+        <!-- database -->
         <dependency>
-            <groupId>org.nutz</groupId>
-            <artifactId>nutz</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>su-starter-database</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>
