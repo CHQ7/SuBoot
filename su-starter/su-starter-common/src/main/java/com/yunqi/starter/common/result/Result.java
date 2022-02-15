@@ -26,31 +26,30 @@ public class Result<T> implements Serializable {
     /**
      * 时间戳
      */
-    private long timestamp;
+    private long time;
 
     /**
      * 业务数据
      */
     private Object data;
 
+
     /**
-     * 返回值:一个 Result 的实例
-     * @param <T> 泛型
-     * @return  Result
+     * 实例化Result
      */
     public static <T> Result<T> NEW() {
         return new Result<>();
     }
 
     /**
-     * 无参构造函数
+     * 构造函数
      */
     private Result() {
-        this.timestamp = System.currentTimeMillis();
+        this.time = System.currentTimeMillis();
     }
 
     /**
-     * 有参构造函数
+     * 构造函数
      * @param resultCode 状态码枚举
      */
     private Result(ResultCode resultCode) {
@@ -58,16 +57,16 @@ public class Result<T> implements Serializable {
     }
 
     /**
-     * 有参构造函数
+     * 构造函数
      * @param resultCode 状态码枚举
-     * @param msg   返回内容
+     * @param msg        返回内容
      */
     private Result(ResultCode resultCode, String msg) {
         this(resultCode, null, msg);
     }
 
     /**
-     * 有参构造函数
+     * 构造函数
      * @param resultCode 状态码枚举
      * @param data  返回数据
      */
@@ -91,13 +90,13 @@ public class Result<T> implements Serializable {
      * 全参构造函数
      * @param code    状态码
      * @param data    返回数据
-     * @param msg 返回内容
+     * @param msg     返回内容
      */
     private Result(int code, T data, String msg) {
         this.code = code;
         this.data = data;
         this.msg = msg;
-        this.timestamp = System.currentTimeMillis();
+        this.time = System.currentTimeMillis();
     }
 
     /**
@@ -130,20 +129,21 @@ public class Result<T> implements Serializable {
         return this;
     }
 
+
     /**
      * 构造一个成功消息的结果返回
-     * @param <T> 泛型
-     * @return Result
+     * @param <T>   泛型
+     * @return      统一返回格式
      */
     public static <T> Result<T> success() {
         return new Result<>(ResultCode.SUCCESS, ResultCode.SUCCESS.getMsg());
     }
 
     /**
-     * 构造一个有参成功消息的结果返回
+     * 构造一个成功消息的结果返回
      * @param resultCode    状态码枚举
-     * @param <T> 泛型
-     * @return  Result
+     * @param <T>           泛型
+     * @return              统一返回格式
      */
     public static <T> Result<T> success(ResultCode resultCode) {
         return new Result<>(resultCode);
@@ -151,9 +151,9 @@ public class Result<T> implements Serializable {
 
     /**
      * 构造一个有参成功消息的结果返回
-     * @param msg    返回内容
-     * @param <T> 泛型
-     * @return  Result
+     * @param msg     返回内容
+     * @param <T>     泛型
+     * @return        统一返回格式
      */
     public static <T> Result<T> success(String msg) {
         return new Result<>(ResultCode.SUCCESS, msg);
@@ -162,9 +162,9 @@ public class Result<T> implements Serializable {
     /**
      * 构造一个有参成功消息的结果返回
      * @param resultCode    状态码枚举
-     * @param msg    返回内容
-     * @param <T> 泛型
-     * @return  Result
+     * @param msg           返回内容
+     * @param <T>           泛型
+     * @return              统一返回格式
      */
     public static <T> Result<T> success(ResultCode resultCode, String msg) {
         return new Result<>(resultCode, msg);
@@ -172,10 +172,10 @@ public class Result<T> implements Serializable {
 
     /**
      * 构造一个有参成功消息的结果返回
-     * @param code  状态码
-     * @param msg   返回内容
-     * @param <T>   泛型
-     * @return  Result
+     * @param code          状态码
+     * @param msg           返回内容
+     * @param <T>           泛型
+     * @return              统一返回格式
      */
     public static <T> Result<T> success(int code, String msg) {
         return new Result<>(code, null, msg);
@@ -183,9 +183,9 @@ public class Result<T> implements Serializable {
 
     /**
      * 构造一个有参成功消息的结果返回
-     * @param data  返回数据
-     * @param <T>   泛型
-     * @return  Result
+     * @param data          返回数据
+     * @param <T>           泛型
+     * @return              统一返回格式
      */
     public static <T> Result<T> success(T data) {
         return success(data, ResultCode.SUCCESS.getMsg());
@@ -193,10 +193,10 @@ public class Result<T> implements Serializable {
 
     /**
      * 构造一个有参成功消息的结果返回
-     * @param data  返回数据
-     * @param msg   返回内容
-     * @param <T>   泛型
-     * @return  Result
+     * @param data          返回数据
+     * @param msg           返回内容
+     * @param <T>           泛型
+     * @return              统一返回格式
      */
     public static <T> Result<T> success(T data, String msg) {
         return success(ResultCode.SUCCESS.getCode(), data, msg);
@@ -204,11 +204,11 @@ public class Result<T> implements Serializable {
 
     /**
      * 构造一个有参成功消息的结果返回
-     * @param code  状态码
-     * @param data  返回数据
-     * @param msg   返回内容
-     * @param <T>   泛型
-     * @return  Result
+     * @param code          状态码
+     * @param data          返回数据
+     * @param msg           返回内容
+     * @param <T>           泛型
+     * @return              统一返回格式
      */
     public static <T> Result<T> success(int code, T data, String msg) {
         return new Result<>(code, data, data == null ? ResultCode.FAILURE.getMsg() : msg);
@@ -218,7 +218,7 @@ public class Result<T> implements Serializable {
      * 构造一个有参成功消息的结果返回
      * @param data  返回数据
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> data(T data) {
         return data(data, ResultCode.SUCCESS.getMsg());
@@ -229,7 +229,7 @@ public class Result<T> implements Serializable {
      * @param data  返回数据
      * @param msg   返回内容
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> data(T data, String msg) {
         return data(ResultCode.SUCCESS.getCode(), data, msg);
@@ -241,7 +241,7 @@ public class Result<T> implements Serializable {
      * @param data  返回数据
      * @param msg   返回内容
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> data(int code, T data, String msg) {
         return new Result<>(code, data, data == null ? ResultCode.NULL_DATA_ERROR.getMsg() : msg);
@@ -250,7 +250,7 @@ public class Result<T> implements Serializable {
     /**
      * 构造一个失败消息的结果返回
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> error() {
         return new Result<>(ResultCode.FAILURE, ResultCode.FAILURE.getMsg());
@@ -260,7 +260,7 @@ public class Result<T> implements Serializable {
      * 构造一个有参失败消息的结果返回
      * @param msg   返回内容
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> error(String msg) {
         return new Result<>(ResultCode.FAILURE, msg);
@@ -273,7 +273,7 @@ public class Result<T> implements Serializable {
      * @param code  状态码
      * @param msg   返回内容
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> error(int code, String msg) {
         return new Result<>(code, null, msg);
@@ -283,7 +283,7 @@ public class Result<T> implements Serializable {
      * 构造一个有参失败消息的结果返回
      * @param resultCode    状态码枚举
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> error(ResultCode resultCode) {
         return new Result<>(resultCode);
@@ -294,7 +294,7 @@ public class Result<T> implements Serializable {
      * @param resultCode    状态码枚举
      * @param msg   返回内容
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> error(ResultCode resultCode, String msg) {
         return new Result<>(resultCode, msg);
@@ -304,7 +304,7 @@ public class Result<T> implements Serializable {
      * 通过入参的状态判断返回的结果
      * @param flag  状态
      * @param <T>   泛型
-     * @return  Result
+     * @return      统一返回格式
      */
     public static <T> Result<T> condition(boolean flag) {
         return flag ? success(ResultCode.SUCCESS.getMsg()) : error(ResultCode.FAILURE.getMsg());

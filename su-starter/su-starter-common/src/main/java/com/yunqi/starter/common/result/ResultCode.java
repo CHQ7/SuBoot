@@ -38,14 +38,14 @@ public enum ResultCode {
     USER_LOGIN_FAIL(600108, "用户登录失败");
 
     /**
-     * 业务异常码
+     * 业务状态码
      */
-    private Integer code;
+    private final Integer code;
 
     /**
-     * 业务异常信息描述
+     * 业务信息描述
      */
-    private String msg;
+    private final String msg;
 
     /**
      * 全参构造函数
@@ -61,15 +61,9 @@ public enum ResultCode {
         return code;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 
     public String getMsg() {
         return msg;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 }

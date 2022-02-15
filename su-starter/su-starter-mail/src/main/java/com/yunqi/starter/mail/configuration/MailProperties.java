@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "su.mail")
-public class MailAutoConfigurationProperties {
+public class MailProperties {
 
     boolean enabled = true;
 

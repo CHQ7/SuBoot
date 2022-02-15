@@ -23,12 +23,12 @@ import java.sql.SQLException;
 @ConditionalOnClass(DruidDataSource.class)
 @ConditionalOnExpression("${su.druid.enabled:true}")
 @AutoConfigureBefore({com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure.class}) // 在DruidDataSourceAutoConfigure前注入
-@EnableConfigurationProperties(DruidDataSourceAutoConfigureProperties.class)
+@EnableConfigurationProperties(DruidDataSourceProperties.class)
 public class DruidDataSourceAutoConfigure {
 
-    public DruidDataSourceAutoConfigureProperties properties;
+    public DruidDataSourceProperties properties;
 
-    public DruidDataSourceAutoConfigure(DruidDataSourceAutoConfigureProperties properties){
+    public DruidDataSourceAutoConfigure(DruidDataSourceProperties properties){
         this.properties = properties;
     }
 

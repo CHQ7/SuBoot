@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "su.jasypt")
-public class JasyptAutoConfigurationProperties {
+public class JasyptProperties {
 
     boolean enabled = true;
 

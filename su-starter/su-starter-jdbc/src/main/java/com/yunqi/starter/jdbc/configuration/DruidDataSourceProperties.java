@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "su.druid")
-public class DruidDataSourceAutoConfigureProperties {
+public class DruidDataSourceProperties {
 
     boolean enabled = true;
 

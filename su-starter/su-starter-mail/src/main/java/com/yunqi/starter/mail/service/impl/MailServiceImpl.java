@@ -2,7 +2,7 @@ package com.yunqi.starter.mail.service.impl;
 
 import com.yunqi.starter.common.lang.Lang;
 import com.yunqi.starter.common.lang.Strings;
-import com.yunqi.starter.mail.configuration.MailAutoConfigurationProperties;
+import com.yunqi.starter.mail.configuration.MailProperties;
 import com.yunqi.starter.mail.entity.Email;
 import com.yunqi.starter.mail.service.IMailService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +22,9 @@ import java.util.Properties;
 @Slf4j
 public class MailServiceImpl implements IMailService {
 
-    private MailAutoConfigurationProperties properties;
+    private MailProperties properties;
 
-    public MailServiceImpl(MailAutoConfigurationProperties properties){
+    public MailServiceImpl(MailProperties properties){
         this.properties = properties;
     }
 

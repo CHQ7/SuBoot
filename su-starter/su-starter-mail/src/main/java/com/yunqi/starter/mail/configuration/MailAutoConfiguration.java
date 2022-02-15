@@ -14,12 +14,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnClass({MailServiceImpl.class})
 @ConditionalOnExpression("${su.mail.enabled:true}")
-@EnableConfigurationProperties(MailAutoConfigurationProperties.class)
+@EnableConfigurationProperties(MailProperties.class)
 public class MailAutoConfiguration {
 
-    public MailAutoConfigurationProperties properties;
+    public MailProperties properties;
 
-    public MailAutoConfiguration(MailAutoConfigurationProperties properties){
+    public MailAutoConfiguration(MailProperties properties){
         this.properties = properties;
     }
 

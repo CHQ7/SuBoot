@@ -15,12 +15,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnExpression("${su.jasypt.enabled:true}") // 默认启动组件
 @AutoConfigureAfter({StringEncryptor.class})
-@EnableConfigurationProperties(JasyptAutoConfigurationProperties.class) //使配置文件生效
+@EnableConfigurationProperties(JasyptProperties.class) //使配置文件生效
 public class JasyptAutoConfiguration {
 
-    public JasyptAutoConfigurationProperties properties;
+    public JasyptProperties properties;
 
-    public JasyptAutoConfiguration(JasyptAutoConfigurationProperties properties){
+    public JasyptAutoConfiguration(JasyptProperties properties){
         this.properties = properties;
     }
 

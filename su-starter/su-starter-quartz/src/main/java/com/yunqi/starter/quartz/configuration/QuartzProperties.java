@@ -11,7 +11,7 @@ import java.util.Map;
  */
 @Data
 @ConfigurationProperties(prefix = "su.quartz")
-public class QuartzAutoConfigurationProperties {
+public class QuartzProperties {
     /**
      * 是否开启
      */

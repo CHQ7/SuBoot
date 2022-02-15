@@ -30,14 +30,14 @@ import java.util.TimeZone;
 @Configuration
 @ConditionalOnClass(DataSource.class)
 @ConditionalOnExpression("${su.quartz.enabled:true}")
-@EnableConfigurationProperties(QuartzAutoConfigurationProperties.class)
+@EnableConfigurationProperties(QuartzProperties.class)
 @AutoConfigureAfter(DruidDataSourceAutoConfigure.class)
 @Import({DruidDataSourceAutoConfigure.class})
 public class QuartzAutoConfiguration {
 
-    private QuartzAutoConfigurationProperties properties;
+    private QuartzProperties properties;
 
-    public QuartzAutoConfiguration(QuartzAutoConfigurationProperties properties) {
+    public QuartzAutoConfiguration(QuartzProperties properties) {
         this.properties = properties;
     }
 
