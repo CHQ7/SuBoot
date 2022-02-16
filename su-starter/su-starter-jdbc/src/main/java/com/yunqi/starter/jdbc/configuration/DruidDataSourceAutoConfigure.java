@@ -26,18 +26,11 @@ import java.sql.SQLException;
 @EnableConfigurationProperties(DruidDataSourceProperties.class)
 public class DruidDataSourceAutoConfigure {
 
-    public DruidDataSourceProperties properties;
-
-    public DruidDataSourceAutoConfigure(DruidDataSourceProperties properties){
-        this.properties = properties;
-    }
-
-
     @Bean
     @Primary
     @ConditionalOnMissingBean
     @ConfigurationProperties("spring.datasource")
-    public DataSource dataSource() {
+    public DataSource dataSource(DruidDataSourceProperties properties) {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setUrl(properties.getUrl());
         druidDataSource.setUsername(properties.getUsername());

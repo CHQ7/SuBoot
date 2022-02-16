@@ -142,5 +142,25 @@ public class Strings {
         return !isBlank(str);
     }
 
+    /**
+     * 对指定对象进行 toString 操作；如果该对象为 null ，则返回空串（""）
+     *
+     * @param obj
+     *            指定的对象
+     * @return 对指定对象进行 toString 操作；如果该对象为 null ，则返回空串（""）
+     */
+    public static String sNull(Object obj) {
+        return sNull(obj, "");
+    }
 
+    /**
+     * 对指定对象进行 toString 操作；如果该对象为 null ，则返回默认值
+     *
+     * @param obj 指定的对象
+     * @param def 默认值
+     * @return 对指定对象进行 toString 操作；如果该对象为 null ，则返回默认值
+     */
+    public static String sNull(Object obj, String def) {
+        return obj != null ? obj.toString() : def;
+    }
 }

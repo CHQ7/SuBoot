@@ -42,11 +42,13 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>su-starter-common</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- database -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>su-starter-database</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

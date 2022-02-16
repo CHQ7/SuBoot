@@ -29,7 +29,7 @@ import java.util.Map;
 @ConditionalOnClass({Dao.class})
 @ConditionalOnExpression("${su.database.enabled:true}")
 @AutoConfigureAfter({DruidDataSourceAutoConfigure.class})
-@EnableConfigurationProperties(DataBaseAutoConfigurationProperties.class)
+@EnableConfigurationProperties(DataBaseProperties.class)
 @Import({DruidDataSourceAutoConfigure.class})
 public class DataBaseAutoConfiguration {
 
@@ -45,7 +45,7 @@ public class DataBaseAutoConfiguration {
     @Primary
     @ConditionalOnMissingBean
     public Dao dao(DataSource dataSource, SpringDaoRunner daoRunner, ApplicationContext context,
-                   DataBaseAutoConfigurationProperties properties){
+                   DataBaseProperties properties){
         // 初始化Nutz
         NutDao dao = new NutDao(dataSource);
         dao.setRunner(daoRunner);

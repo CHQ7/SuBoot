@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -26,11 +27,8 @@ import java.util.List;
 @Import({DataBaseAutoConfiguration.class})
 public class QuartzInitializer {
 
-    private final Dao dao;
-
-    public QuartzInitializer(Dao dao){
-        this.dao = dao;
-    }
+    @Resource
+    private Dao dao;
 
     @PostConstruct
     public void init() {

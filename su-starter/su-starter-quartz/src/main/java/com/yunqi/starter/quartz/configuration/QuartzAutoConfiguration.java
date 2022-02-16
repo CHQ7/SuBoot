@@ -35,11 +35,6 @@ import java.util.TimeZone;
 @Import({DruidDataSourceAutoConfigure.class})
 public class QuartzAutoConfiguration {
 
-    private QuartzProperties properties;
-
-    public QuartzAutoConfiguration(QuartzProperties properties) {
-        this.properties = properties;
-    }
 
     /**
      * 配置JobFactory
@@ -65,7 +60,7 @@ public class QuartzAutoConfiguration {
      * @return              SchedulerFactoryBean
      */
     @Bean
-    public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource, JobFactory jobFactory) {
+    public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource, JobFactory jobFactory, QuartzProperties properties) {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         factory.setDataSource(dataSource);
         factory.setJobFactory(jobFactory);
@@ -117,9 +112,9 @@ public class QuartzAutoConfiguration {
         prop.put("org.quartz.threadPool.threadPriority", "5");
         prop.put("org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread", "true");
         // 外部传入的属性优先级更高
-        Map<String, String> properties = this.properties.getProperties();
-        if (!CollectionUtils.isEmpty(properties)) {
-            prop.putAll(properties);
+        Map<String, String> propertiesMap = properties.getProperties();
+        if (!CollectionUtils.isEmpty(propertiesMap)) {
+            prop.putAll(propertiesMap);
         }
         factory.setQuartzProperties(prop);
         return factory;
@@ -127,7 +122,7 @@ public class QuartzAutoConfiguration {
 
 
     @Bean
-    public TimeZone quartzTimeZone() {
+    public TimeZone quartzTimeZone(QuartzProperties properties) {
         return TimeZone.getTimeZone(properties.getTimeZone());
     }
 

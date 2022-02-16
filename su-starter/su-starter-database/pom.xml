@@ -27,11 +27,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- jdbc -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jdbc</artifactId>
-        </dependency>
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -42,11 +37,13 @@
         <dependency>
             <groupId>org.nutz</groupId>
             <artifactId>nutz</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- 公共模块 -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>su-starter-common</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- jdbc -->
         <dependency>

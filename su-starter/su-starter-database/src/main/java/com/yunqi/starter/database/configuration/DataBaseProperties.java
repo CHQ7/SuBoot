@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "su.database")
-public class DataBaseAutoConfigurationProperties {
+public class DataBaseProperties {
 
     boolean enabled = true;
     /**

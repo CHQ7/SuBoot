@@ -17,14 +17,8 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(MailProperties.class)
 public class MailAutoConfiguration {
 
-    public MailProperties properties;
-
-    public MailAutoConfiguration(MailProperties properties){
-        this.properties = properties;
-    }
-
     @Bean
-    public IMailService iMailService(){
+    public IMailService iMailService(MailProperties properties){
         return new MailServiceImpl(properties);
     }
 }

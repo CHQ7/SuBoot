@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /**
  * Created by @author JsckChin on 2022/1/29
@@ -18,14 +19,9 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(JasyptProperties.class) //使配置文件生效
 public class JasyptAutoConfiguration {
 
-    public JasyptProperties properties;
-
-    public JasyptAutoConfiguration(JasyptProperties properties){
-        this.properties = properties;
-    }
-
     @Bean("jasyptStringEncryptor")
-    public StringEncryptor stringEncryptor() {
+    @Primary
+    public StringEncryptor stringEncryptor(JasyptProperties properties) {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
         // 加密盐值

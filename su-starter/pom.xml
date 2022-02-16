@@ -18,6 +18,8 @@
         <module>su-starter-database</module>
         <module>su-starter-quartz</module>
         <module>su-starter-redis</module>
+        <module>su-starter-log</module>
+        <module>su-starter-security</module>
     </modules>
 
     <!-- 打包类型 -->

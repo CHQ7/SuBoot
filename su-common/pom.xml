@@ -67,35 +67,12 @@
             <scope>runtime</scope>
             <version>8.0.27</version>
         </dependency>
-        <!-- nutz -->
-        <dependency>
-            <groupId>org.nutz</groupId>
-            <artifactId>nutz</artifactId>
-            <version>1.r.69.20210929</version>
-        </dependency>
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
             <version>1.18.22</version>
-        </dependency>
-        <!-- Hutool 工具类库 -->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.7.20</version>
-        </dependency>
-        <!-- Sa-Token 权限认证 -->
-        <dependency>
-            <groupId>cn.dev33</groupId>
-            <artifactId>sa-token-spring-boot-starter</artifactId>
-            <version>1.28.0</version>
-        </dependency>
-        <!-- mail 邮件 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
         <!-- redis 高性能的key-value数据库 -->
         <dependency>
@@ -117,6 +94,24 @@
         <dependency>
             <groupId>com.yunqi.starter</groupId>
             <artifactId>su-starter-quartz</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <!-- 权限组件 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-security</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <!-- 邮件组件 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-mail</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <!-- 公共类包 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-common</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

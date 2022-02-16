@@ -3,7 +3,6 @@ package com.yunqi.starter.database.configuration;
 import org.nutz.dao.Dao;
 import org.nutz.dao.util.Daos;
 import org.nutz.resource.Scans;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -11,6 +10,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.Arrays;
 
 /**
@@ -19,18 +19,18 @@ import java.util.Arrays;
 @Configuration
 @ConditionalOnBean({Dao.class})
 @ConditionalOnExpression("${su.database.enabled:true}")
-@EnableConfigurationProperties(DataBaseAutoConfigurationProperties.class)
+@EnableConfigurationProperties(DataBaseProperties.class)
 @AutoConfigureAfter({DataBaseAutoConfiguration.class})
 public class DatabaseInitializer {
 
-    @Autowired
+    @Resource
     private Dao dao;
 
-    @Autowired
+    @Resource
     private SpringResourceLoaction springResourceLoaction;
 
-    @Autowired
-    DataBaseAutoConfigurationProperties properties;
+    @Resource
+    private DataBaseProperties properties;
 
     /**
      * 初始化Nutz
