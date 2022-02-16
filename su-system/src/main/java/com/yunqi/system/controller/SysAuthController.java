@@ -3,8 +3,8 @@ package com.yunqi.system.controller;
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.stp.StpUtil;
 
-import com.yunqi.common.base.result.Result;
-import com.yunqi.common.utils.SecurityUtil;
+import com.yunqi.starter.common.result.Result;
+import com.yunqi.starter.security.utils.SecurityUtil;
 import com.yunqi.system.models.SysUser;
 import com.yunqi.system.service.SysMenuService;
 import com.yunqi.system.service.SysUserService;

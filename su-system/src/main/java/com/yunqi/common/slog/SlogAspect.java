@@ -6,7 +6,7 @@ import cn.hutool.http.useragent.UserAgentUtil;
 import com.yunqi.common.annotation.Slog;
 import com.yunqi.common.utils.HttpContextUtil;
 import com.yunqi.common.utils.IPUtil;
-import com.yunqi.common.utils.SecurityUtil;
+import com.yunqi.starter.security.utils.SecurityUtil;
 import com.yunqi.system.models.SysLog;
 import com.yunqi.system.service.SysLogService;
 import org.aspectj.lang.JoinPoint;

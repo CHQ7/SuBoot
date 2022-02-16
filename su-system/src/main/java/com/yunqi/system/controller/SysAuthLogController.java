@@ -2,7 +2,7 @@ package com.yunqi.system.controller;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
 
-import com.yunqi.common.base.result.Result;
+import com.yunqi.starter.common.result.Result;
 import com.yunqi.system.models.SysAuthLog;
 import com.yunqi.system.service.SysAuthLogService;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,10 +1,15 @@
 package com.yunqi.starter.common.result;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
  * 返回状态码枚举类
  * Created by @author JsckChin on 2022/1/28
  */
-public enum ResultCode {
+@Getter
+@AllArgsConstructor
+public enum ResultCode implements IResultCode{
 
     SUCCESS(20000,"成功"),
     FAILURE(50001,"失败"),
@@ -47,23 +52,5 @@ public enum ResultCode {
      */
     private final String msg;
 
-    /**
-     * 全参构造函数
-     * @param code  业务异常码
-     * @param msg   业务异常信息描述
-     */
-    ResultCode(Integer code, String msg) {
-        this.code = code;
-        this.msg = msg;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-
-    public String getMsg() {
-        return msg;
-    }
 
 }

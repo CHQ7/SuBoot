@@ -2,7 +2,7 @@ package com.yunqi.system.service;
 
 
 import com.yunqi.common.base.service.BaseServiceImpl;
-import com.yunqi.common.config.exception.BizException;
+import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.quartz.entity.QuartzJob;
 import com.yunqi.starter.quartz.service.QuartzManager;
 import com.yunqi.system.models.SysTask;

@@ -2,8 +2,8 @@ package com.yunqi.system.service;
 
 
 import com.yunqi.common.base.service.BaseServiceImpl;
-import com.yunqi.common.config.exception.BizException;
 import com.yunqi.starter.common.constant.GlobalConstant;
+import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.system.models.SysDept;
 import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;

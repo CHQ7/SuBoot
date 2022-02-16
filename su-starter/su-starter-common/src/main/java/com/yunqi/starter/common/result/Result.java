@@ -52,7 +52,7 @@ public class Result<T> implements Serializable {
      * 构造函数
      * @param resultCode 状态码枚举
      */
-    private Result(ResultCode resultCode) {
+    private Result(IResultCode resultCode) {
         this(resultCode, null, resultCode.getMsg());
     }
 
@@ -61,7 +61,7 @@ public class Result<T> implements Serializable {
      * @param resultCode 状态码枚举
      * @param msg        返回内容
      */
-    private Result(ResultCode resultCode, String msg) {
+    private Result(IResultCode resultCode, String msg) {
         this(resultCode, null, msg);
     }
 
@@ -70,7 +70,7 @@ public class Result<T> implements Serializable {
      * @param resultCode 状态码枚举
      * @param data  返回数据
      */
-    private Result(ResultCode resultCode, T data) {
+    private Result(IResultCode resultCode, T data) {
         this(resultCode, data, resultCode.getMsg());
     }
 
@@ -81,7 +81,7 @@ public class Result<T> implements Serializable {
      * @param data  返回数据
      * @param msg
      */
-    private Result(ResultCode resultCode, T data, String msg) {
+    private Result(IResultCode resultCode, T data, String msg) {
         this(resultCode.getCode(), data, msg);
     }
 
@@ -145,7 +145,7 @@ public class Result<T> implements Serializable {
      * @param <T>           泛型
      * @return              统一返回格式
      */
-    public static <T> Result<T> success(ResultCode resultCode) {
+    public static <T> Result<T> success(IResultCode resultCode) {
         return new Result<>(resultCode);
     }
 
@@ -285,7 +285,7 @@ public class Result<T> implements Serializable {
      * @param <T>   泛型
      * @return      统一返回格式
      */
-    public static <T> Result<T> error(ResultCode resultCode) {
+    public static <T> Result<T> error(IResultCode resultCode) {
         return new Result<>(resultCode);
     }
 
@@ -296,7 +296,7 @@ public class Result<T> implements Serializable {
      * @param <T>   泛型
      * @return      统一返回格式
      */
-    public static <T> Result<T> error(ResultCode resultCode, String msg) {
+    public static <T> Result<T> error(IResultCode resultCode, String msg) {
         return new Result<>(resultCode, msg);
     }
 

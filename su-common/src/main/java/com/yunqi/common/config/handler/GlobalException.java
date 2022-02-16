@@ -2,10 +2,11 @@ package com.yunqi.common.config.handler;
 
 import cn.dev33.satoken.exception.NotLoginException;
 import cn.dev33.satoken.exception.NotPermissionException;
-import com.yunqi.common.base.result.Result;
-import com.yunqi.common.base.result.ResultCode;
-import com.yunqi.common.config.exception.BizException;
+import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.common.lang.Lang;
+import com.yunqi.starter.common.result.IResultCode;
+import com.yunqi.starter.common.result.Result;
+import com.yunqi.starter.common.result.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -114,7 +115,7 @@ public class GlobalException {
         // log.error(Lang.getStackTrace(e));
 
         // 判断场景值，定制化异常信息
-        ResultCode resultCode;
+        IResultCode resultCode;
 
         if(e.getType().equals(NotLoginException.NOT_TOKEN)) {
             resultCode = ResultCode.USER_NOT_LOGIN;

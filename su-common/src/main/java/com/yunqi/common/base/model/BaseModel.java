@@ -1,7 +1,7 @@
 package com.yunqi.common.base.model;
 
-import com.yunqi.common.utils.SecurityUtil;
 import com.yunqi.starter.common.lang.Strings;
+import com.yunqi.starter.security.utils.SecurityUtil;
 import lombok.Data;
 import org.nutz.dao.entity.annotation.*;
 import org.nutz.dao.interceptor.annotation.PrevInsert;
