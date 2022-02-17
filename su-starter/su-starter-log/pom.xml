@@ -37,6 +37,12 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>su-starter-common</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- aop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
     </dependencies>
 

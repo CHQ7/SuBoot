@@ -1,4 +1,4 @@
-package com.yunqi.log.enums;
+package com.yunqi.starter.log.enums;
 
 /**
  * 日志类型

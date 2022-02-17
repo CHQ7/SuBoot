@@ -47,7 +47,7 @@
         </dependency>
         <!-- jdbc -->
         <dependency>
-            <groupId>com.yunqi.starter</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>su-starter-jdbc</artifactId>
         </dependency>
     </dependencies>

@@ -3,9 +3,11 @@ package com.yunqi.starter.security.configuration;
 import cn.dev33.satoken.config.SaTokenConfig;
 import cn.dev33.satoken.interceptor.SaAnnotationInterceptor;
 import cn.dev33.satoken.spring.SaBeanRegister;
+import com.yunqi.starter.security.handler.SecurityGlobalException;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,5 +56,11 @@ public class SecurityAutoConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // 注册注解拦截器，并排除不需要注解鉴权的接口地址 (与登录拦截器无关)
         registry.addInterceptor(new SaAnnotationInterceptor()).addPathPatterns("/**");
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public SecurityGlobalException securityGlobalException() {
+        return new SecurityGlobalException();
     }
 }

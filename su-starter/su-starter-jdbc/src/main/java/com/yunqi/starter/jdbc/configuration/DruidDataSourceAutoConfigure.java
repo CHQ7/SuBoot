@@ -19,7 +19,6 @@ import java.sql.SQLException;
  * Created by @author JsckChin on 2022/2/1
  */
 @Configuration
-@ConditionalOnWebApplication // web环境下加载
 @ConditionalOnClass(DruidDataSource.class)
 @ConditionalOnExpression("${su.druid.enabled:true}")
 @AutoConfigureBefore({com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure.class}) // 在DruidDataSourceAutoConfigure前注入

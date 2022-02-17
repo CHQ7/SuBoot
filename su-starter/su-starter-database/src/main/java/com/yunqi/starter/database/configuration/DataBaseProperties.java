@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "su.database")
 public class DataBaseProperties {
 
+    /** 是否开启 */
     boolean enabled = true;
     /**
      * 运行期配置
