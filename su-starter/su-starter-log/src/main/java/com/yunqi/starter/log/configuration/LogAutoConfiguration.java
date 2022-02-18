@@ -1,7 +1,6 @@
 package com.yunqi.starter.log.configuration;
 
 import com.yunqi.starter.log.aop.SLogAspect;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

@@ -1,7 +1,5 @@
-package com.yunqi.common.utils;
+package com.yunqi.starter.common.lang.mvc;
 
-import org.nutz.lang.Strings;
-import org.nutz.lang.Times;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -9,19 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
 /**
- * 请求上下文
- * Created by @author JsckChin on 2022/1/22
+ * Mvc 相关帮助函数
+ * Created by @author JsckChin on 2022/2/18
  */
-public class HttpContextUtil {
-
-    private HttpContextUtil(){
-    }
+public abstract class Mvcs {
 
     /**
-     * 获取请求的req对象
-     * @return 请求的req对象
+     * 获取 HTTP 请求对象
+     *
+     * @return HTTP 请求对象
      */
-    public static HttpServletRequest getReq() {
+    public static final HttpServletRequest getReq() {
         return ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
     }
 }

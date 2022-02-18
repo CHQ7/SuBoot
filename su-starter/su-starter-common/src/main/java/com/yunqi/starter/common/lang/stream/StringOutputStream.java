@@ -1,4 +1,6 @@
-package com.yunqi.starter.common.lang;
+package com.yunqi.starter.common.lang.stream;
+
+import com.yunqi.starter.common.lang.Encoding;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

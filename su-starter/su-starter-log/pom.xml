@@ -44,6 +44,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <!-- servlet-api -->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- 权限组件 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-security</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>
