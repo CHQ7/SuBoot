@@ -1,13 +1,11 @@
 package com.yunqi.common.config.handler;
 
-import cn.dev33.satoken.exception.NotLoginException;
-import cn.dev33.satoken.exception.NotPermissionException;
 import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.common.lang.Lang;
-import com.yunqi.starter.common.result.IResultCode;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.common.result.ResultCode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -18,12 +16,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.validation.ConstraintViolationException;
 
 /**
- * <p>
- *     全局异常处理
- * </p>
+ * 全局异常处理
  * Created by @author JsckChin on 2022/1/22
  */
 @Slf4j
+@Order(100)
 @RestControllerAdvice
 public class GlobalException {
 
@@ -90,53 +87,4 @@ public class GlobalException {
     }
 
 
-    /**
-     * 无此权限
-     * @param e 异常
-     * @return 	统一数据返回格式
-     */
-    @ExceptionHandler(NotPermissionException.class)
-    public Object NotPermissionException(NotPermissionException e) {
-        // 打印堆栈信息
-        //log.error(Lang.getStackTrace(e));
-        return Result.error(ResultCode.USER_NOT_PERMISSION);
-    }
-
-
-    /**
-     * 权限异常
-     * @param e 异常
-     * @return 	统一数据返回格式
-     */
-    @ExceptionHandler(NotLoginException.class)
-    public Object handlerNotLoginException(NotLoginException e) {
-
-        // 打印堆栈信息
-        // log.error(Lang.getStackTrace(e));
-
-        // 判断场景值，定制化异常信息
-        IResultCode resultCode;
-
-        if(e.getType().equals(NotLoginException.NOT_TOKEN)) {
-            resultCode = ResultCode.USER_NOT_LOGIN;
-        }
-        else if(e.getType().equals(NotLoginException.INVALID_TOKEN)) {
-            resultCode = ResultCode.USER_LOGIN_INVALID;
-        }
-        else if(e.getType().equals(NotLoginException.TOKEN_TIMEOUT)) {
-            resultCode = ResultCode.USER_LOGIN_INVALID;
-        }
-        else if(e.getType().equals(NotLoginException.BE_REPLACED)) {
-            resultCode = ResultCode.USER_LOGIN_BE_REPLACED;
-        }
-        else if(e.getType().equals(NotLoginException.KICK_OUT)) {
-            resultCode = ResultCode.USER_LOGIN_BE_REPLACED;
-        }
-        else {
-            resultCode = ResultCode.USER_NOT_LOGIN;
-        }
-
-        // 返回给前端
-        return Result.error(resultCode);
-    }
 }

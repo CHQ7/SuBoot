@@ -2,9 +2,9 @@ package com.yunqi.system.controller;
 
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import com.yunqi.common.annotation.Slog;
-import com.yunqi.common.base.enums.LogType;
 import com.yunqi.starter.common.result.Result;
+import com.yunqi.starter.log.annotation.SLog;
+import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.system.models.SysTask;
 import com.yunqi.system.service.SysTaskService;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +37,7 @@ public class SysTaskController {
 
     @PostMapping("/create")
     @SaCheckPermission("sys.task.create")
-    @Slog(title = "系统任务",  type = LogType.INSERT)
+    @SLog(tag = "系统任务",  type = LogType.INSERT)
     public Result<?> create(@Validated SysTask task) {
         sysTaskService.create(task);
         return Result.success();
@@ -53,7 +53,7 @@ public class SysTaskController {
 
     @PostMapping("/update")
     @SaCheckPermission("sys.task.update")
-    @Slog(title = "系统任务",  type = LogType.UPDATE)
+    @SLog(tag = "系统任务",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysTask task) {
         sysTaskService.update(task);
         return Result.success();
@@ -61,7 +61,7 @@ public class SysTaskController {
 
     @PostMapping("/delete/{id}")
     @SaCheckPermission("sys.task.delete")
-    @Slog(title = "系统任务",  type = LogType.DELETE)
+    @SLog(tag = "系统任务",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysTaskService.deleteById(id);
         return Result.success();
@@ -69,7 +69,7 @@ public class SysTaskController {
 
     @PostMapping("/run/{id}")
     @SaCheckPermission("sys.task.run")
-    @Slog(title = "系统任务",  type = LogType.EXECUTE)
+    @SLog(tag = "系统任务",  type = LogType.EXECUTE)
     public Result<?> run(@PathVariable("id") String id) {
         sysTaskService.run(id);
         return Result.success();

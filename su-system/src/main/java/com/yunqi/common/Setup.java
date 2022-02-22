@@ -30,7 +30,7 @@ import java.util.List;
 public class Setup implements ApplicationRunner {
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         log.info("Initialize system environment");
         Dao dao = SpringUtil.getBean(Dao.class);
         // 初始化数据表

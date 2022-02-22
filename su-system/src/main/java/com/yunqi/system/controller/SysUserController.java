@@ -1,9 +1,9 @@
 package com.yunqi.system.controller;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import com.yunqi.common.annotation.Slog;
-import com.yunqi.common.base.enums.LogType;
 import com.yunqi.starter.common.result.Result;
+import com.yunqi.starter.log.annotation.SLog;
+import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.system.models.SysUser;
 import com.yunqi.system.service.SysDeptService;
 import com.yunqi.system.service.SysRoleService;
@@ -41,7 +41,7 @@ public class SysUserController {
 
     @PostMapping("/create")
     @SaCheckPermission("sys.user.create")
-    @Slog(title = "系统用户",  type = LogType.INSERT)
+    @SLog(tag = "系统用户",  type = LogType.INSERT)
     public Result<?> create(@Validated SysUser user, String roleIds) {
         sysUserService.create(user, roleIds.split(","));
         return Result.success();
@@ -56,7 +56,7 @@ public class SysUserController {
 
     @PostMapping("/update")
     @SaCheckPermission("sys.user.update")
-    @Slog(title = "系统用户",  type = LogType.UPDATE)
+    @SLog(tag = "系统用户",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysUser user, String roleIds) {
         sysUserService.update(user, roleIds.split(","));
         return Result.success();
@@ -64,7 +64,7 @@ public class SysUserController {
 
     @PostMapping("/delete/{id}")
     @SaCheckPermission("sys.user.delete")
-    @Slog(title = "系统用户",  type = LogType.DELETE)
+    @SLog(tag = "系统用户",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysUserService.deleteById(id);
         return Result.success();
@@ -72,7 +72,7 @@ public class SysUserController {
 
     @PostMapping("/resetPassword/{id}")
     @SaCheckPermission("sys.user.password")
-    @Slog(title = "系统用户",  type = LogType.UPDATE)
+    @SLog(tag = "系统用户",  type = LogType.UPDATE)
     public Result<?> resetPassword(@PathVariable("id") String id) {
         return Result.success().addData(sysUserService.resetPwd(id));
     }

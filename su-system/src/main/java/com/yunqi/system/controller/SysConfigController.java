@@ -1,9 +1,9 @@
 package com.yunqi.system.controller;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import com.yunqi.common.annotation.Slog;
-import com.yunqi.common.base.enums.LogType;
 import com.yunqi.starter.common.result.Result;
+import com.yunqi.starter.log.annotation.SLog;
+import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.system.models.SysConfig;
 import com.yunqi.system.service.SysConfigService;
 import org.springframework.validation.annotation.Validated;
@@ -33,7 +33,7 @@ public class SysConfigController {
 
     @PostMapping("/create")
     @SaCheckPermission("sys.conf.create")
-    @Slog(title = "系统参数",  type = LogType.INSERT)
+    @SLog(tag = "系统参数",  type = LogType.INSERT)
     public Result<?> create(@Validated SysConfig conf) {
         sysConfigService.create(conf);
         return Result.success();
@@ -49,7 +49,7 @@ public class SysConfigController {
 
     @PostMapping("/update")
     @SaCheckPermission("sys.conf.update")
-    @Slog(title = "系统参数",  type = LogType.UPDATE)
+    @SLog(tag = "系统参数",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysConfig conf) {
         sysConfigService.update(conf);
         return Result.success();
@@ -57,7 +57,7 @@ public class SysConfigController {
 
     @PostMapping("/delete/{id}")
     @SaCheckPermission("sys.conf.delete")
-    @Slog(title = "系统参数",  type = LogType.DELETE)
+    @SLog(tag = "系统参数",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysConfigService.deleteById(id);
         return Result.success();

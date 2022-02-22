@@ -1,6 +1,6 @@
 package com.yunqi.system.service;
 
-import com.yunqi.common.base.service.BaseServiceImpl;
+import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysTaskLog;
 import org.nutz.dao.Cnd;
 import org.nutz.lang.Strings;

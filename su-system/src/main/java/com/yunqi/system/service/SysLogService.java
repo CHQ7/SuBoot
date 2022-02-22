@@ -1,7 +1,8 @@
 package com.yunqi.system.service;
 
-import com.yunqi.common.base.service.BaseServiceImpl;
-import com.yunqi.system.models.SysLog;
+import com.yunqi.starter.database.service.BaseServiceImpl;
+import com.yunqi.starter.log.model.SysLog;
+import com.yunqi.starter.log.provider.ISysLogProvider;
 import org.nutz.dao.Cnd;
 import org.nutz.lang.Strings;
 import org.nutz.lang.Times;
@@ -15,17 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class SysLogService extends BaseServiceImpl<SysLog> {
+public class SysLogService extends BaseServiceImpl<SysLog> implements ISysLogProvider {
 
-
-    /**
-     * 异步创建日志
-     * @param log   日志
-     */
-    @Async
-    public void asyncByCreate(SysLog log) {
-        this.insert(log);
-    }
 
     /**
      * 日志列表
@@ -42,10 +34,7 @@ public class SysLogService extends BaseServiceImpl<SysLog> {
         if (Strings.isNotBlank(sysLog.getIp())) {
             cnd.and("ip","=",sysLog.getIp());
         }
-        // 模糊查询:操作人
-        if (Strings.isNotBlank(sysLog.getName())) {
-            cnd.and("name","like","%" + sysLog.getName() + "%");
-        }
+
         // 模糊查询:IP地址
         if (Strings.isNotBlank(sysLog.getLocation())) {
             cnd.and("location","like","%" + sysLog.getLocation() + "%");
@@ -60,4 +49,13 @@ public class SysLogService extends BaseServiceImpl<SysLog> {
         return this.listPage(pageNumber, pageSize, cnd);
     }
 
+    /**
+     * 异步创建日志
+     * @param sysLog
+     */
+    @Async
+    @Override
+    public void saveLog(SysLog sysLog) {
+        this.insert(sysLog);
+    }
 }

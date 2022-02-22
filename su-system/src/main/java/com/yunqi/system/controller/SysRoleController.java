@@ -1,9 +1,9 @@
 package com.yunqi.system.controller;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import com.yunqi.common.annotation.Slog;
-import com.yunqi.common.base.enums.LogType;
 import com.yunqi.starter.common.result.Result;
+import com.yunqi.starter.log.annotation.SLog;
+import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.system.models.SysMenu;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.service.SysMenuService;
@@ -39,7 +39,7 @@ public class SysRoleController {
 
     @PostMapping("/create")
     @SaCheckPermission("sys.role.create")
-    @Slog(title = "系统角色",  type = LogType.INSERT)
+    @SLog(tag = "系统角色", type = LogType.INSERT)
     public Result<?> create(@Validated SysRole role) {
         sysRoleService.create(role);
         return Result.success();
@@ -55,7 +55,7 @@ public class SysRoleController {
 
     @PostMapping("/update")
     @SaCheckPermission("sys.role.update")
-    @Slog(title = "系统角色",  type = LogType.UPDATE)
+    @SLog(tag = "系统角色",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysRole role) {
         sysRoleService.update(role);
         return Result.success();
@@ -63,7 +63,7 @@ public class SysRoleController {
 
     @PostMapping("/delete/{id}")
     @SaCheckPermission("sys.role.delete")
-    @Slog(title = "系统角色",  type = LogType.DELETE)
+    @SLog(tag = "系统角色",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysRoleService.deleteById(id);
         return Result.success();

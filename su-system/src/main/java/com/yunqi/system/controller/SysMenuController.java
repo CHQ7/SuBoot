@@ -2,9 +2,9 @@ package com.yunqi.system.controller;
 
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
-import com.yunqi.common.annotation.Slog;
-import com.yunqi.common.base.enums.LogType;
 import com.yunqi.starter.common.result.Result;
+import com.yunqi.starter.log.annotation.SLog;
+import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.system.models.SysMenu;
 import com.yunqi.system.service.SysMenuService;
 import org.springframework.validation.annotation.Validated;
@@ -35,7 +35,7 @@ public class SysMenuController {
 
     @PostMapping("/create")
     @SaCheckPermission("sys.menu.create")
-    @Slog(title = "系统菜单",  type = LogType.INSERT)
+    @SLog(tag = "系统菜单",  type = LogType.INSERT)
     public Result<?> create(@Validated SysMenu menu) {
         sysMenuService.create(menu);
         return Result.success();
@@ -50,7 +50,7 @@ public class SysMenuController {
 
     @PostMapping("/update")
     @SaCheckPermission("sys.menu.update")
-    @Slog(title = "系统菜单",  type = LogType.UPDATE)
+    @SLog(tag = "系统菜单",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysMenu menu) {
         sysMenuService.update(menu);
         return Result.success();
@@ -58,7 +58,7 @@ public class SysMenuController {
 
     @PostMapping("/delete/{id}")
     @SaCheckPermission("sys.menu.delete")
-    @Slog(title = "系统菜单",  type = LogType.DELETE)
+    @SLog(tag = "系统菜单",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysMenuService.deleteAndChild(id);
         return Result.success();
@@ -66,7 +66,7 @@ public class SysMenuController {
 
     @PostMapping("/sort")
     @SaCheckPermission("sys.menu.sort")
-    @Slog(title = "系统菜单",  type = LogType.SORT)
+    @SLog(tag = "系统菜单",  type = LogType.SORT)
     public Result<?> sort(String ids){
         sysMenuService.sort(ids);
         return Result.success();

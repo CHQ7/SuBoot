@@ -54,12 +54,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
-        <!-- 数据库 -->
-        <dependency>
-            <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-database</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
         <!-- mysql -->
         <dependency>
             <groupId>mysql</groupId>
@@ -90,7 +84,19 @@
             <artifactId>su-starter-jasypt</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        <!-- quartz 定时任务 -->
+        <!-- 公共组件 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <!-- 数据库组件 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-database</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <!-- 定时任务组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
             <artifactId>su-starter-quartz</artifactId>
@@ -108,10 +114,10 @@
             <artifactId>su-starter-mail</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        <!-- 公共类包 -->
+        <!-- 日志组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-common</artifactId>
+            <artifactId>su-starter-log</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

@@ -2,8 +2,8 @@ package com.yunqi.system.service;
 
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
-import com.yunqi.common.base.service.BaseServiceImpl;
 import com.yunqi.common.utils.IPUtil;
+import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysAuthLog;
 import org.nutz.dao.Cnd;
 import org.nutz.lang.Lang;
