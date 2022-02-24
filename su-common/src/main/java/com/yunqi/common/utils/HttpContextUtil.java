@@ -1,7 +1,5 @@
 package com.yunqi.common.utils;
 
-import org.nutz.lang.Strings;
-import org.nutz.lang.Times;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

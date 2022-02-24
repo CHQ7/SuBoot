@@ -1,7 +1,7 @@
 package com.yunqi.system.service;
 
-import com.yunqi.common.base.Globals;
 import com.yunqi.starter.common.constant.GlobalConstant;
+import com.yunqi.starter.common.constant.Globals;
 import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysConfig;

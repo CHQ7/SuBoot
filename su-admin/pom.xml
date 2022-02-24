@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SuBoot</artifactId>
         <groupId>com.yunqi</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.yunqi</groupId>
             <artifactId>su-system</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <!-- test -->
         <dependency>
