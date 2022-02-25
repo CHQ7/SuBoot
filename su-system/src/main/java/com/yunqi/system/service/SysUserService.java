@@ -3,10 +3,10 @@ package com.yunqi.system.service;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
-import com.yunqi.common.utils.DigestUtil;
-import com.yunqi.common.utils.HttpContextUtil;
 import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.starter.common.exception.BizException;
+import com.yunqi.starter.common.lang.Lang;
+import com.yunqi.starter.common.lang.mvc.Mvcs;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.starter.security.utils.SecurityUtil;
 import com.yunqi.system.models.SysAuthLog;
@@ -14,7 +14,6 @@ import com.yunqi.system.models.SysRole;
 import com.yunqi.system.models.SysUser;
 import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
-import org.nutz.lang.Lang;
 import org.nutz.lang.Strings;
 import org.nutz.lang.random.R;
 import org.nutz.lang.util.NutMap;
@@ -225,7 +224,6 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
         }
         String hashedPassword = hashPassword(passowrd, user.getSalt());
         System.out.println("密码:" + hashedPassword);
-        System.out.println("密码:"  + user.getPassword());
         if (!Strings.sNull(hashedPassword).equalsIgnoreCase(user.getPassword())) {
             throw new BizException("账号密码不正确");
         }
@@ -241,7 +239,7 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
      */
     public void loginInfo(SysUser user){
         // *========获取请求=========*
-        HttpServletRequest req  = HttpContextUtil.getReq();
+        HttpServletRequest req  = Mvcs.getReq();
         // 获取终端信息
         final UserAgent ua = UserAgentUtil.parse(req.getHeader("User-Agent"));
         // 最近登录时间
@@ -271,7 +269,7 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
      */
     public void logoutInfo(String userId){
         // *========获取请求=========*
-        HttpServletRequest req  = HttpContextUtil.getReq();
+        HttpServletRequest req  = Mvcs.getReq();
         SysUser user = this.fetch(userId);
         // 标记退出状态
         user.setOnline(false);
@@ -338,6 +336,6 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
      * @return          数字签名
      */
     public String hashPassword(String password,String salt){
-        return DigestUtil.sha256(password, salt);
+        return Lang.sha256BySalt(password, salt);
     }
 }

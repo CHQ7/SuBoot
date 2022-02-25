@@ -5,7 +5,6 @@ import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.system.models.SysDept;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.models.SysUser;
-import com.yunqi.system.service.SysConfigService;
 import com.yunqi.system.service.SysTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.nutz.dao.Chain;
@@ -17,37 +16,24 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * <p>
- *     服务启动时初始化
- * </p>
- * Created by @author JsckChin on 2022/1/22
+ * 服务启动时初始化
+ * Created by @author JsckChin on 2022/2/25
  */
 @Slf4j
 @Component
-public class Setup implements ApplicationRunner {
+public class Initializer implements ApplicationRunner {
 
-    @Override
-    public void run(ApplicationArguments args) {
-        log.info("Initialize system environment");
-        Dao dao = SpringUtil.getBean(Dao.class);
-        // 初始化数据表
-        initSys(dao);
-        // 初始化定时任务
-        initSysTask();
-
-        // 初始化系统全局变量
-        SysConfigService sysConfigService= SpringUtil.getBean(SysConfigService.class);
-        sysConfigService.initSysParam();
-    }
-
+    @Resource
+    private Dao dao;
 
     /**
      * 初始化数据表
      */
-    private void initSys(Dao dao) {
+    private void initSys() {
         // 检测用户是否有数据
         if (dao.count(SysUser.class) == 0) {
             // 初始化机构
@@ -72,7 +58,7 @@ public class Setup implements ApplicationRunner {
             user.setNote("超级管理员,拥有所有操作权限 ^_^");
             user.setName(GlobalConstant.DEFAULT_SYSADMIN_NAME);
             user.setSalt("61ho2vejfah1pq6dh781jds0t5");
-            user.setPassword("c63a2bcc1650a5cd762a3ae585ddb35b969512a4ae47da2b214cffa1899a15b3");
+            user.setPassword("dd02eeb82a6d4084fde09796915afbb79f7a4d0afd3ed211d52ab1a736e91ade");
             user.setDisabled(true);
             user.setDeptId(dbdept.getId());
             SysUser dbuser =  dao.insert(user);
@@ -104,5 +90,15 @@ public class Setup implements ApplicationRunner {
         SysTaskService sysTaskService= SpringUtil.getBean(SysTaskService.class);
         // 初始化定时任务
         sysTaskService.init();
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        log.info("Initialize system environment");
+        // 初始化数据表
+        initSys();
+        // 初始化定时任务
+        initSysTask();
+
     }
 }

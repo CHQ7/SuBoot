@@ -68,6 +68,9 @@ public abstract class BaseModel implements Serializable {
         return Json.toJson(this, JsonFormat.compact());
     }
 
+    public Boolean flag() {
+        return false;
+    }
 
    /**
      * 获取创建人ID
