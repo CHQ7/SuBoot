@@ -1,6 +1,6 @@
 package com.yunqi.system.models;
 
-import com.yunqi.common.base.model.BaseModel;
+import com.yunqi.starter.database.model.BaseModel;
 import lombok.Data;
 import org.nutz.dao.entity.annotation.*;
 

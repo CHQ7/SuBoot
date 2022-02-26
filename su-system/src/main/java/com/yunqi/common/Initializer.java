@@ -1,6 +1,5 @@
 package com.yunqi.common;
 
-import com.yunqi.common.utils.SpringUtil;
 import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.system.models.SysDept;
 import com.yunqi.system.models.SysRole;
@@ -29,6 +28,9 @@ public class Initializer implements ApplicationRunner {
 
     @Resource
     private Dao dao;
+
+    @Resource
+    private SysTaskService sysTaskService;
 
     /**
      * 初始化数据表
@@ -87,7 +89,6 @@ public class Initializer implements ApplicationRunner {
      * 初始化定时任务
      */
     private void initSysTask() {
-        SysTaskService sysTaskService= SpringUtil.getBean(SysTaskService.class);
         // 初始化定时任务
         sysTaskService.init();
     }
