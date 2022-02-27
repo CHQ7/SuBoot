@@ -15,37 +15,6 @@ spring:
     username: ENC(x0jY0g478sC7qMnAMOmvgA==)
     password: ENC(x0jY0g478sC7qMnAMOmvgA==)
 
-  ##############################################
-  # redis配置
-  ##############################################
-  redis:
-    # Redis数据库索引（默认为0）
-    database: 0
-    # Redis服务器地址
-    host: 127.0.0.1
-    # Redis服务器连接端口
-    port: 6379
-    # Redis服务器连接密码（默认为空）
-    password:
-    # 连接超时时间（毫秒）
-    timeout: 1000ms
-
-  ##############################################
-  # rabbitmq配置
-  ##############################################
-  rabbitmq:
-    # rabbitmq服务器地址
-    host: 127.0.0.1
-    # rabbitmq服务器连接端口
-    port: 5672
-    # rabbitmq服务器连接账号密码
-    username: ENC(x0jY0g478sC7qMnAMOmvgA==)
-    password: ENC(trImmrZmCdTYPOY2+ksnTw==)
-    listener:
-      simple:
-        # 自动签收auto、手动manual
-        acknowledge-mode: manual
-
 ##############################################
 # Su配置
 ##############################################
@@ -59,7 +28,6 @@ su:
 ##############################################
 logging:
   level:
-    com.alibaba.druid: debug
     org.nutz: debug
     com.yunqi: debug
     com.yunqi.starter: debug
