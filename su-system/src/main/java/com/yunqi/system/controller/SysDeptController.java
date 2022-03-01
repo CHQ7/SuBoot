@@ -1,9 +1,9 @@
 package com.yunqi.system.controller;
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
+import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysDept;
 import com.yunqi.system.service.SysDeptService;
 import org.springframework.validation.annotation.Validated;
@@ -26,14 +26,14 @@ public class SysDeptController {
     SysDeptService sysDeptService;
 
     @PostMapping("/list")
-    @SaCheckPermission("sys.dept")
+    @RequiresPermissions("sys.dept")
     public Result<?> list() {
         return Result.success().addData(sysDeptService.all());
     }
 
 
     @PostMapping("/create")
-    @SaCheckPermission("sys.dept.create")
+    @RequiresPermissions("sys.dept.create")
     @SLog(tag = "系统组织",  type = LogType.INSERT)
     public Result<?> create(@Validated SysDept dept) {
         sysDeptService.create(dept);
@@ -41,7 +41,7 @@ public class SysDeptController {
     }
 
     @PostMapping("/fetch/{id}")
-    @SaCheckPermission("sys.dept")
+    @RequiresPermissions("sys.dept")
     public Result<?> fetch(@PathVariable("id") String id) {
         sysDeptService.fetch(id);
         return Result.success();
@@ -49,7 +49,7 @@ public class SysDeptController {
 
 
     @PostMapping("/update")
-    @SaCheckPermission("sys.dept.update")
+    @RequiresPermissions("sys.dept.update")
     @SLog(tag = "系统组织",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysDept dept) {
         sysDeptService.update(dept);
@@ -57,7 +57,7 @@ public class SysDeptController {
     }
 
     @PostMapping("/delete/{id}")
-    @SaCheckPermission("sys.dept.delete")
+    @RequiresPermissions("sys.dept.delete")
     @SLog(tag = "系统组织",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysDeptService.deleteById(id);
@@ -65,7 +65,7 @@ public class SysDeptController {
     }
 
     @PostMapping("/sort")
-    @SaCheckPermission("sys.dept.sort")
+    @RequiresPermissions("sys.dept.sort")
     @SLog(tag = "系统组织",  type = LogType.SORT)
     public Result<?> sort(String ids){
         sysDeptService.sort(ids.split(","));

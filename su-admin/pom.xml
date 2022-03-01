@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SuBoot</artifactId>
         <groupId>com.yunqi</groupId>
-        <version>1.0.1-SNAPSHOT</version>
+        <version>1.0.3-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,10 +15,61 @@
     <!-- 项目依赖 -->
     <!-- ======================================== -->
     <dependencies>
+        <!-- web核心依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <!-- 排除tomcat,因为SpringBoot默认使用tomcat -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- Jetty 设置应用默认内置的服务 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+        <!-- mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+            <version>8.0.27</version>
+        </dependency>
+        <!-- jasypt -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-jasypt</artifactId>
+        </dependency>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <version>1.18.22</version>
+        </dependency>
+        <!-- 数据库组件 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-database</artifactId>
+        </dependency>
+        <!-- 日志组件 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-log</artifactId>
+        </dependency>
+        <!-- web组件 -->
+        <dependency>
+            <groupId>com.yunqi.starter</groupId>
+            <artifactId>su-starter-web</artifactId>
+        </dependency>
+        <!-- 系统模块 -->
         <dependency>
             <groupId>com.yunqi</groupId>
             <artifactId>su-system</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <!-- test -->
         <dependency>

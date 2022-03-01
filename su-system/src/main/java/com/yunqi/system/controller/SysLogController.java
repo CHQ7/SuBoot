@@ -1,8 +1,8 @@
 package com.yunqi.system.controller;
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.model.SysLog;
+import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.service.SysLogService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class SysLogController {
     SysLogService sysLogService;
 
     @PostMapping("/list")
-    @SaCheckPermission("sys.log")
+    @RequiresPermissions("sys.log")
     public Result<?> list(Integer pageNumber, Integer pageSize, String beginTime, String endTime, SysLog sysLog) {
         return Result.success().addData(sysLogService.list(pageNumber, pageSize, beginTime, endTime, sysLog));
     }

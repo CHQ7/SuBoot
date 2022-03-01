@@ -1,9 +1,9 @@
 package com.yunqi.system.controller;
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
+import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysUser;
 import com.yunqi.system.service.SysDeptService;
 import com.yunqi.system.service.SysRoleService;
@@ -34,13 +34,13 @@ public class SysUserController {
     SysRoleService sysRoleService;
 
     @PostMapping("/list")
-    @SaCheckPermission("sys.user")
+    @RequiresPermissions("sys.user")
     public Object list(Integer pageNumber, Integer pageSize, SysUser user) {
         return Result.success().addData(sysUserService.list(pageNumber,pageSize,user));
     }
 
     @PostMapping("/create")
-    @SaCheckPermission("sys.user.create")
+    @RequiresPermissions("sys.user.create")
     @SLog(tag = "系统用户",  type = LogType.INSERT)
     public Result<?> create(@Validated SysUser user, String roleIds) {
         sysUserService.create(user, roleIds.split(","));
@@ -48,14 +48,14 @@ public class SysUserController {
     }
 
     @PostMapping("/fetch/{id}")
-    @SaCheckPermission("sys.user")
+    @RequiresPermissions("sys.user")
     public Result<?> fetch(@PathVariable("id") String id) {
         sysUserService.fetch(id);
         return Result.success();
     }
 
     @PostMapping("/update")
-    @SaCheckPermission("sys.user.update")
+    @RequiresPermissions("sys.user.update")
     @SLog(tag = "系统用户",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysUser user, String roleIds) {
         sysUserService.update(user, roleIds.split(","));
@@ -63,7 +63,7 @@ public class SysUserController {
     }
 
     @PostMapping("/delete/{id}")
-    @SaCheckPermission("sys.user.delete")
+    @RequiresPermissions("sys.user.delete")
     @SLog(tag = "系统用户",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysUserService.deleteById(id);
@@ -71,20 +71,20 @@ public class SysUserController {
     }
 
     @PostMapping("/resetPassword/{id}")
-    @SaCheckPermission("sys.user.password")
+    @RequiresPermissions("sys.user.password")
     @SLog(tag = "系统用户",  type = LogType.UPDATE)
     public Result<?> resetPassword(@PathVariable("id") String id) {
         return Result.success().addData(sysUserService.resetPwd(id));
     }
 
     @PostMapping("/dept")
-    @SaCheckPermission("sys.user")
+    @RequiresPermissions("sys.user")
     public Result<?> dept() {
         return Result.success().addData(sysDeptService.all());
     }
 
     @PostMapping("/role")
-    @SaCheckPermission("sys.user")
+    @RequiresPermissions("sys.user")
     public Result<?> role() {
         return Result.success().addData(sysRoleService.all());
     }

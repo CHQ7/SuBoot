@@ -1,10 +1,10 @@
 package com.yunqi.system.controller;
 
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
+import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysMenu;
 import com.yunqi.system.service.SysMenuService;
 import org.springframework.validation.annotation.Validated;
@@ -27,14 +27,14 @@ public class SysMenuController {
     SysMenuService sysMenuService;
 
     @PostMapping("/list")
-    @SaCheckPermission("sys.menu")
+    @RequiresPermissions("sys.menu")
     public Result<?> list() {
         return Result.success().addData(sysMenuService.all());
     }
 
 
     @PostMapping("/create")
-    @SaCheckPermission("sys.menu.create")
+    @RequiresPermissions("sys.menu.create")
     @SLog(tag = "系统菜单",  type = LogType.INSERT)
     public Result<?> create(@Validated SysMenu menu) {
         sysMenuService.create(menu);
@@ -42,14 +42,14 @@ public class SysMenuController {
     }
 
     @PostMapping("/fetch/{id}")
-    @SaCheckPermission("sys.menu")
+    @RequiresPermissions("sys.menu")
     public Result<?> fetch(@PathVariable("id") String id) {
         return Result.success().addData(sysMenuService.fetchById(id));
     }
 
 
     @PostMapping("/update")
-    @SaCheckPermission("sys.menu.update")
+    @RequiresPermissions("sys.menu.update")
     @SLog(tag = "系统菜单",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysMenu menu) {
         sysMenuService.update(menu);
@@ -57,7 +57,7 @@ public class SysMenuController {
     }
 
     @PostMapping("/delete/{id}")
-    @SaCheckPermission("sys.menu.delete")
+    @RequiresPermissions("sys.menu.delete")
     @SLog(tag = "系统菜单",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysMenuService.deleteAndChild(id);
@@ -65,7 +65,7 @@ public class SysMenuController {
     }
 
     @PostMapping("/sort")
-    @SaCheckPermission("sys.menu.sort")
+    @RequiresPermissions("sys.menu.sort")
     @SLog(tag = "系统菜单",  type = LogType.SORT)
     public Result<?> sort(String ids){
         sysMenuService.sort(ids);

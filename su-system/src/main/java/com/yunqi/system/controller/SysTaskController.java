@@ -1,10 +1,10 @@
 package com.yunqi.system.controller;
 
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
+import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysTask;
 import com.yunqi.system.service.SysTaskService;
 import lombok.extern.slf4j.Slf4j;
@@ -29,14 +29,14 @@ public class SysTaskController {
     SysTaskService sysTaskService;
 
     @PostMapping("/list")
-    @SaCheckPermission("sys.task")
+    @RequiresPermissions("sys.task")
     public Result<?> list(Integer pageNumber, Integer pageSize, SysTask sysTask) {
         return Result.success().addData(sysTaskService.list(pageNumber, pageSize, sysTask));
     }
 
 
     @PostMapping("/create")
-    @SaCheckPermission("sys.task.create")
+    @RequiresPermissions("sys.task.create")
     @SLog(tag = "系统任务",  type = LogType.INSERT)
     public Result<?> create(@Validated SysTask task) {
         sysTaskService.create(task);
@@ -44,7 +44,7 @@ public class SysTaskController {
     }
 
     @PostMapping("/fetch/{id}")
-    @SaCheckPermission("sys.task")
+    @RequiresPermissions("sys.task")
     public Result<?> fetch(@PathVariable("id") String id) {
         sysTaskService.fetch(id);
         return Result.success();
@@ -52,7 +52,7 @@ public class SysTaskController {
 
 
     @PostMapping("/update")
-    @SaCheckPermission("sys.task.update")
+    @RequiresPermissions("sys.task.update")
     @SLog(tag = "系统任务",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysTask task) {
         sysTaskService.update(task);
@@ -60,7 +60,7 @@ public class SysTaskController {
     }
 
     @PostMapping("/delete/{id}")
-    @SaCheckPermission("sys.task.delete")
+    @RequiresPermissions("sys.task.delete")
     @SLog(tag = "系统任务",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysTaskService.deleteById(id);
@@ -68,7 +68,7 @@ public class SysTaskController {
     }
 
     @PostMapping("/run/{id}")
-    @SaCheckPermission("sys.task.run")
+    @RequiresPermissions("sys.task.run")
     @SLog(tag = "系统任务",  type = LogType.EXECUTE)
     public Result<?> run(@PathVariable("id") String id) {
         sysTaskService.run(id);

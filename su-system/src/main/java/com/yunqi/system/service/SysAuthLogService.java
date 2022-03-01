@@ -2,12 +2,12 @@ package com.yunqi.system.service;
 
 import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
+import com.yunqi.starter.common.lang.Lang;
+import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.common.utils.IPUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysAuthLog;
 import org.nutz.dao.Cnd;
-import org.nutz.lang.Lang;
-import org.nutz.lang.Strings;
 import org.nutz.lang.Times;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -53,7 +53,7 @@ public class SysAuthLogService extends BaseServiceImpl<SysAuthLog> {
      * @param log   日志
      */
     @Async
-    public void asyncByCreate(HttpServletRequest req,SysAuthLog log) {
+    public void saveLog(HttpServletRequest req,SysAuthLog log) {
         // ========================================== 开始请求日志 ==========================================
         // 获取终端信息
         final UserAgent ua = UserAgentUtil.parse(req.getHeader("User-Agent"));

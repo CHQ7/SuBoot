@@ -14,6 +14,12 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/suboot?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
     username: ENC(x0jY0g478sC7qMnAMOmvgA==)
     password: ENC(x0jY0g478sC7qMnAMOmvgA==)
+    # 副数据源【sqlserver】配置
+    second:
+      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+      url: jdbc:sqlserver://1.14.4.236:14330;DatabaseName=pjwater
+      username: cdpjzls168
+      password: slzjpdc168
 
 ##############################################
 # Su配置
@@ -22,6 +28,10 @@ su:
   database:
     runtime:
       basepackage: com.yunqi
+  wx:
+    appid: wxed67d757e83831e7
+    appsecret: ff1c4481458c3f3266bf781d80bda961
+
 
 ##############################################
 # 日志配置

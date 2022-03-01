@@ -1,9 +1,9 @@
 package com.yunqi.system.controller;
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
+import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysMenu;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.service.SysMenuService;
@@ -31,14 +31,14 @@ public class SysRoleController {
     SysMenuService sysMenuService;
 
     @PostMapping("/list")
-    @SaCheckPermission("sys.role")
+    @RequiresPermissions("sys.role")
     public Result<?> list(Integer pageNumber,Integer pageSize, SysRole role) {
         return Result.success().addData(sysRoleService.list(pageNumber, pageSize, role));
     }
 
 
     @PostMapping("/create")
-    @SaCheckPermission("sys.role.create")
+    @RequiresPermissions("sys.role.create")
     @SLog(tag = "系统角色", type = LogType.INSERT)
     public Result<?> create(@Validated SysRole role) {
         sysRoleService.create(role);
@@ -46,7 +46,7 @@ public class SysRoleController {
     }
 
     @PostMapping("/fetch/{id}")
-    @SaCheckPermission("sys.role")
+    @RequiresPermissions("sys.role")
     public Result<?> fetch(@PathVariable("id") String id) {
         sysRoleService.fetch(id);
         return Result.success();
@@ -54,7 +54,7 @@ public class SysRoleController {
 
 
     @PostMapping("/update")
-    @SaCheckPermission("sys.role.update")
+    @RequiresPermissions("sys.role.update")
     @SLog(tag = "系统角色",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysRole role) {
         sysRoleService.update(role);
@@ -62,7 +62,7 @@ public class SysRoleController {
     }
 
     @PostMapping("/delete/{id}")
-    @SaCheckPermission("sys.role.delete")
+    @RequiresPermissions("sys.role.delete")
     @SLog(tag = "系统角色",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysRoleService.deleteById(id);
@@ -71,7 +71,7 @@ public class SysRoleController {
 
 
     @PostMapping("/menu/{id}")
-    @SaCheckPermission("sys.role")
+    @RequiresPermissions("sys.role")
     public Result<?> menu(@PathVariable("id") String id) {
         List<SysMenu> hasList = sysMenuService.getMenusAndButtons(id);
 
@@ -84,7 +84,7 @@ public class SysRoleController {
     }
 
     @PostMapping("/doMenu")
-    @SaCheckPermission("sys.role.menu")
+    @RequiresPermissions("sys.role.menu")
     public Result<?> doMenu(@RequestParam String menuIds, @RequestParam String roleId) {
         sysRoleService.saveMenu(menuIds.split(","), roleId);
         return Result.success();

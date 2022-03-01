@@ -39,11 +39,11 @@ public class SysDeptService extends BaseServiceImpl<SysDept> {
     @Transactional
     public SysDept create(SysDept dept) {
         // 检查:组织名称是否存在
-        if (this.count(Cnd.where("name","=", dept.getName())) > 0) {
+        if (this.count(Cnd.where("name",EQ, dept.getName())) > 0) {
             throw new BizException("组织名称已存在");
         }
         // 检查:组织唯一编码是否存在
-        if (this.count(Cnd.where("code","=", dept.getCode())) > 0) {
+        if (this.count(Cnd.where("code",EQ, dept.getCode())) > 0) {
             throw new BizException("组织唯一编码已存在");
         }
        return this.insert(dept);

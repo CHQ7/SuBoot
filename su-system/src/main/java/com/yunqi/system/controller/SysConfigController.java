@@ -1,9 +1,9 @@
 package com.yunqi.system.controller;
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
+import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysConfig;
 import com.yunqi.system.service.SysConfigService;
 import org.springframework.validation.annotation.Validated;
@@ -25,14 +25,14 @@ public class SysConfigController {
     SysConfigService sysConfigService;
 
     @PostMapping("/list")
-    @SaCheckPermission("sys.conf")
+    @RequiresPermissions("sys.conf")
     public Result<?> list(Integer pageNumber,Integer pageSize, SysConfig conf) {
         return Result.success().addData(sysConfigService.list(pageNumber, pageSize, conf));
     }
 
 
     @PostMapping("/create")
-    @SaCheckPermission("sys.conf.create")
+    @RequiresPermissions("sys.conf.create")
     @SLog(tag = "系统参数",  type = LogType.INSERT)
     public Result<?> create(@Validated SysConfig conf) {
         sysConfigService.create(conf);
@@ -40,7 +40,7 @@ public class SysConfigController {
     }
 
     @PostMapping("/fetch/{id}")
-    @SaCheckPermission("sys.conf")
+    @RequiresPermissions("sys.conf")
     public Result<?> fetch(@PathVariable("id") String id) {
         sysConfigService.fetch(id);
         return Result.success();
@@ -48,7 +48,7 @@ public class SysConfigController {
 
 
     @PostMapping("/update")
-    @SaCheckPermission("sys.conf.update")
+    @RequiresPermissions("sys.conf.update")
     @SLog(tag = "系统参数",  type = LogType.UPDATE)
     public Result<?> update(@Validated SysConfig conf) {
         sysConfigService.update(conf);
@@ -56,7 +56,7 @@ public class SysConfigController {
     }
 
     @PostMapping("/delete/{id}")
-    @SaCheckPermission("sys.conf.delete")
+    @RequiresPermissions("sys.conf.delete")
     @SLog(tag = "系统参数",  type = LogType.DELETE)
     public Result<?> delete(@PathVariable("id") String id) {
         sysConfigService.deleteById(id);

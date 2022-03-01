@@ -260,7 +260,7 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
         log.setTag("用户登陆");
         log.setMsg("登录系统");
         log.setName(user.getNickname());
-        sysAuthLogService.asyncByCreate(req, log);
+        sysAuthLogService.saveLog(req, log);
     }
 
     /**
@@ -279,7 +279,7 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
         log.setTag("用户登出");
         log.setMsg("退出系统");
         log.setName(user.getNickname());
-        sysAuthLogService.asyncByCreate(req, log);
+        sysAuthLogService.saveLog(req, log);
     }
 
 
@@ -338,4 +338,5 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
     public String hashPassword(String password,String salt){
         return Lang.sha256BySalt(password, salt);
     }
+
 }

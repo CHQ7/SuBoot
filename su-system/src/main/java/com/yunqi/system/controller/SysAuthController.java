@@ -1,9 +1,9 @@
 package com.yunqi.system.controller;
 
-import cn.dev33.satoken.annotation.SaCheckLogin;
-import cn.dev33.satoken.stp.StpUtil;
 
 import com.yunqi.starter.common.result.Result;
+import com.yunqi.starter.security.annotation.RequiresAuthentication;
+import com.yunqi.starter.security.spi.StpUtil;
 import com.yunqi.starter.security.utils.SecurityUtil;
 import com.yunqi.system.models.SysUser;
 import com.yunqi.system.service.SysMenuService;
@@ -63,7 +63,7 @@ public class SysAuthController {
 
 
     @PostMapping("/info")
-    @SaCheckLogin
+    @RequiresAuthentication
     public Object info() {
         SysUser user = sysUserService.fetch(SecurityUtil.getUserId());
         NutMap map = new NutMap();
@@ -81,7 +81,7 @@ public class SysAuthController {
      * @return            操作结果
      */
     @PostMapping("/updatePwd")
-    @SaCheckLogin
+    @RequiresAuthentication
     public Object updatePwd(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword) {
         sysUserService.updatePwd(oldPassword,newPassword);
         return Result.success();
@@ -92,7 +92,7 @@ public class SysAuthController {
      * @return
      */
     @PostMapping("/logout")
-    @SaCheckLogin
+    @RequiresAuthentication
     public Object logout() {
         // 获取会话ID
         String userId = SecurityUtil.getUserId();
