@@ -1,7 +1,10 @@
 package com.yunqi;
 
+import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.annotation.Resource;
 
 /**
  * Created by @author JsckChin on 2022/1/30
@@ -9,9 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class EmailUtilTest {
 
+    @Resource
+    StringEncryptor jasyptStringEncryptor;
+
     @Test
     public void test(){
-        System.out.println(1);
+
+        System.out.println(jasyptStringEncryptor.encrypt("root"));
     }
 
 }
