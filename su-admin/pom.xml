@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SuBoot</artifactId>
         <groupId>com.yunqi</groupId>
-        <version>1.0.3-SNAPSHOT</version>
+        <version>1.0.4-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -37,19 +37,23 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-            <version>8.0.27</version>
         </dependency>
         <!-- jasypt -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
             <artifactId>su-starter-jasypt</artifactId>
         </dependency>
+        <!-- test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-            <version>1.18.22</version>
         </dependency>
         <!-- 数据库组件 -->
         <dependency>
@@ -70,12 +74,7 @@
         <dependency>
             <groupId>com.yunqi</groupId>
             <artifactId>su-system</artifactId>
-        </dependency>
-        <!-- test -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <version>1.0.4-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
