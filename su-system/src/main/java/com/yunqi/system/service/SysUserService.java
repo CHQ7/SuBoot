@@ -45,6 +45,7 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
      * @return           分页列表
      */
     public Object list(Integer pageNumber, int pageSize, SysUser user) {
+        logger.warn("查询用户列表");
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:用户账号
         if(Strings.isNotBlank(user.getName())){
@@ -224,6 +225,7 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
         }
         String hashedPassword = hashPassword(passowrd, user.getSalt());
         System.out.println("密码:" + hashedPassword);
+        logger.debug("登录密码：" + hashedPassword + " 对比密码" +  user.getPassword());
         if (!Strings.sNull(hashedPassword).equalsIgnoreCase(user.getPassword())) {
             throw new BizException("账号密码不正确");
         }

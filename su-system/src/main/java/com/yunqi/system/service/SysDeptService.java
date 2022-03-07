@@ -62,13 +62,13 @@ public class SysDeptService extends BaseServiceImpl<SysDept> {
         }
         // 检查组织名称是否唯一
         if(!Strings.sBlank(oldDept.getName()).equalsIgnoreCase(dept.getName())) {
-            if (this.count(Cnd.where("name","=", dept.getName())) > 0) {
+            if (this.count(Cnd.where("name",EQ, dept.getName())) > 0) {
                 throw new BizException("组织名称已存在");
             }
         }
         // 检查组织唯一编码是否唯一
         if (Strings.sBlank(oldDept.getCode()).equalsIgnoreCase(dept.getCode())) {
-            if (this.count(Cnd.where("code","=", dept.getCode())) > 0) {
+            if (this.count(Cnd.where("code",EQ, dept.getCode())) > 0) {
                 throw new BizException("组织唯一编码已存在");
             }
             // 默认组织禁止更改
@@ -92,7 +92,7 @@ public class SysDeptService extends BaseServiceImpl<SysDept> {
             throw new BizException("默认组织禁止删除");
         }
         // 存在下级组织,不允许删除
-        if(this.count(Cnd.where("parentId","=", id)) > 0){
+        if(this.count(Cnd.where("parentId",EQ, id)) > 0){
             throw new BizException("存在下级组织,不允许删除");
         }
         return this.delete(id);
@@ -110,7 +110,7 @@ public class SysDeptService extends BaseServiceImpl<SysDept> {
         this.execute(Sqls.create("update ims_sys_dept set location=0"));
         for (String s : ids) {
             if (Strings.isNotBlank(s)) {
-                this.update(Chain.make("location", i), Cnd.where("id", "=", s));
+                this.update(Chain.make("location", i), Cnd.where("id", EQ, s));
                 i++;
             }
         }

@@ -15,7 +15,7 @@ const install = (Vue, vm) => {
   })
   // 请求拦截，配置Token等参数
   Vue.prototype.$u.http.interceptors.request = (config) => {
-    config.headers['X-Token'] = '2222222'
+    config.headers['x-token2'] = '2222222'
     return config
   }
   // 响应拦截，判断状态码是否通过

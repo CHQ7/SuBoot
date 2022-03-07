@@ -1,7 +1,7 @@
 module.exports = {
 
   // 网站标题
-  title: 'NsBoot管理系统',
+  title: 'SuBoot管理系统',
 
   // 开发环境端口号
   devPort: '1075',

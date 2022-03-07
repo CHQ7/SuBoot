@@ -30,15 +30,15 @@ public class SysConfigService extends BaseServiceImpl<SysConfig> {
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:系统参数唯一编码
         if(Strings.isNotBlank(conf.getConfigKey())){
-            cnd.and("configKey", "like", "%" + conf.getConfigKey() + "%");
+            cnd.and("configKey", LIKE, "%" + conf.getConfigKey() + "%");
         }
         // 模糊查询:系统参数值
         if(Strings.isNotBlank(conf.getConfigValue())){
-            cnd.and("configValue", "like", "%" + conf.getConfigValue() + "%");
+            cnd.and("configValue", LIKE, "%" + conf.getConfigValue() + "%");
         }
         // 模糊查询:系统标题名称
         if(Strings.isNotBlank(conf.getConfigName())){
-            cnd.and("configName", "like", "%" + conf.getConfigName() + "%");
+            cnd.and("configName", LIKE, "%" + conf.getConfigName() + "%");
         }
         // 创建时间倒序
         cnd.desc("createdAt");
@@ -53,7 +53,7 @@ public class SysConfigService extends BaseServiceImpl<SysConfig> {
     @Transactional
     public SysConfig create(SysConfig conf) {
         // 检查:标题名称是否存在
-        if (this.count(Cnd.where("configName","=", conf.getConfigName())) > 0) {
+        if (this.count(Cnd.where("configName",EQ, conf.getConfigName())) > 0) {
             throw new BizException("标题已存在");
         }
         conf =  this.insert(conf);
@@ -74,7 +74,7 @@ public class SysConfigService extends BaseServiceImpl<SysConfig> {
         }
         // 检查标题名称是否唯一
         if(!Strings.sBlank(oldConf.getConfigName()).equalsIgnoreCase(conf.getConfigName())) {
-            if (this.count(Cnd.where("configName","=", conf.getConfigName())) > 0) {
+            if (this.count(Cnd.where("configName",EQ, conf.getConfigName())) > 0) {
                 throw new BizException("标题已存在");
             }
         }

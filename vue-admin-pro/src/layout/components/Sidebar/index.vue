@@ -82,7 +82,7 @@ export default {
       return this.$store.state.settings.sidebarLogo
     },
     title() {
-      return 'NsBoot'
+      return 'SuBoot'
     },
     variables() {
       return variables

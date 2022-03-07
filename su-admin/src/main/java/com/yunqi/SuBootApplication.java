@@ -1,5 +1,6 @@
 package com.yunqi;
 
+import cn.dev33.satoken.SaManager;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,5 +17,6 @@ public class SuBootApplication {
         SpringApplication app = new  SpringApplication(SuBootApplication.class);
         app.setBannerMode(Banner.Mode.LOG); //将banner打印到日志文件
         app.run(args);
+        System.out.println("启动成功：Sa-Token配置如下：" + SaManager.getConfig());
     }
 }
