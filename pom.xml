@@ -13,7 +13,7 @@
     <!-- GVA -->
     <groupId>com.yunqi</groupId>
     <artifactId>SuBoot</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.7</version>
 
     <!-- 项目名称 -->
     <name>SuBoot</name>
@@ -125,6 +125,18 @@
         </dependencies>
 
     </dependencyManagement>
+
+    <!-- 上传制品仓库 -->
+    <distributionManagement>
+        <repository>
+            <id>ssc-releases</id>
+            <url>https://maven.wchin.cn/artifactory/rdc-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>ssc-snapshot</id>
+            <url>https://maven.wchin.cn/artifactory/rdc-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
     <!-- maven仓库 -->
     <repositories>
