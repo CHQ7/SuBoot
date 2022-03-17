@@ -1,0 +1,273 @@
+2022-03-17 10:33:16,168 [main] INFO  com.yunqi.Tests - Starting Tests using Java 1.8.0_311 on MX with PID 6556 (started by MXA in E:\SuBoot\su-admin)
+2022-03-17 10:33:16,168 [main] DEBUG com.yunqi.Tests - Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-03-17 10:33:16,168 [main] INFO  com.yunqi.Tests - No active profile set, falling back to default profiles: default
+2022-03-17 10:33:16,988 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-03-17 10:33:17,018 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 18 ms. Found 0 JDBC repository interfaces.
+2022-03-17 10:33:17,268 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2022-03-17 10:33:17,268 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-03-17 10:33:17,278 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 10:33:17,278 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 10:33:17,278 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-03-17 10:33:17,278 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-03-17 10:33:17,278 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 10:33:17,278 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-03-17 10:33:17,278 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-03-17 10:33:17,278 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 10:33:17,708 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.starter.log.model.SysLog
+2022-03-17 10:33:17,858 [main] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-03-17 10:33:17,868 [main] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-03-17 10:33:17,868 [main] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-03-17 10:33:17,918 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@5b275811 with name: jasyptStringEncryptor
+2022-03-17 10:33:18,558 [main] DEBUG org.nutz.castor.Castors - Using 107 castor for Castors
+2022-03-17 10:33:18,638 [main] DEBUG org.nutz.dao.jdbc.Jdbcs - Jdbcs init complete
+2022-03-17 10:33:18,638 [main] INFO  org.nutz.dao.jdbc.Jdbcs - Get Connection from DataSource for JdbcExpert, if you lock at here, check your database server and configure
+2022-03-17 10:33:19,528 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-03-17 10:33:19,538 [main] DEBUG org.nutz.dao.impl.DaoSupport - select expert : org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert
+2022-03-17 10:33:19,538 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Driver --> mysql-connector-java-8.0.27 (Revision: e920b979015ae7117d60d72bcc8f077a839cd791)
+2022-03-17 10:33:19,538 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Name   --> MySQL Connector/J
+2022-03-17 10:33:19,538 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC URL    --> jdbc:mysql://127.0.0.1:3306/suboot?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+2022-03-17 10:33:19,568 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_client=utf8mb4
+2022-03-17 10:33:19,568 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_connection=utf8mb4
+2022-03-17 10:33:19,568 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_database=utf8mb3
+2022-03-17 10:33:19,568 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_filesystem=binary
+2022-03-17 10:33:19,568 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_results=
+2022-03-17 10:33:19,568 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_server=utf8mb3
+2022-03-17 10:33:19,568 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_system=utf8mb3
+2022-03-17 10:33:19,568 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_sets_dir=C:\Program Files\MySQL\MySQL Server 8.0\share\charsets\
+2022-03-17 10:33:19,578 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : binlog_format=ROW
+2022-03-17 10:33:19,578 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : database=suboot
+2022-03-17 10:33:19,578 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : user=root@localhost
+2022-03-17 10:33:19,638 [main] DEBUG org.nutz.dao.impl.DaoSupport - Database info --> MYSQL:[MySQL - 8.0.27]
+2022-03-17 10:33:19,728 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTask
+2022-03-17 10:33:19,828 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2022-03-17 10:33:19,828 [main] INFO  org.quartz.simpl.SimpleThreadPool - Job execution threads will use class loader of thread: main
+2022-03-17 10:33:19,848 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-03-17 10:33:19,848 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2022-03-17 10:33:19,858 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Using db table-based data access locking (synchronization).
+2022-03-17 10:33:19,858 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - JobStoreCMT initialized.
+2022-03-17 10:33:19,858 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'QuartzScheduler' with instanceId 'MX1647484399828'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+2022-03-17 10:33:19,858 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'QuartzScheduler' initialized from an externally provided properties instance.
+2022-03-17 10:33:19,858 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2022-03-17 10:33:19,858 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: com.yunqi.starter.quartz.configuration.AutowiringSpringBeanJobFactory@19827608
+2022-03-17 10:33:19,918 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysUser
+2022-03-17 10:33:19,928 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysRole
+2022-03-17 10:33:19,968 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysAuthLog
+2022-03-17 10:33:20,028 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysMenu
+2022-03-17 10:33:20,088 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysConfig
+2022-03-17 10:33:20,138 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysDept
+2022-03-17 10:33:20,208 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTaskLog
+2022-03-17 10:33:20,308 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @5500ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-03-17 10:33:20,498 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation should only be used on methods with parameters: public void com.yunqi.starter.security.configuration.SecurityAutoConfiguration.rewriteSaStrategy()
+2022-03-17 10:33:21,278 [main] INFO  org.nutz.filepool.NutFilePool - Init file-pool by: .temp [0]
+2022-03-17 10:33:21,278 [main] DEBUG org.nutz.filepool.NutFilePool - file-pool.home: 'E:\SuBoot\su-admin\.temp'
+2022-03-17 10:33:21,278 [main] INFO  org.nutz.filepool.NutFilePool - file-pool.cursor: 0
+2022-03-17 10:33:21,368 [main] DEBUG org.nutz.resource.Scans - Locations count=132 time use 70ms
+2022-03-17 10:33:21,378 [main] DEBUG org.nutz.resource.Scans - Found 129 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-03-17 10:33:21,548 [main] DEBUG org.nutz.resource.Scans - Found 129 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-03-17 10:33:21,778 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class java.time.OffsetDateTime to class org.springframework.data.jdbc.core.convert.JdbcValue as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-03-17 10:33:21,938 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2022-03-17 10:33:22,098 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - ClusterManager: detected 1 failed or restarted instances.
+2022-03-17 10:33:22,098 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - ClusterManager: Scanning for instance "MX1646663814387"'s failed in-progress jobs.
+2022-03-17 10:33:22,108 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484399828 started.
+2022-03-17 10:33:22,138 [main] INFO  com.yunqi.Tests - Started Tests in 6.364 seconds (JVM running for 7.322)
+2022-03-17 10:33:22,138 [main] INFO  com.yunqi.common.Initializer - Initialize system environment
+2022-03-17 10:33:22,138 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT COUNT(*) FROM ims_sys_user 
+2022-03-17 10:33:22,148 [main] DEBUG org.nutz.dao.impl.interceptor.DaoTimeInterceptor - time=10ms, sql=SELECT COUNT(*) FROM ims_sys_user 
+2022-03-17 10:33:22,218 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_task 
+2022-03-17 10:33:22,218 [main] DEBUG org.nutz.dao.impl.interceptor.DaoTimeInterceptor - time=0ms, sql=SELECT * FROM ims_sys_task 
+2022-03-17 10:33:22,498 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484399828 paused.
+2022-03-17 10:33:22,508 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2022-03-17 10:33:22,508 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484399828 shutting down.
+2022-03-17 10:33:22,508 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484399828 paused.
+2022-03-17 10:33:22,508 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484399828 shutdown complete.
+2022-03-17 10:33:22,518 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-03-17 10:33:22,518 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-03-17 10:36:33,128 [main] INFO  com.yunqi.Tests - Starting Tests using Java 1.8.0_311 on MX with PID 5228 (started by MXA in E:\SuBoot\su-admin)
+2022-03-17 10:36:33,129 [main] DEBUG com.yunqi.Tests - Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-03-17 10:36:33,129 [main] INFO  com.yunqi.Tests - No active profile set, falling back to default profiles: default
+2022-03-17 10:36:34,017 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-03-17 10:36:34,038 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 0 JDBC repository interfaces.
+2022-03-17 10:36:34,382 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2022-03-17 10:36:34,383 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-03-17 10:36:34,386 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 10:36:34,386 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 10:36:34,386 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-03-17 10:36:34,386 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-03-17 10:36:34,386 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 10:36:34,386 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-03-17 10:36:34,386 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-03-17 10:36:34,386 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 10:36:34,828 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.starter.log.model.SysLog
+2022-03-17 10:36:34,971 [main] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-03-17 10:36:34,986 [main] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-03-17 10:36:34,989 [main] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-03-17 10:36:35,053 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@2f9a4401 with name: jasyptStringEncryptor
+2022-03-17 10:36:35,757 [main] DEBUG org.nutz.castor.Castors - Using 107 castor for Castors
+2022-03-17 10:36:35,873 [main] DEBUG org.nutz.dao.jdbc.Jdbcs - Jdbcs init complete
+2022-03-17 10:36:35,873 [main] INFO  org.nutz.dao.jdbc.Jdbcs - Get Connection from DataSource for JdbcExpert, if you lock at here, check your database server and configure
+2022-03-17 10:36:36,379 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-03-17 10:36:36,384 [main] DEBUG org.nutz.dao.impl.DaoSupport - select expert : org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert
+2022-03-17 10:36:36,389 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Driver --> mysql-connector-java-8.0.27 (Revision: e920b979015ae7117d60d72bcc8f077a839cd791)
+2022-03-17 10:36:36,389 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Name   --> MySQL Connector/J
+2022-03-17 10:36:36,389 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC URL    --> jdbc:mysql://127.0.0.1:3306/suboot?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+2022-03-17 10:36:36,414 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_client=utf8mb4
+2022-03-17 10:36:36,414 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_connection=utf8mb4
+2022-03-17 10:36:36,414 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_database=utf8mb3
+2022-03-17 10:36:36,414 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_filesystem=binary
+2022-03-17 10:36:36,414 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_results=
+2022-03-17 10:36:36,414 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_server=utf8mb3
+2022-03-17 10:36:36,414 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_system=utf8mb3
+2022-03-17 10:36:36,414 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_sets_dir=C:\Program Files\MySQL\MySQL Server 8.0\share\charsets\
+2022-03-17 10:36:36,418 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : binlog_format=ROW
+2022-03-17 10:36:36,422 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : database=suboot
+2022-03-17 10:36:36,423 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : user=root@localhost
+2022-03-17 10:36:36,488 [main] DEBUG org.nutz.dao.impl.DaoSupport - Database info --> MYSQL:[MySQL - 8.0.27]
+2022-03-17 10:36:36,571 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTask
+2022-03-17 10:36:36,751 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2022-03-17 10:36:36,761 [main] INFO  org.quartz.simpl.SimpleThreadPool - Job execution threads will use class loader of thread: main
+2022-03-17 10:36:36,779 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-03-17 10:36:36,779 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2022-03-17 10:36:36,791 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Using db table-based data access locking (synchronization).
+2022-03-17 10:36:36,798 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - JobStoreCMT initialized.
+2022-03-17 10:36:36,802 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'QuartzScheduler' with instanceId 'MX1647484596760'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+2022-03-17 10:36:36,803 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'QuartzScheduler' initialized from an externally provided properties instance.
+2022-03-17 10:36:36,803 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2022-03-17 10:36:36,803 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: com.yunqi.starter.quartz.configuration.AutowiringSpringBeanJobFactory@517704
+2022-03-17 10:36:36,864 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysUser
+2022-03-17 10:36:36,880 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysRole
+2022-03-17 10:36:36,927 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysAuthLog
+2022-03-17 10:36:37,008 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysMenu
+2022-03-17 10:36:37,075 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysConfig
+2022-03-17 10:36:37,122 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysDept
+2022-03-17 10:36:37,199 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTaskLog
+2022-03-17 10:36:37,318 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @5755ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-03-17 10:36:37,506 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation should only be used on methods with parameters: public void com.yunqi.starter.security.configuration.SecurityAutoConfiguration.rewriteSaStrategy()
+2022-03-17 10:36:38,465 [main] INFO  org.nutz.filepool.NutFilePool - Init file-pool by: .temp [0]
+2022-03-17 10:36:38,465 [main] DEBUG org.nutz.filepool.NutFilePool - file-pool.home: 'E:\SuBoot\su-admin\.temp'
+2022-03-17 10:36:38,466 [main] INFO  org.nutz.filepool.NutFilePool - file-pool.cursor: 0
+2022-03-17 10:36:38,557 [main] DEBUG org.nutz.resource.Scans - Locations count=132 time use 80ms
+2022-03-17 10:36:38,565 [main] DEBUG org.nutz.resource.Scans - Found 129 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-03-17 10:36:38,706 [main] DEBUG org.nutz.resource.Scans - Found 129 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-03-17 10:36:38,921 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class java.time.OffsetDateTime to class org.springframework.data.jdbc.core.convert.JdbcValue as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-03-17 10:36:39,078 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2022-03-17 10:36:39,241 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - ClusterManager: detected 1 failed or restarted instances.
+2022-03-17 10:36:39,241 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - ClusterManager: Scanning for instance "MX1647484399828"'s failed in-progress jobs.
+2022-03-17 10:36:39,254 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484596760 started.
+2022-03-17 10:36:39,273 [main] INFO  com.yunqi.Tests - Started Tests in 6.612 seconds (JVM running for 7.71)
+2022-03-17 10:36:39,277 [main] INFO  com.yunqi.common.Initializer - Initialize system environment
+2022-03-17 10:36:39,279 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT COUNT(*) FROM ims_sys_user 
+2022-03-17 10:36:39,284 [main] DEBUG org.nutz.dao.impl.interceptor.DaoTimeInterceptor - time=5ms, sql=SELECT COUNT(*) FROM ims_sys_user 
+2022-03-17 10:36:39,340 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_task 
+2022-03-17 10:36:39,346 [main] DEBUG org.nutz.dao.impl.interceptor.DaoTimeInterceptor - time=4ms, sql=SELECT * FROM ims_sys_task 
+2022-03-17 10:36:39,713 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484596760 paused.
+2022-03-17 10:36:39,718 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2022-03-17 10:36:39,718 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484596760 shutting down.
+2022-03-17 10:36:39,718 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484596760 paused.
+2022-03-17 10:36:39,720 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647484596760 shutdown complete.
+2022-03-17 10:36:39,722 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-03-17 10:36:39,734 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-03-17 11:06:03,517 [main] INFO  com.yunqi.Tests - Starting Tests using Java 1.8.0_311 on MX with PID 6148 (started by MXA in E:\SuBoot\su-admin)
+2022-03-17 11:06:03,518 [main] DEBUG com.yunqi.Tests - Running with Spring Boot v2.6.2, Spring v5.3.14
+2022-03-17 11:06:03,518 [main] INFO  com.yunqi.Tests - No active profile set, falling back to default profiles: default
+2022-03-17 11:06:04,314 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-03-17 11:06:04,338 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 17 ms. Found 0 JDBC repository interfaces.
+2022-03-17 11:06:04,616 [main] INFO  c.u.j.c.EnableEncryptablePropertiesBeanFactoryPostProcessor - Post-processing PropertySource instances
+2022-03-17 11:06:04,617 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource configurationProperties [class org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource
+2022-03-17 11:06:04,620 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource test [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 11:06:04,620 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Inlined Test Properties [org.springframework.core.env.MapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 11:06:04,620 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Skipping PropertySource servletConfigInitParams [class org.springframework.core.env.PropertySource$StubPropertySource
+2022-03-17 11:06:04,620 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource servletContextInitParams [org.springframework.web.context.support.ServletContextPropertySource] to EncryptableEnumerablePropertySourceWrapper
+2022-03-17 11:06:04,621 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 11:06:04,621 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2022-03-17 11:06:04,621 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2022-03-17 11:06:04,621 [main] INFO  c.u.j.EncryptablePropertySourceConverter - Converting PropertySource Config resource 'class path resource [application.yml]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2022-03-17 11:06:05,031 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.starter.log.model.SysLog
+2022-03-17 11:06:05,178 [main] INFO  c.u.j.filter.DefaultLazyPropertyFilter - Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2022-03-17 11:06:05,188 [main] INFO  c.u.j.resolver.DefaultLazyPropertyResolver - Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2022-03-17 11:06:05,191 [main] INFO  c.u.j.detector.DefaultLazyPropertyDetector - Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2022-03-17 11:06:05,238 [main] INFO  c.u.j.encryptor.DefaultLazyEncryptor - Found Custom Encryptor Bean org.jasypt.encryption.pbe.PooledPBEStringEncryptor@52d6d273 with name: jasyptStringEncryptor
+2022-03-17 11:06:05,899 [main] DEBUG org.nutz.castor.Castors - Using 107 castor for Castors
+2022-03-17 11:06:05,985 [main] DEBUG org.nutz.dao.jdbc.Jdbcs - Jdbcs init complete
+2022-03-17 11:06:05,985 [main] INFO  org.nutz.dao.jdbc.Jdbcs - Get Connection from DataSource for JdbcExpert, if you lock at here, check your database server and configure
+2022-03-17 11:06:06,550 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2022-03-17 11:06:06,556 [main] DEBUG org.nutz.dao.impl.DaoSupport - select expert : org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert
+2022-03-17 11:06:06,560 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Driver --> mysql-connector-java-8.0.27 (Revision: e920b979015ae7117d60d72bcc8f077a839cd791)
+2022-03-17 11:06:06,560 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC Name   --> MySQL Connector/J
+2022-03-17 11:06:06,560 [main] DEBUG org.nutz.dao.impl.DaoSupport - JDBC URL    --> jdbc:mysql://127.0.0.1:3306/suboot?serverTimezone=GMT%2B8&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+2022-03-17 11:06:06,580 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_client=utf8mb4
+2022-03-17 11:06:06,591 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_connection=utf8mb4
+2022-03-17 11:06:06,591 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_database=utf8mb3
+2022-03-17 11:06:06,591 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_filesystem=binary
+2022-03-17 11:06:06,592 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_results=
+2022-03-17 11:06:06,592 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_server=utf8mb3
+2022-03-17 11:06:06,592 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_set_system=utf8mb3
+2022-03-17 11:06:06,592 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : character_sets_dir=C:\Program Files\MySQL\MySQL Server 8.0\share\charsets\
+2022-03-17 11:06:06,595 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : binlog_format=ROW
+2022-03-17 11:06:06,599 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : database=suboot
+2022-03-17 11:06:06,600 [main] DEBUG org.nutz.dao.impl.jdbc.mysql.MysqlJdbcExpert - Mysql : user=root@localhost
+2022-03-17 11:06:06,661 [main] DEBUG org.nutz.dao.impl.DaoSupport - Database info --> MYSQL:[MySQL - 8.0.27]
+2022-03-17 11:06:06,737 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTask
+2022-03-17 11:06:06,844 [main] INFO  org.quartz.impl.StdSchedulerFactory - Using default implementation for ThreadExecutor
+2022-03-17 11:06:06,849 [main] INFO  org.quartz.simpl.SimpleThreadPool - Job execution threads will use class loader of thread: main
+2022-03-17 11:06:06,863 [main] INFO  org.quartz.core.SchedulerSignalerImpl - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2022-03-17 11:06:06,863 [main] INFO  org.quartz.core.QuartzScheduler - Quartz Scheduler v.2.3.2 created.
+2022-03-17 11:06:06,874 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - Using db table-based data access locking (synchronization).
+2022-03-17 11:06:06,876 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - JobStoreCMT initialized.
+2022-03-17 11:06:06,878 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'QuartzScheduler' with instanceId 'MX1647486366848'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 20 threads.
+  Using job-store 'org.springframework.scheduling.quartz.LocalDataSourceJobStore' - which supports persistence. and is clustered.
+
+2022-03-17 11:06:06,878 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler 'QuartzScheduler' initialized from an externally provided properties instance.
+2022-03-17 11:06:06,878 [main] INFO  org.quartz.impl.StdSchedulerFactory - Quartz scheduler version: 2.3.2
+2022-03-17 11:06:06,878 [main] INFO  org.quartz.core.QuartzScheduler - JobFactory set to: com.yunqi.starter.quartz.configuration.AutowiringSpringBeanJobFactory@4b195203
+2022-03-17 11:06:06,928 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysUser
+2022-03-17 11:06:06,935 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysRole
+2022-03-17 11:06:06,965 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysAuthLog
+2022-03-17 11:06:07,009 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysMenu
+2022-03-17 11:06:07,049 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysConfig
+2022-03-17 11:06:07,090 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysDept
+2022-03-17 11:06:07,147 [main] DEBUG org.nutz.service.EntityService - Get TypeParams for self : com.yunqi.system.models.SysTaskLog
+2022-03-17 11:06:07,272 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @5173ms to org.eclipse.jetty.util.log.Slf4jLog
+2022-03-17 11:06:07,482 [main] INFO  o.s.b.f.a.AutowiredAnnotationBeanPostProcessor - Autowired annotation should only be used on methods with parameters: public void com.yunqi.starter.security.configuration.SecurityAutoConfiguration.rewriteSaStrategy()
+2022-03-17 11:06:08,346 [main] INFO  org.nutz.filepool.NutFilePool - Init file-pool by: .temp [0]
+2022-03-17 11:06:08,347 [main] DEBUG org.nutz.filepool.NutFilePool - file-pool.home: 'E:\SuBoot\su-admin\.temp'
+2022-03-17 11:06:08,347 [main] INFO  org.nutz.filepool.NutFilePool - file-pool.cursor: 0
+2022-03-17 11:06:08,422 [main] DEBUG org.nutz.resource.Scans - Locations count=132 time use 62ms
+2022-03-17 11:06:08,430 [main] DEBUG org.nutz.resource.Scans - Found 129 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-03-17 11:06:08,581 [main] DEBUG org.nutz.resource.Scans - Found 129 resource by src( com/yunqi/ ) , regex( ^.+[.]class$ )
+2022-03-17 11:06:08,806 [main] WARN  org.springframework.data.convert.CustomConversions - Registering converter from class java.time.OffsetDateTime to class org.springframework.data.jdbc.core.convert.JdbcValue as writing converter although it doesn't convert to a store-supported type! You might want to check your annotation setup at the converter implementation.
+2022-03-17 11:06:08,967 [main] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Starting Quartz Scheduler now
+2022-03-17 11:06:09,143 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - ClusterManager: detected 1 failed or restarted instances.
+2022-03-17 11:06:09,143 [main] INFO  o.s.scheduling.quartz.LocalDataSourceJobStore - ClusterManager: Scanning for instance "MX1647484773293"'s failed in-progress jobs.
+2022-03-17 11:06:09,153 [main] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647486366848 started.
+2022-03-17 11:06:09,175 [main] INFO  com.yunqi.Tests - Started Tests in 6.086 seconds (JVM running for 7.076)
+2022-03-17 11:06:09,177 [main] INFO  com.yunqi.common.Initializer - Initialize system environment
+2022-03-17 11:06:09,180 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT COUNT(*) FROM ims_sys_user 
+2022-03-17 11:06:09,185 [main] DEBUG org.nutz.dao.impl.interceptor.DaoTimeInterceptor - time=4ms, sql=SELECT COUNT(*) FROM ims_sys_user 
+2022-03-17 11:06:09,237 [main] DEBUG org.nutz.dao.impl.sql.run.NutDaoExecutor - SELECT * FROM ims_sys_task 
+2022-03-17 11:06:09,240 [main] DEBUG org.nutz.dao.impl.interceptor.DaoTimeInterceptor - time=3ms, sql=SELECT * FROM ims_sys_task 
+2022-03-17 11:06:09,583 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647486366848 paused.
+2022-03-17 11:06:09,589 [SpringApplicationShutdownHook] INFO  o.s.scheduling.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2022-03-17 11:06:09,589 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647486366848 shutting down.
+2022-03-17 11:06:09,589 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647486366848 paused.
+2022-03-17 11:06:09,592 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler QuartzScheduler_$_MX1647486366848 shutdown complete.
+2022-03-17 11:06:09,594 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-03-17 11:06:09,605 [SpringApplicationShutdownHook] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
