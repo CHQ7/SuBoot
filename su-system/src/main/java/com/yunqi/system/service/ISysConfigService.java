@@ -17,16 +17,16 @@ import java.util.List;
  * Created by @author JsckChin on 2021/10/1
  */
 @Service
-public class SysConfigService extends BaseServiceImpl<SysConfig> {
+public class ISysConfigService extends BaseServiceImpl<SysConfig> {
 
     /**
      * 系统参数列表
-     * @param pageNumber 页码
+     * @param page       页码
      * @param pageSize   每页几条数据
      * @param conf       name:用户账号,nickname:用户姓名
      * @return           分页列表
      */
-    public Object list(Integer pageNumber, int pageSize, SysConfig conf) {
+    public Object list(Integer page, int pageSize, SysConfig conf) {
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:系统参数唯一编码
         if(Strings.isNotBlank(conf.getConfigKey())){
@@ -42,7 +42,7 @@ public class SysConfigService extends BaseServiceImpl<SysConfig> {
         }
         // 创建时间倒序
         cnd.desc("createdAt");
-        return this.listPage(pageNumber, pageSize, cnd);
+        return this.listPage(page, pageSize, cnd);
     }
 
     /**

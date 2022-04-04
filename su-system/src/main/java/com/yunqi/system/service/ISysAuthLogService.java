@@ -21,18 +21,18 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Service
 @Transactional
-public class SysAuthLogService extends BaseServiceImpl<SysAuthLog> {
+public class ISysAuthLogService extends BaseServiceImpl<SysAuthLog> {
 
     /**
      * 日志列表
-     * @param pageNumber    页码
+     * @param page          页码
      * @param pageSize      每页几条数据
      * @param beginTime     开始日期
      * @param endTime       结束日期
      * @param sysAuthLog    操作人
      * @return              分页列表
      */
-    public Object list(Integer pageNumber, int pageSize, String beginTime, String endTime, SysAuthLog sysAuthLog){
+    public Object list(Integer page, int pageSize, String beginTime, String endTime, SysAuthLog sysAuthLog){
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:操作人
         if (Strings.isNotBlank(sysAuthLog.getName())) {
@@ -45,7 +45,7 @@ public class SysAuthLogService extends BaseServiceImpl<SysAuthLog> {
             cnd.and("createdAt","<=", Times.D(endTime).getTime());
         }
         cnd.desc("createdAt");
-        return this.listPage(pageNumber, pageSize, cnd);
+        return this.listPage(page, pageSize, cnd);
     }
 
     /**

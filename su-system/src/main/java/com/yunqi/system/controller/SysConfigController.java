@@ -5,7 +5,7 @@ import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysConfig;
-import com.yunqi.system.service.SysConfigService;
+import com.yunqi.system.service.ISysConfigService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,12 +22,12 @@ import javax.annotation.Resource;
 public class SysConfigController {
 
     @Resource
-    SysConfigService sysConfigService;
+    ISysConfigService sysConfigService;
 
     @PostMapping("/list")
     @RequiresPermissions("sys.conf")
-    public Result<?> list(Integer pageNumber,Integer pageSize, SysConfig conf) {
-        return Result.success().addData(sysConfigService.list(pageNumber, pageSize, conf));
+    public Result<?> list(Integer page,Integer pageSize, SysConfig conf) {
+        return Result.success().addData(sysConfigService.list(page, pageSize, conf));
     }
 
 

@@ -5,9 +5,9 @@ import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysUser;
-import com.yunqi.system.service.SysDeptService;
-import com.yunqi.system.service.SysRoleService;
-import com.yunqi.system.service.SysUserService;
+import com.yunqi.system.service.ISysDeptService;
+import com.yunqi.system.service.ISysRoleService;
+import com.yunqi.system.service.ISysUserService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,18 +25,18 @@ import javax.annotation.Resource;
 public class SysUserController {
 
     @Resource
-    SysUserService sysUserService;
+    ISysUserService sysUserService;
 
     @Resource
-    SysDeptService sysDeptService;
+    ISysDeptService sysDeptService;
 
     @Resource
-    SysRoleService sysRoleService;
+    ISysRoleService sysRoleService;
 
     @PostMapping("/list")
     @RequiresPermissions("sys.user")
-    public Object list(Integer pageNumber, Integer pageSize, SysUser user) {
-        return Result.success().addData(sysUserService.list(pageNumber,pageSize,user));
+    public Object list(Integer page, Integer pageSize, SysUser user) {
+        return Result.success().addData(sysUserService.list(page,pageSize,user));
     }
 
     @PostMapping("/create")

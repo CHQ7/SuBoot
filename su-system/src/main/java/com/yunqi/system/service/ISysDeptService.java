@@ -19,7 +19,7 @@ import java.util.List;
  * Created by @author JsckChin on 2021/10/1
  */
 @Service
-public class SysDeptService extends BaseServiceImpl<SysDept> {
+public class ISysDeptService extends BaseServiceImpl<SysDept> {
 
 
     /**

@@ -29,22 +29,22 @@ import java.util.List;
  * Created by @author JsckChin on 2021/10/1
  */
 @Service
-public class SysUserService extends BaseServiceImpl<SysUser> {
+public class ISysUserService extends BaseServiceImpl<SysUser> {
 
     @Resource
-    SysRoleService sysRoleService;
+    ISysRoleService sysRoleService;
 
     @Resource
-    SysAuthLogService sysAuthLogService;
+    ISysAuthLogService sysAuthLogService;
 
     /**
      * 用户列表
-     * @param pageNumber 页码
+     * @param page       页码
      * @param pageSize   每页几条数据
      * @param user       name:用户账号,nickname:用户姓名
      * @return           分页列表
      */
-    public Object list(Integer pageNumber, int pageSize, SysUser user) {
+    public Object list(Integer page, int pageSize, SysUser user) {
         logger.warn("查询用户列表");
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:用户账号
@@ -57,7 +57,7 @@ public class SysUserService extends BaseServiceImpl<SysUser> {
         }
         // 创建时间倒序
         cnd.desc("createdAt");
-        return this.listPageLinks(pageNumber, pageSize, cnd,"^(dept|roles)$");
+        return this.listPageLinks(page, pageSize, cnd,"^(dept|roles)$");
     }
 
 

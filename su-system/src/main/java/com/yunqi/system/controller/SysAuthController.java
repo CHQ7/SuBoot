@@ -6,8 +6,8 @@ import com.yunqi.starter.security.annotation.RequiresAuthentication;
 import com.yunqi.starter.security.spi.StpUtil;
 import com.yunqi.starter.security.utils.SecurityUtil;
 import com.yunqi.system.models.SysUser;
-import com.yunqi.system.service.SysMenuService;
-import com.yunqi.system.service.SysUserService;
+import com.yunqi.system.service.ISysMenuService;
+import com.yunqi.system.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.nutz.lang.util.NutMap;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +27,9 @@ import javax.annotation.Resource;
 public class SysAuthController {
 
     @Resource
-    SysUserService sysUserService;
+    ISysUserService sysUserService;
     @Resource
-    SysMenuService sysMenuService;
+    ISysMenuService sysMenuService;
 
     /**
      * 用户登录

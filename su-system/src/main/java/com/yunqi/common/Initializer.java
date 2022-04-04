@@ -4,7 +4,7 @@ import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.system.models.SysDept;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.models.SysUser;
-import com.yunqi.system.service.SysTaskService;
+import com.yunqi.system.service.ISysTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.nutz.dao.Chain;
 import org.nutz.dao.Dao;
@@ -30,7 +30,7 @@ public class Initializer implements ApplicationRunner {
     private Dao dao;
 
     @Resource
-    private SysTaskService sysTaskService;
+    private ISysTaskService sysTaskService;
 
     /**
      * 初始化数据表

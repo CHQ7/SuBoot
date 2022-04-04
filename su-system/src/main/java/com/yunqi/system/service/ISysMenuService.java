@@ -21,10 +21,10 @@ import java.util.List;
  * Created by @author JsckChin on 2021/10/1
  */
 @Service
-public class SysMenuService extends BaseServiceImpl<SysMenu> {
+public class ISysMenuService extends BaseServiceImpl<SysMenu> {
 
     @Resource
-    SysRoleService sysRoleService;
+    ISysRoleService sysRoleService;
 
     /**
      * 查询全部组织

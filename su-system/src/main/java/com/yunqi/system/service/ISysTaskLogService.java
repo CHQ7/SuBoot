@@ -11,17 +11,17 @@ import org.springframework.stereotype.Service;
  * Created by @author JsckChin on @date 2019/9/20 2:41 下午.
  */
 @Service
-public class SysTaskLogService extends BaseServiceImpl<SysTaskLog> {
+public class ISysTaskLogService extends BaseServiceImpl<SysTaskLog> {
 
 
     /**
      * 任务列表
-     * @param pageNumber 页码
+     * @param page       页码
      * @param pageSize   每页几条数据
      * @param taskLog    jobName:任务名称
      * @return           分页列表
      */
-    public Object list(Integer pageNumber, int pageSize, SysTaskLog taskLog){
+    public Object list(Integer page, int pageSize, SysTaskLog taskLog){
         Cnd cnd =  Cnd.NEW();
         // 根据任务名称查询
         if(Strings.isNotBlank(taskLog.getJobName())){
@@ -29,7 +29,7 @@ public class SysTaskLogService extends BaseServiceImpl<SysTaskLog> {
         }
         // 创建时间倒序
         cnd.desc("createdAt");
-        return this.listPage(pageNumber, pageSize, cnd);
+        return this.listPage(page, pageSize, cnd);
     }
 
 

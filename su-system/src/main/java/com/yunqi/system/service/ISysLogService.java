@@ -16,19 +16,19 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class SysLogService extends BaseServiceImpl<SysLog> implements ISysLogProvider {
+public class ISysLogService extends BaseServiceImpl<SysLog> implements ISysLogProvider {
 
 
     /**
      * 日志列表
-     * @param pageNumber    页码
+     * @param page          页码
      * @param pageSize      每页几条数据
      * @param beginTime     开始日期
      * @param endTime       结束日期
      * @param sysLog        IP、操作人、IP地址
      * @return              分页列表
      */
-    public Object list(Integer pageNumber, int pageSize, String beginTime, String endTime,SysLog sysLog){
+    public Object list(Integer page, int pageSize, String beginTime, String endTime,SysLog sysLog){
         Cnd cnd =  Cnd.NEW();
         // 查询:IP
         if (Strings.isNotBlank(sysLog.getIp())) {
@@ -46,7 +46,7 @@ public class SysLogService extends BaseServiceImpl<SysLog> implements ISysLogPro
             cnd.and("createdAt","<=", Times.D(endTime).getTime());
         }
         cnd.desc("createdAt");
-        return this.listPage(pageNumber, pageSize, cnd);
+        return this.listPage(page, pageSize, cnd);
     }
 
     /**

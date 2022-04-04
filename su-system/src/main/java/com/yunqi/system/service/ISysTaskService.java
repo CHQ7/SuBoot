@@ -19,7 +19,7 @@ import java.util.List;
  * Created by @author JsckChin on @date 2019/9/20 2:41 下午.
  */
 @Service
-public class SysTaskService extends BaseServiceImpl<SysTask> {
+public class ISysTaskService extends BaseServiceImpl<SysTask> {
 
 
     @Resource
@@ -27,12 +27,12 @@ public class SysTaskService extends BaseServiceImpl<SysTask> {
 
     /**
      * 任务列表
-     * @param pageNumber 页码
+     * @param page       页码
      * @param pageSize   每页几条数据
      * @param task       name:任务名称
      * @return           分页列表
      */
-    public Object list(Integer pageNumber, int pageSize, SysTask task){
+    public Object list(Integer page, int pageSize, SysTask task){
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:任务名称
         if(Strings.isNotBlank(task.getName())){
@@ -40,7 +40,7 @@ public class SysTaskService extends BaseServiceImpl<SysTask> {
         }
         // 创建时间倒序
         cnd.desc("createdAt");
-        return this.listPage(pageNumber, pageSize, cnd);
+        return this.listPage(page, pageSize, cnd);
     }
 
     /**

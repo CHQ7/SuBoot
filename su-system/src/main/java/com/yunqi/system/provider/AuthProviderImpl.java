@@ -1,7 +1,7 @@
 package com.yunqi.system.provider;
 
 import com.yunqi.starter.security.provider.IAuthProvider;
-import com.yunqi.system.service.SysUserService;
+import com.yunqi.system.service.ISysUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -12,10 +12,10 @@ import java.util.List;
  * Created by @author JsckChin on 2022/2/16
  */
 @Service
-public class AuthProvider implements IAuthProvider {
+public class AuthProviderImpl implements IAuthProvider {
 
     @Resource
-    private SysUserService sysUserService;
+    private ISysUserService sysUserService;
 
     @Override
     public List<String> getPermissionList(String userId) {

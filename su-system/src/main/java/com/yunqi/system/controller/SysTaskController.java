@@ -6,7 +6,7 @@ import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysTask;
-import com.yunqi.system.service.SysTaskService;
+import com.yunqi.system.service.ISysTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +26,12 @@ import javax.annotation.Resource;
 public class SysTaskController {
 
     @Resource
-    SysTaskService sysTaskService;
+    ISysTaskService sysTaskService;
 
     @PostMapping("/list")
     @RequiresPermissions("sys.task")
-    public Result<?> list(Integer pageNumber, Integer pageSize, SysTask sysTask) {
-        return Result.success().addData(sysTaskService.list(pageNumber, pageSize, sysTask));
+    public Result<?> list(Integer page, Integer pageSize, SysTask sysTask) {
+        return Result.success().addData(sysTaskService.list(page, pageSize, sysTask));
     }
 
 

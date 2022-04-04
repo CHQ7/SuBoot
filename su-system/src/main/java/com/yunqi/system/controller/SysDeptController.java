@@ -5,7 +5,7 @@ import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysDept;
-import com.yunqi.system.service.SysDeptService;
+import com.yunqi.system.service.ISysDeptService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,7 @@ import javax.annotation.Resource;
 public class SysDeptController {
 
     @Resource
-    SysDeptService sysDeptService;
+    ISysDeptService sysDeptService;
 
     @PostMapping("/list")
     @RequiresPermissions("sys.dept")

@@ -19,16 +19,16 @@ import java.util.List;
  * Created by @author JsckChin on 2021/10/1
  */
 @Service
-public class SysRoleService extends BaseServiceImpl<SysRole> {
+public class ISysRoleService extends BaseServiceImpl<SysRole> {
 
     /**
      * 角色列表
-     * @param pageNumber 页码
+     * @param page       页码
      * @param pageSize   每页几条数据
      * @param role       name:角色名称,code:角色唯一编码
      * @return           分页列表
      */
-    public Object list(Integer pageNumber, int pageSize, SysRole role) {
+    public Object list(Integer page, int pageSize, SysRole role) {
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:角色名称
         if(Strings.isNotBlank(role.getName())){
@@ -40,7 +40,7 @@ public class SysRoleService extends BaseServiceImpl<SysRole> {
         }
         // 创建时间倒序
         cnd.desc("location").desc("createdAt");
-        return this.listPage(pageNumber, pageSize, cnd);
+        return this.listPage(page, pageSize, cnd);
     }
 
 

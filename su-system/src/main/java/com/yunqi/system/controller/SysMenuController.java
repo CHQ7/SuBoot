@@ -6,7 +6,7 @@ import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysMenu;
-import com.yunqi.system.service.SysMenuService;
+import com.yunqi.system.service.ISysMenuService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +24,7 @@ import javax.annotation.Resource;
 public class SysMenuController {
 
     @Resource
-    SysMenuService sysMenuService;
+    ISysMenuService sysMenuService;
 
     @PostMapping("/list")
     @RequiresPermissions("sys.menu")

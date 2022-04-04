@@ -6,8 +6,8 @@ import com.yunqi.starter.log.enums.LogType;
 import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysMenu;
 import com.yunqi.system.models.SysRole;
-import com.yunqi.system.service.SysMenuService;
-import com.yunqi.system.service.SysRoleService;
+import com.yunqi.system.service.ISysMenuService;
+import com.yunqi.system.service.ISysRoleService;
 import org.nutz.lang.util.NutMap;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,15 +25,15 @@ import java.util.List;
 public class SysRoleController {
 
     @Resource
-    SysRoleService sysRoleService;
+    ISysRoleService sysRoleService;
 
     @Resource
-    SysMenuService sysMenuService;
+    ISysMenuService sysMenuService;
 
     @PostMapping("/list")
     @RequiresPermissions("sys.role")
-    public Result<?> list(Integer pageNumber,Integer pageSize, SysRole role) {
-        return Result.success().addData(sysRoleService.list(pageNumber, pageSize, role));
+    public Result<?> list(Integer page,Integer pageSize, SysRole role) {
+        return Result.success().addData(sysRoleService.list(page, pageSize, role));
     }
 
 
