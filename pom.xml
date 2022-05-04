@@ -13,7 +13,7 @@
     <!-- GVA -->
     <groupId>com.yunqi</groupId>
     <artifactId>SuBoot</artifactId>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
 
     <!-- 项目名称 -->
     <name>SuBoot</name>
@@ -29,7 +29,7 @@
     <!-- ======================================== -->
     <properties>
         <!-- 修订版本 -->
-        <revision>1.0.15</revision>
+        <revision>1.0.20</revision>
 
         <!-- >>> 依赖版本号管理 <<< -->
         <springboot.version>2.6.2</springboot.version>
@@ -83,7 +83,7 @@
             <!-- 公共组件 -->
             <dependency>
                 <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-common</artifactId>
+                <artifactId>su-starter-core</artifactId>
                 <version>${revision}</version>
             </dependency>
             <!-- 数据库组件 -->

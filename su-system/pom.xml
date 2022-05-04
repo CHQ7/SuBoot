@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SuBoot</artifactId>
         <groupId>com.yunqi</groupId>
-        <version>1.0.10</version>
+        <version>1.0.11</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -34,7 +34,7 @@
         <!-- 公共组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-common</artifactId>
+            <artifactId>su-starter-core</artifactId>
         </dependency>
         <!-- 数据库组件 -->
         <dependency>
