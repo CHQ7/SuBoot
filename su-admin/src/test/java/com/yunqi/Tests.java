@@ -18,4 +18,5 @@ class Tests {
         System.out.println(Strings.unicodeDecode("\\u5df2\\u89e3\\u5c01"));
     }
 
+
 }
