@@ -3,12 +3,12 @@ package com.yunqi.system.service;
 
 import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.starter.common.exception.BizException;
+import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysDept;
 import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Sqls;
-import org.nutz.lang.Strings;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -22,7 +22,7 @@ public class SysAuthLogController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.auth.log")
-    public Result<?> list(Integer page, Integer pageSize, String beginTime, String endTime, SysAuthLog sysAuthLog) {
+    public Result list(Integer page, Integer pageSize, String beginTime, String endTime, SysAuthLog sysAuthLog) {
         return Result.success().addData(sysAuthLogService.list(page, pageSize, beginTime, endTime, sysAuthLog));
     }
 

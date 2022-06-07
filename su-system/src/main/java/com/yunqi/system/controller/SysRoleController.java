@@ -32,7 +32,7 @@ public class SysRoleController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.role")
-    public Result<?> list(Integer page,Integer pageSize, SysRole role) {
+    public Result list(Integer page,Integer pageSize, SysRole role) {
         return Result.success().addData(sysRoleService.list(page, pageSize, role));
     }
 
@@ -40,14 +40,14 @@ public class SysRoleController {
     @PostMapping("/create")
     @RequiresPermissions("sys.role.create")
     @SLog(tag = "系统角色", type = LogType.INSERT)
-    public Result<?> create(@Validated SysRole role) {
+    public Result create(@Validated SysRole role) {
         sysRoleService.create(role);
         return Result.success();
     }
 
     @PostMapping("/fetch/{id}")
     @RequiresPermissions("sys.role")
-    public Result<?> fetch(@PathVariable("id") String id) {
+    public Result fetch(@PathVariable("id") String id) {
         sysRoleService.fetch(id);
         return Result.success();
     }
@@ -56,7 +56,7 @@ public class SysRoleController {
     @PostMapping("/update")
     @RequiresPermissions("sys.role.update")
     @SLog(tag = "系统角色",  type = LogType.UPDATE)
-    public Result<?> update(@Validated SysRole role) {
+    public Result update(@Validated SysRole role) {
         sysRoleService.update(role);
         return Result.success();
     }
@@ -64,7 +64,7 @@ public class SysRoleController {
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.role.delete")
     @SLog(tag = "系统角色",  type = LogType.DELETE)
-    public Result<?> delete(@PathVariable("id") String id) {
+    public Result delete(@PathVariable("id") String id) {
         sysRoleService.deleteById(id);
         return Result.success();
     }
@@ -72,7 +72,7 @@ public class SysRoleController {
 
     @PostMapping("/menu/{id}")
     @RequiresPermissions("sys.role")
-    public Result<?> menu(@PathVariable("id") String id) {
+    public Result menu(@PathVariable("id") String id) {
         List<SysMenu> hasList = sysMenuService.getMenusAndButtons(id);
 
         List<String> cmenu = new ArrayList<>();
@@ -85,7 +85,7 @@ public class SysRoleController {
 
     @PostMapping("/doMenu")
     @RequiresPermissions("sys.role.menu")
-    public Result<?> doMenu(@RequestParam String menuIds, @RequestParam String roleId) {
+    public Result doMenu(@RequestParam String menuIds, @RequestParam String roleId) {
         sysRoleService.saveMenu(menuIds.split(","), roleId);
         return Result.success();
     }

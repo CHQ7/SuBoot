@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SuBoot</artifactId>
         <groupId>com.yunqi</groupId>
-        <version>1.0.12</version>
+        <version>1.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -31,35 +31,35 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- 公共组件 -->
+        <!-- 核心组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-core</artifactId>
+            <artifactId>su-boot-starter-core</artifactId>
         </dependency>
         <!-- 数据库组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-database</artifactId>
+            <artifactId>su-boot-starter-database</artifactId>
         </dependency>
         <!-- 定时任务组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-quartz</artifactId>
+            <artifactId>su-boot-starter-quartz</artifactId>
         </dependency>
         <!-- 权限组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-security</artifactId>
+            <artifactId>su-boot-starter-security</artifactId>
         </dependency>
         <!-- 邮件组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-mail</artifactId>
+            <artifactId>su-boot-starter-mail</artifactId>
         </dependency>
         <!-- 日志组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-log</artifactId>
+            <artifactId>su-boot-starter-log</artifactId>
         </dependency>
     </dependencies>
 

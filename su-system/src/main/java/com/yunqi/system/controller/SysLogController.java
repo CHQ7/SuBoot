@@ -22,7 +22,7 @@ public class SysLogController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.log")
-    public Result<?> list(Integer page, Integer pageSize, String beginTime, String endTime, SysLog sysLog) {
+    public Result list(Integer page, Integer pageSize, String beginTime, String endTime, SysLog sysLog) {
         return Result.success().addData(sysLogService.list(page, pageSize, beginTime, endTime, sysLog));
     }
 

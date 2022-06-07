@@ -1,6 +1,7 @@
 package com.yunqi.system.controller;
 
 
+import com.yunqi.starter.common.lang.util.NutMap;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.security.annotation.RequiresAuthentication;
 import com.yunqi.starter.security.spi.StpUtil;
@@ -9,7 +10,6 @@ import com.yunqi.system.models.SysUser;
 import com.yunqi.system.service.ISysMenuService;
 import com.yunqi.system.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
-import org.nutz.lang.util.NutMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,7 +38,7 @@ public class SysAuthController {
      * @return
      */
     @PostMapping("/login")
-    public Object login(@RequestParam("username") String username, @RequestParam("password") String password) {
+    public Result login(@RequestParam("username") String username, @RequestParam("password") String password) {
         SysUser user = sysUserService.loginByPassword(username, password);
         // 登录并检查当前会话是否已经登录
         StpUtil.login(user.getId());
@@ -64,7 +64,7 @@ public class SysAuthController {
 
     @PostMapping("/info")
     @RequiresAuthentication
-    public Object info() {
+    public Result info() {
         SysUser user = sysUserService.fetch(SecurityUtil.getUserId());
         NutMap map = new NutMap();
         map.addv("avatar", user.getAvatar());
@@ -82,7 +82,7 @@ public class SysAuthController {
      */
     @PostMapping("/updatePwd")
     @RequiresAuthentication
-    public Object updatePwd(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword) {
+    public Result updatePwd(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword) {
         sysUserService.updatePwd(oldPassword,newPassword);
         return Result.success();
     }
@@ -93,7 +93,7 @@ public class SysAuthController {
      */
     @PostMapping("/logout")
     @RequiresAuthentication
-    public Object logout() {
+    public Result logout() {
         // 获取会话ID
         String userId = SecurityUtil.getUserId();
         StpUtil.logout(userId);

@@ -1,9 +1,9 @@
 package com.yunqi.system.service;
 
+import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysTaskLog;
 import org.nutz.dao.Cnd;
-import org.nutz.lang.Strings;
 import org.springframework.stereotype.Service;
 
 

@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <!-- 继承:父级项目坐标 -->
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.2</version>
+        <groupId>com.yunqi.starter</groupId>
+        <artifactId>su-boot-starter-parent</artifactId>
+        <version>1.0.25</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,138 +13,16 @@
     <!-- GVA -->
     <groupId>com.yunqi</groupId>
     <artifactId>SuBoot</artifactId>
-    <version>1.0.12</version>
+    <version>1.2.0</version>
 
     <!-- 项目名称 -->
     <name>SuBoot</name>
     <packaging>pom</packaging>
+    <description>SuBoot Parent Maven</description>
 
     <modules>
         <module>su-system</module>
         <module>su-admin</module>
     </modules>
-
-    <!-- ======================================== -->
-    <!-- 统一管理全局变量 -->
-    <!-- ======================================== -->
-    <properties>
-        <!-- 修订版本 -->
-        <revision>1.0.21</revision>
-
-        <!-- >>> 依赖版本号管理 <<< -->
-        <springboot.version>2.6.2</springboot.version>
-        <lombok.version>1.18.22</lombok.version>
-        <mysql.version>8.0.27</mysql.version>
-
-        <!-- >>> 定义固定全局变量 <<< -->
-        <!-- 指定jdk版本 -->
-        <java.version>1.8</java.version>
-
-        <!-- utf-8 -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
-
-    <!-- ======================================== -->
-    <!-- 公共依赖 -->
-    <!-- ======================================== -->
-    <dependencyManagement>
-        <dependencies>
-            <!-- aop -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-aop</artifactId>
-                <version>${springboot.version}</version>
-            </dependency>
-            <!-- validation -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-validation</artifactId>
-                <version>${springboot.version}</version>
-            </dependency>
-            <!-- lombok -->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-            <!-- mysql -->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.version}</version>
-            </dependency>
-            <!-- jasypt -->
-            <dependency>
-                <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-jasypt</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <!-- 公共组件 -->
-            <dependency>
-                <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-core</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <!-- 数据库组件 -->
-            <dependency>
-                <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-database</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <!-- 定时任务组件 -->
-            <dependency>
-                <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-quartz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <!-- 权限组件 -->
-            <dependency>
-                <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-security</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <!-- 邮件组件 -->
-            <dependency>
-                <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-mail</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <!-- 日志组件 -->
-            <dependency>
-                <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-log</artifactId>
-                <version>${revision}</version>
-            </dependency>
-            <!-- web组件 -->
-            <dependency>
-                <groupId>com.yunqi.starter</groupId>
-                <artifactId>su-starter-web</artifactId>
-                <version>${revision}</version>
-            </dependency>
-        </dependencies>
-
-    </dependencyManagement>
-
-    <!-- 上传制品仓库 -->
-    <distributionManagement>
-        <repository>
-            <id>ssc-releases</id>
-            <url>https://maven.wchin.cn/artifactory/rdc-release</url>
-        </repository>
-        <snapshotRepository>
-            <id>ssc-snapshot</id>
-            <url>https://maven.wchin.cn/artifactory/rdc-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
-    <!-- maven仓库 -->
-    <repositories>
-        <!-- 制品仓库 -->
-        <repository>
-            <id>ssc-release</id>
-            <url>https://maven.wchin.cn/artifactory/ssc-release</url>
-        </repository>
-    </repositories>
 
 </project>

@@ -28,7 +28,7 @@ public class SysMenuController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.menu")
-    public Result<?> list() {
+    public Result list() {
         return Result.success().addData(sysMenuService.all());
     }
 
@@ -36,14 +36,14 @@ public class SysMenuController {
     @PostMapping("/create")
     @RequiresPermissions("sys.menu.create")
     @SLog(tag = "系统菜单",  type = LogType.INSERT)
-    public Result<?> create(@Validated SysMenu menu) {
+    public Result create(@Validated SysMenu menu) {
         sysMenuService.create(menu);
         return Result.success();
     }
 
     @PostMapping("/fetch/{id}")
     @RequiresPermissions("sys.menu")
-    public Result<?> fetch(@PathVariable("id") String id) {
+    public Result fetch(@PathVariable("id") String id) {
         return Result.success().addData(sysMenuService.fetchById(id));
     }
 
@@ -51,7 +51,7 @@ public class SysMenuController {
     @PostMapping("/update")
     @RequiresPermissions("sys.menu.update")
     @SLog(tag = "系统菜单",  type = LogType.UPDATE)
-    public Result<?> update(@Validated SysMenu menu) {
+    public Result update(@Validated SysMenu menu) {
         sysMenuService.update(menu);
         return Result.success();
     }
@@ -59,7 +59,7 @@ public class SysMenuController {
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.menu.delete")
     @SLog(tag = "系统菜单",  type = LogType.DELETE)
-    public Result<?> delete(@PathVariable("id") String id) {
+    public Result delete(@PathVariable("id") String id) {
         sysMenuService.deleteAndChild(id);
         return Result.success();
     }
@@ -67,7 +67,7 @@ public class SysMenuController {
     @PostMapping("/sort")
     @RequiresPermissions("sys.menu.sort")
     @SLog(tag = "系统菜单",  type = LogType.SORT)
-    public Result<?> sort(String ids){
+    public Result sort(String ids){
         sysMenuService.sort(ids);
         return Result.success();
     }

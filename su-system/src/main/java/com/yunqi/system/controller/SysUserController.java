@@ -35,21 +35,21 @@ public class SysUserController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.user")
-    public Object list(Integer page, Integer pageSize, SysUser user) {
+    public Result list(Integer page, Integer pageSize, SysUser user) {
         return Result.success().addData(sysUserService.list(page,pageSize,user));
     }
 
     @PostMapping("/create")
     @RequiresPermissions("sys.user.create")
     @SLog(tag = "系统用户",  type = LogType.INSERT)
-    public Result<?> create(@Validated SysUser user, String roleIds) {
+    public Result create(@Validated SysUser user, String roleIds) {
         sysUserService.create(user, roleIds.split(","));
         return Result.success();
     }
 
     @PostMapping("/fetch/{id}")
     @RequiresPermissions("sys.user")
-    public Result<?> fetch(@PathVariable("id") String id) {
+    public Result fetch(@PathVariable("id") String id) {
         sysUserService.fetch(id);
         return Result.success();
     }
@@ -57,7 +57,7 @@ public class SysUserController {
     @PostMapping("/update")
     @RequiresPermissions("sys.user.update")
     @SLog(tag = "系统用户",  type = LogType.UPDATE)
-    public Result<?> update(@Validated SysUser user, String roleIds) {
+    public Result update(@Validated SysUser user, String roleIds) {
         sysUserService.update(user, roleIds.split(","));
         return Result.success();
     }
@@ -65,7 +65,7 @@ public class SysUserController {
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.user.delete")
     @SLog(tag = "系统用户",  type = LogType.DELETE)
-    public Result<?> delete(@PathVariable("id") String id) {
+    public Result delete(@PathVariable("id") String id) {
         sysUserService.deleteById(id);
         return Result.success();
     }
@@ -73,19 +73,19 @@ public class SysUserController {
     @PostMapping("/resetPassword/{id}")
     @RequiresPermissions("sys.user.password")
     @SLog(tag = "系统用户",  type = LogType.UPDATE)
-    public Result<?> resetPassword(@PathVariable("id") String id) {
+    public Result resetPassword(@PathVariable("id") String id) {
         return Result.success().addData(sysUserService.resetPwd(id));
     }
 
     @PostMapping("/dept")
     @RequiresPermissions("sys.user")
-    public Result<?> dept() {
+    public Result dept() {
         return Result.success().addData(sysDeptService.all());
     }
 
     @PostMapping("/role")
     @RequiresPermissions("sys.user")
-    public Result<?> role() {
+    public Result role() {
         return Result.success().addData(sysRoleService.all());
     }
 

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>SuBoot</artifactId>
         <groupId>com.yunqi</groupId>
-        <version>1.0.12</version>
+        <version>1.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -32,6 +32,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
+        <!-- test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- mysql -->
         <dependency>
             <groupId>mysql</groupId>
@@ -41,13 +47,7 @@
         <!-- jasypt -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-jasypt</artifactId>
-        </dependency>
-        <!-- test -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>su-boot-starter-jasypt</artifactId>
         </dependency>
         <!-- lombok -->
         <dependency>
@@ -58,23 +58,23 @@
         <!-- 数据库组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-database</artifactId>
+            <artifactId>su-boot-starter-database</artifactId>
         </dependency>
         <!-- 日志组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-log</artifactId>
+            <artifactId>su-boot-starter-log</artifactId>
         </dependency>
         <!-- web组件 -->
         <dependency>
             <groupId>com.yunqi.starter</groupId>
-            <artifactId>su-starter-web</artifactId>
+            <artifactId>su-boot-starter-web</artifactId>
         </dependency>
         <!-- 系统模块 -->
         <dependency>
             <groupId>com.yunqi</groupId>
             <artifactId>su-system</artifactId>
-            <version>1.0.12</version>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
 

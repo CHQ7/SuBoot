@@ -30,7 +30,7 @@ public class SysTaskController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.task")
-    public Result<?> list(Integer page, Integer pageSize, SysTask sysTask) {
+    public Result list(Integer page, Integer pageSize, SysTask sysTask) {
         return Result.success().addData(sysTaskService.list(page, pageSize, sysTask));
     }
 
@@ -38,14 +38,14 @@ public class SysTaskController {
     @PostMapping("/create")
     @RequiresPermissions("sys.task.create")
     @SLog(tag = "系统任务",  type = LogType.INSERT)
-    public Result<?> create(@Validated SysTask task) {
+    public Result create(@Validated SysTask task) {
         sysTaskService.create(task);
         return Result.success();
     }
 
     @PostMapping("/fetch/{id}")
     @RequiresPermissions("sys.task")
-    public Result<?> fetch(@PathVariable("id") String id) {
+    public Result fetch(@PathVariable("id") String id) {
         sysTaskService.fetch(id);
         return Result.success();
     }
@@ -54,7 +54,7 @@ public class SysTaskController {
     @PostMapping("/update")
     @RequiresPermissions("sys.task.update")
     @SLog(tag = "系统任务",  type = LogType.UPDATE)
-    public Result<?> update(@Validated SysTask task) {
+    public Result update(@Validated SysTask task) {
         sysTaskService.update(task);
         return Result.success();
     }
@@ -62,7 +62,7 @@ public class SysTaskController {
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.task.delete")
     @SLog(tag = "系统任务",  type = LogType.DELETE)
-    public Result<?> delete(@PathVariable("id") String id) {
+    public Result delete(@PathVariable("id") String id) {
         sysTaskService.deleteById(id);
         return Result.success();
     }
@@ -70,7 +70,7 @@ public class SysTaskController {
     @PostMapping("/run/{id}")
     @RequiresPermissions("sys.task.run")
     @SLog(tag = "系统任务",  type = LogType.EXECUTE)
-    public Result<?> run(@PathVariable("id") String id) {
+    public Result run(@PathVariable("id") String id) {
         sysTaskService.run(id);
         return Result.success();
     }

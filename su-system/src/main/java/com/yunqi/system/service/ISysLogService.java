@@ -1,12 +1,10 @@
 package com.yunqi.system.service;
 
+import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.starter.log.model.SysLog;
 import com.yunqi.starter.log.provider.ISysLogProvider;
-import com.yunqi.starter.log.provider.impl.SysLogProviderDefaultImpl;
-import lombok.extern.slf4j.Slf4j;
 import org.nutz.dao.Cnd;
-import org.nutz.lang.Strings;
 import org.nutz.lang.Times;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
