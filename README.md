@@ -1,6 +1,9 @@
 # SuBoot
 构建企业级全生态体系
 
+![输入图片说明](doc/staticimage.png)
+![输入图片说明](doc/staticimage.png)
+
 # 项目介绍
 基本Spring boot 开发
 
