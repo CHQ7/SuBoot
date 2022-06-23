@@ -282,7 +282,7 @@
   </div>
 </template>
 <script>
-import options from '@/unt-ui/data/region.json'
+import options from '@/design/data/region.json'
 import uInfo from './components/info'
 export default {
   components: { uInfo },

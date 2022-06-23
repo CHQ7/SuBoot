@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 /**
- * Created by @author JsckChin on @date 2019/9/20 2:41 下午.
+ * Created by @author CHQ on 2022/6/15
  */
 @Service
 public class ISysTaskLogService extends BaseServiceImpl<SysTaskLog> {

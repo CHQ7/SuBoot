@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  * 系统配置参数
- * Created by @author JsckChin on 2021/12/28
+ * Created by @author CHQ on 2022/6/15
  */
 @Table("ims_sys_config")
 @Data

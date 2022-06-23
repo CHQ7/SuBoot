@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 /**
- * Created by @author JsckChin on 2021/9/12
+ * Created by @author CHQ on 2022/6/15
  */
 @RestController
 @RequestMapping("/nt/sys/conf")

@@ -1,8 +1,8 @@
-import http from '@/unt-ui/libs/request/request'
+import http from '@/design/libs/request/request'
 
 const BASE_URL = '/config/sms'
 
-export const ConfigSms = {
+export default {
   // 获取数据
   fetch: () => http.post(BASE_URL + '/fetch'),
   // 更新数据

@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">后台管理系统</h3>
+        <h3 class="title">CSMS管理系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -90,7 +90,7 @@ export default {
     }
     return {
       api: this.$u.api.open,
-      copyright: ' Copyright © 2020 NT-ADMIN.',
+      copyright: ' Copyright © 2022 CSMS.',
       loginForm: {
         username: '',
         password: '',

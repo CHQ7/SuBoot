@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import cookies from '@/unt-ui/libs/function/cookies'
+import cookies from '@/design/libs/function/cookies'
 Vue.use(Vuex)
 
 let lifeData = {}

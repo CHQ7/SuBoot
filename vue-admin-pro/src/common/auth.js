@@ -1,4 +1,4 @@
-import cookies from '@/unt-ui/libs/function/cookies'
+import cookies from '@/design/libs/function/cookies'
 
 const TokenKey = 'Admin-Token'
 

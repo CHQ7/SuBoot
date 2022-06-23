@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * 系统用户
- * Created by @author JsckChin on 2021/12/19
+ * Created by @author CHQ on 2022/6/15
  */
 @Table("ims_sys_user")
 @Data

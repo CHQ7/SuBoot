@@ -13,9 +13,9 @@ import App from './App'
 import store from '@/store'
 import router from './router'
 
-// 引入全局unt
-import unt from './unt-ui'
-Vue.use(unt)
+// 引入全局design ui
+import design from './design'
+Vue.use(design)
 
 import './config/permission' // permission control
 import './common/error' // error log

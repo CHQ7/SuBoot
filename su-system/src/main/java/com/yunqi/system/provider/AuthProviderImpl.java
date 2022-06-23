@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 实现权限验证接口扩展
- * Created by @author JsckChin on 2022/2/16
+ * Created by @author CHQ on 2022/6/15
  */
 @Service
 public class AuthProviderImpl implements IAuthProvider {

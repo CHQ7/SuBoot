@@ -22,7 +22,7 @@ const mixin = {
       listLoading: true,
       // 查询分页数据
       listQuery: {
-        pageNumber: 1,
+        page: 1,
         pageSize: 10,
         totalCount: 1
       },

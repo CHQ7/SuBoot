@@ -1,4 +1,4 @@
-### NsBootAdmin
+### vue-admin-pro
 
 <p align="center">
   <a href="https://github.com/vuejs/vue">
@@ -23,7 +23,7 @@
 ```bash
 
 # 进入项目目录
-cd NsBootAdmin
+cd vue-admin-pro
 
 # 安装依赖
 npm install
@@ -75,7 +75,7 @@ npm run lint -- --fix
 
 ### License
 
-[MIT] Copyright (c) 2020 JsckChin
+[MIT] Copyright (c) 2020 CHQ
 
 ### 项目依赖
 技术 | 名称

@@ -1,8 +1,8 @@
-import http from '@/unt-ui/libs/request/request'
+import http from '@/design/libs/request/request'
 
 const BASE_URL = '/member/level'
 
-export const MemberLevel = {
+export default {
   // 获取列表数据
   list: data => http.post(BASE_URL + '/list', data),
   // 创建数据
@@ -16,5 +16,7 @@ export const MemberLevel = {
   // 删除集合
   del: data => http.post(BASE_URL + '/delete', data),
   // 更新状态
-  disable: data => http.post(BASE_URL + '/disable', data)
+  disable: data => http.post(BASE_URL + '/disable', data),
+  // 同步数据
+  synchro: data => http.post(BASE_URL + '/synchro', data)
 }

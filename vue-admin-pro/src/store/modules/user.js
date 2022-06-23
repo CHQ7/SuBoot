@@ -1,4 +1,4 @@
-import { open } from '@/api/open/open'
+import open from '@/api/open/open'
 import { getToken, setToken, removeToken } from '@/common/auth'
 import router, { resetRouter } from '@/router'
 import { Notification } from 'element-ui'
@@ -40,8 +40,6 @@ const actions = {
 
         commit('SET_TOKEN', data.token)
         setToken(data.token)
-
-        console.log(111)
 
         const time = new Date()
         const hour = time.getHours()
@@ -88,7 +86,7 @@ const actions = {
 
           var id = 'id'
           var pid = 'parentId'
-          var children ='children'
+          var children = 'children'
           var idMap = {}
           var jsonTree = []
           menus.forEach(function(v) {

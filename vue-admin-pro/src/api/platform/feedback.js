@@ -1,8 +1,8 @@
-import http from '@/unt-ui/libs/request/request'
+import http from '@/design/libs/request/request'
 
 const BASE_URL = '/platform/feedback'
 
-export const PlatformFeedback = {
+export default {
   // 获取列表数据
   list: data => http.post(BASE_URL + '/list', data),
   // 创建数据

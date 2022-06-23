@@ -1,8 +1,8 @@
-import http from '@/unt-ui/libs/request/request'
+import http from '@/design/libs/request/request'
 
 const BASE_URL = '/auth'
 
-export const open = {
+export default {
   // 登录
   login: data => http.post(BASE_URL + '/login', data),
   // 退出

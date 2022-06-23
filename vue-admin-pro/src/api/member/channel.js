@@ -1,6 +1,6 @@
 import http from '@/design/libs/request/request'
 
-const BASE_URL = '/platform/nav'
+const BASE_URL = '/member/channel'
 
 export default {
   // 获取列表数据
@@ -16,5 +16,7 @@ export default {
   // 删除集合
   del: data => http.post(BASE_URL + '/delete', data),
   // 更新状态
-  disable: data => http.post(BASE_URL + '/disable', data)
+  disable: data => http.post(BASE_URL + '/disable', data),
+  // 同步数据
+  synchro: data => http.post(BASE_URL + '/synchro', data)
 }

@@ -6,7 +6,12 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || '' // page title
+// 获取配置文件config/settings.js 默认配置数据
+
+// 获取默认网站名称
+const name = defaultSettings.title || ''
+// 获取默认启动端口号
+const devPort = defaultSettings.devPort || '75'
 
 // 所有配置项解释都可以在 https://cli.vuejs.org/config/
 module.exports = {
@@ -23,7 +28,7 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    port: 75,
+    port: devPort,
     open: true,
     overlay: {
       warnings: false,

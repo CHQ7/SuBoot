@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * 系统参数
- * Created by @author JsckChin on 2021/10/1
+ * Created by @author CHQ on 2022/6/15
  */
 @Service
 public class ISysConfigService extends BaseServiceImpl<SysConfig> {

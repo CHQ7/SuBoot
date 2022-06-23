@@ -2,8 +2,8 @@ import '@/assets/svg-icons' // svg 图标
 import log from './libs/function/log' // 控制台打印优化
 import cookies from './libs/function/cookies' // Cookies
 import open from './libs/function/open' // 打开新页面
-import http from '@/unt-ui/libs/request/request' // 请求
-import route from '@/unt-ui/libs/function/route' // 路由跳转
+import http from '@/design/libs/request/request' // 请求
+import route from '@/design/libs/function/route' // 路由跳转
 import trim from './libs/function/trim' // 去除空格
 import test from './libs/function/test' // 规则检验
 import random from './libs/function/random' // 随机数
@@ -77,7 +77,8 @@ const install = Vue => {
   })
   // 挂载$u对象
   Vue.prototype.$u = $u
-  $u.log.capsule('Component', V.version, 'warning')
+
+  $u.log.success('design version:' + V.version)
   // 注册全局组件
   requireComponent.keys().forEach(fileName => {
     const config = requireComponent(fileName)

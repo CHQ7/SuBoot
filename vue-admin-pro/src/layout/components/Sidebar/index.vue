@@ -82,7 +82,7 @@ export default {
       return this.$store.state.settings.sidebarLogo
     },
     title() {
-      return 'SuBoot'
+      return 'CSMS'
     },
     variables() {
       return variables

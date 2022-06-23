@@ -1,10 +1,10 @@
 module.exports = {
 
   // 网站标题
-  title: 'SuBoot管理系统',
+  title: 'CSMS管理系统',
 
   // 开发环境端口号
-  devPort: '1075',
+  devPort: '75',
 
   // 是否显示设置右面板
   showSettings: true,

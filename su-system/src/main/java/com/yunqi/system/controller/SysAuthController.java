@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 
 /**
  * 用户认证
- * Created by @author JsckChin on 2021/9/21
+ * Created by @author CHQ on 2022/6/15
  */
 @Slf4j
 @RestController
