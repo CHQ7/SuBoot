@@ -159,7 +159,7 @@ export default {
         stripe: true // boolean 斑马纹
       },
       listQuery: {
-        pageNumber: 1,
+        page: 1,
         pageSize: 20,
         totalCount: 1,
         name: '',
@@ -207,6 +207,26 @@ export default {
     this.hdlList()
   },
   methods: {
+    // 提交更新数据事件
+    hdlUpdate() {
+      const self = this
+      // 效验数据格式
+      self.$refs['dialogForm'].validate((valid) => {
+        if (valid) {
+          delete self.dataForm.menus
+          delete self.dataForm.users
+          // 提交更新数据
+          self.api.update(self.dataForm).then(() => {
+            // 刷新数据列表
+            self.hdlList()
+            // 关闭弹窗状态
+            self.dialogFormVisible = false
+            // 通知信息
+            self.$u.msg('更新成功')
+          })
+        }
+      })
+    },
     // 授权菜单:打开窗口
     handleMenu(row) {
       this.menuDialogVisible = true

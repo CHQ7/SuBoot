@@ -29,7 +29,7 @@ export default {
     }
     return {
       title: '更改密码',
-      api: this.$u.api.open,
+      api: this.$u.api.Open,
       dataForm: {},
       rules: {
         oldPassword: [

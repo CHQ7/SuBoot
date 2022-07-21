@@ -1,7 +1,13 @@
 module.exports = {
 
   // 网站标题
-  title: 'CSMS管理系统',
+  title: 'SuBoot管理系统',
+
+  // 网站名称简称
+  name: 'SuBoot',
+
+  // 网站版权
+  copyright: 'Copyright © 2022 SuBoot.',
 
   // 开发环境端口号
   devPort: '75',

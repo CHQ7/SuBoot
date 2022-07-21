@@ -38,11 +38,10 @@ public class ISysAuthLogService extends BaseServiceImpl<SysAuthLog> {
         if (Strings.isNotBlank(sysAuthLog.getName())) {
             cnd.and("name","like","%" + sysAuthLog.getName() + "%");
         }
-        // 时间范围
+        // 时间范围:根据时间戳范围查询
         if(Strings.isNotBlank(beginTime) || Strings.isNotBlank(endTime)){
-            // 字符串分割转化为数组
-            cnd.and("createdAt",">=", Times.D(beginTime).getTime());
-            cnd.and("createdAt","<=", Times.D(endTime).getTime());
+            cnd.and("createdAt",">=", beginTime);
+            cnd.and("createdAt","<=", endTime);
         }
         cnd.desc("createdAt");
         return this.listPage(page, pageSize, cnd);

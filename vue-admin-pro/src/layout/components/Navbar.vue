@@ -10,7 +10,7 @@
         <error-log class="right-menu-item hover-effect" :logs="$store.getters.errorLogs" @clearAll="clearAll" />
 
         <!-- 全屏组件 -->
-        <full-screen class="right-menu-item hover-effect" />
+        <u-full-screen class="right-menu-item hover-effect" />
 
         <!-- 字体选择组件
         <size-select id="size-select" class="right-menu-item hover-effect" :size="$store.getters.size" @click="handleSetSize" />
@@ -49,7 +49,6 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import Hamburger from './Hamburger'
-import FullScreen from './FullScreen'
 import ErrorLog from './ErrorLog'
 import Settings from './Settings'
 import Password from './Password'
@@ -59,7 +58,6 @@ export default {
   components: {
     ErrorLog,
     Hamburger,
-    FullScreen,
     Settings,
     Password
   },

@@ -29,7 +29,7 @@ public class SysUser extends BaseModel implements Serializable{
     @Column
     @Comment("账号")
 	@ColDefine(type = ColType.VARCHAR, width = 120)
-    private String name;
+    private String username;
 
     @NotBlank(message = "密码不能为空")
     @Column
@@ -73,6 +73,11 @@ public class SysUser extends BaseModel implements Serializable{
     @Comment("生日")
     @ColDefine(type = ColType.VARCHAR, width = 255)
     private String birthday;
+
+    @Column
+    @Comment("扩展字段")
+    @ColDefine(type = ColType.TEXT)
+    private String expand;
 
 	// 行为信息
 
@@ -125,20 +130,23 @@ public class SysUser extends BaseModel implements Serializable{
     private Integer loginCount;
 
     @Column
-    @Comment("机构")
-    @ColDefine(type = ColType.VARCHAR, width = 50)
+    @Comment("组织")
+    @ColDefine(type = ColType.VARCHAR, width = 32)
     private String deptId;
+
+    @One(field = "deptId")
+    private SysDept dept;
 
     /**
      * 关联角色
      */
-    @ManyMany(from="userId", relation="ims_sys_user_role", to="roleId")
+    @ManyMany(relation="ims_sys_user_role", from="userId", to="roleId")
     private List<SysRole> roles;
 
     /**
      * 关联机构
      */
-    @ManyMany(from = "userId", relation = "ims_sys_user_dept", to = "deptId")
+    @ManyMany(relation="ims_sys_user_dept", from="userId",  to="deptId")
     private List<SysDept> depts;
 
 }

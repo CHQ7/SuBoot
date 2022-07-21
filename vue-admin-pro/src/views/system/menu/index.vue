@@ -205,8 +205,8 @@ export default {
           }
         },
         {
-          prop: 'createAt',
-          label: '发布时间',
+          prop: 'createdAt',
+          label: '创建时间',
           align: 'left',
           sortable: true,
           timestamp: true

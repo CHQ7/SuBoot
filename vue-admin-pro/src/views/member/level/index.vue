@@ -4,7 +4,7 @@
     <u-page title="会员等级">
       <div slot="header">
         <el-button type="primary" icon="el-icon-refresh-left" @click="hdlSynchro()">
-          同步会员等级
+          同步函云数据
         </el-button>
       </div>
 
@@ -136,10 +136,10 @@ export default {
     // 同步事件
     hdlSynchro() {
       const self = this
-      self.$confirm('此操作将同步数据是否继续？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
+      self.$confirm('此操作将同步数据是否继续，请谨慎操作？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
         self.api.synchro().then(res => {
           // 同步完成，刷新一下
-          this.hdlList()
+          self.hdlList()
           self.$alert('同步数据成功', '提示', {
             confirmButtonText: '知道了'
           })

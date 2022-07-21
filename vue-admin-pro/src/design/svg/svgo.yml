@@ -1,0 +1,27 @@
+# --------------------------------------
+# SVG ICON 优化配置
+# 基于-- svgo 实现优化
+# --------------------------------------
+
+# replace default config
+
+# multipass: true
+# full: true
+
+plugins:
+
+  # - name
+  #
+  # or:
+  # - name: false
+  # - name: true
+  #
+  # or:
+  # - name:
+  #     param1: 1
+  #     param2: 2
+
+  - removeAttrs:
+      attrs:
+        - 'fill'
+        - 'fill-rule'

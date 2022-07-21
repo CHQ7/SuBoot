@@ -1,4 +1,6 @@
 const getters = {
+  title: state => state.settings.title,
+  copyright: state => state.settings.copyright,
   sidebar: state => state.app.sidebar,
   size: state => state.app.size,
   device: state => state.app.device,

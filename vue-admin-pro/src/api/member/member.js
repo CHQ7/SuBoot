@@ -30,5 +30,7 @@ export default {
   // 积分列表
   creditList: data => http.post(BASE_URL + '/creditList', data),
   // 积分操作
-  credit: data => http.post(BASE_URL + '/credit', data)
+  credit: data => http.post(BASE_URL + '/credit', data),
+  // 微信信息
+  wxinfoList: data => http.post(BASE_URL + '/wxinfo', data)
 }

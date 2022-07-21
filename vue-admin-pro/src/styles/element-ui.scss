@@ -99,19 +99,24 @@
 .el-tabs__nav-wrap::after {
   height: 1px;
 }
+.search-form{
+  display:block;margin-top: 0em;
 
-.search-form.el-form--inline {
-  display: flex;
-  align-items: center;
-
-  .el-form-item__label{
-    font-size: 12px;
-    min-width: 60px;
-  }
-  .el-form-item{
-    display: flex;
+  .search-form.el-form--inline {
+    display: inline-block;
     align-items: center;
     margin-bottom: 0;
+
+    .el-form-item__label {
+      font-size: 12px;
+      min-width: 60px;
+    }
+
+    .el-form-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
   }
 }
 

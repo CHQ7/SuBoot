@@ -5,6 +5,7 @@ import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.database.service.BaseServiceImpl;
+import com.yunqi.system.models.SysDept;
 import com.yunqi.system.models.SysMenu;
 import com.yunqi.system.models.SysRole;
 import org.nutz.dao.Chain;
@@ -69,6 +70,15 @@ public class ISysRoleService extends BaseServiceImpl<SysRole> {
             throw new BizException("角色唯一编码已存在");
         }
        return this.insert(role);
+    }
+
+    /**
+     * 查询角色信息
+     * @param code  唯一编码
+     * @return      角色信息
+     */
+    public SysRole fetchByCode(String code){
+        return this.fetch(Cnd.where("code","=",code));
     }
 
     /**

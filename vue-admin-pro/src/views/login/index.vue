@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">CSMS管理系统</h3>
+        <h3 class="title">{{ $store.getters.title }}</h3>
       </div>
 
       <el-form-item prop="username">
@@ -72,7 +72,7 @@
         <el-button type="primary" @click="handleCode">确 定</el-button>
       </span>
     </el-dialog>
-    <u-footer :copyright="copyright" />
+    <u-footer :copyright="$store.getters.copyright" />
   </div>
 </template>
 
@@ -90,7 +90,6 @@ export default {
     }
     return {
       api: this.$u.api.open,
-      copyright: ' Copyright © 2022 CSMS.',
       loginForm: {
         username: '',
         password: '',
@@ -115,7 +114,7 @@ export default {
           { required: true, message: '请输入验证码', trigger: 'blur' }
         ]
       },
-      codeUrl: this.$u.api.open.captcha,
+      codeUrl: '',
       captchaTitle: '请输入验证码',
       captchaVisible: false,
       name: ''

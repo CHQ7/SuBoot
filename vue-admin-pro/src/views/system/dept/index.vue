@@ -191,7 +191,6 @@ export default {
     handleCascaderChange(value) {
       this.dataForm.parentId = value[value.length - 1] || ''
     }
-
   }
 }
 </script>

@@ -9,6 +9,7 @@ import com.yunqi.starter.common.lang.Lang;
 import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.common.lang.mvc.Mvcs;
 import com.yunqi.starter.common.lang.util.NutMap;
+import com.yunqi.starter.common.utils.IPUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.starter.security.utils.SecurityUtil;
 import com.yunqi.system.models.SysAuthLog;
@@ -45,11 +46,14 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      * @return           分页列表
      */
     public Object list(Integer page, int pageSize, SysUser user) {
-        logger.warn("查询用户列表");
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:用户账号
-        if(Strings.isNotBlank(user.getName())){
-            cnd.and("name", "like", "%" + user.getName() + "%");
+        if(Strings.isNotBlank(user.getDeptId())){
+            cnd.and("deptId", "=",  user.getDeptId() );
+        }
+        // 模糊查询:用户账号
+        if(Strings.isNotBlank(user.getNickname())){
+            cnd.and("username", "like", "%" + user.getUsername() + "%");
         }
         // 模糊查询:用户姓名
         if(Strings.isNotBlank(user.getNickname())){
@@ -60,7 +64,14 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         return this.listPageLinks(page, pageSize, cnd,"^(dept|roles)$");
     }
 
-
+    /**
+     * 查询用户账号
+     * @param username  用户账号
+     * @return          用户信息
+     */
+    public SysUser fetchByUsername(String username){
+        return this.fetch(Cnd.where("username","=",username));
+    }
 
     /**
      * 创建用户
@@ -69,7 +80,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
     @Transactional
     public void create(SysUser user,  String[] roleIds) {
         // 检查:账号是否存在
-        if (this.count(Cnd.where("name","=", user.getName())) > 0) {
+        if (this.count(Cnd.where("username","=", user.getUsername())) > 0) {
             throw new BizException("账号已存在");
         }
         // 选填:用户手机号
@@ -113,12 +124,12 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
             throw new BizException("未知用户");
         }
         // 超级管理员禁止操作
-        if(oldUser.getName().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
+        if(oldUser.getUsername().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
             throw new BizException("超级管理员禁止操作");
         }
         // 检查:账号是否存在
-        if(!Strings.sBlank(oldUser.getName()).equalsIgnoreCase(user.getName())) {
-            if (this.count(Cnd.where("name","=", user.getName())) > 0) {
+        if(!Strings.sBlank(oldUser.getUsername()).equalsIgnoreCase(user.getUsername())) {
+            if (this.count(Cnd.where("username","=", user.getUsername())) > 0) {
                 throw new BizException("账号已存在");
             }
         }
@@ -144,7 +155,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
     public void deleteById(String id) {
         SysUser user = this.fetch(id);
         // 超级管理员禁止操作
-        if(user != null && user.getName().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
+        if(user != null && user.getUsername().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
             throw new BizException("超级管理员禁止操作");
         }
         // 删除用户对应部门相关依赖
@@ -214,18 +225,16 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
 
     /**
      * 账号密码登录
-     * @param loginname     账号
+     * @param username     账号
      * @param passowrd      密码
      * @return              用户
      */
-    public SysUser loginByPassword(String loginname, String passowrd) {
-        SysUser user = this.fetch(Cnd.where("name", "=", loginname));
+    public SysUser loginByPassword(String username, String passowrd) {
+        SysUser user = this.fetchByUsername(username);
         if (user == null) {
             throw new BizException("账号不存在");
         }
         String hashedPassword = hashPassword(passowrd, user.getSalt());
-        System.out.println("密码:" + hashedPassword);
-        logger.debug("登录密码：" + hashedPassword + " 对比密码" +  user.getPassword());
         if (!Strings.sNull(hashedPassword).equalsIgnoreCase(user.getPassword())) {
             throw new BizException("账号密码不正确");
         }
@@ -249,7 +258,11 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         // 累计登录次数
         user.setLoginCount(user.getLoginCount() + 1);
         // 最近登录IP
-        user.setLoginIp(Lang.getIP(req));
+        // 获取IP地址
+        String ip = Lang.getIP(req);
+        user.setLoginIp(ip);
+        // 最近登录地区
+        user.setLoginLocation(IPUtil.getIPAddress(ip));
         // 获取客户端
         user.setLoginBrowser(ua.getBrowser().getName() + "_" + ua.getVersion());
         // 获取操作系统
@@ -307,7 +320,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         SysUser user = this.fetch(userId);
         // 只能超级管理员自己操作
         if(!SecurityUtil.getUserName().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
-            if(user != null && user.getName().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
+            if(user != null && user.getUsername().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
                 throw new BizException("超级管理员禁止操作");
             }
         }

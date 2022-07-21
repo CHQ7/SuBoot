@@ -21,7 +21,6 @@ import java.util.List;
 @Service
 public class ISysDeptService extends BaseServiceImpl<SysDept> {
 
-
     /**
      * 查询全部组织
      * @return 组织列表
@@ -50,6 +49,15 @@ public class ISysDeptService extends BaseServiceImpl<SysDept> {
     }
 
     /**
+     * 查询组织信息
+     * @param code  唯一编码
+     * @return      组织信息
+     */
+    public SysDept fetchByCode(String code){
+        return this.fetch(Cnd.where("code","=",code));
+    }
+
+    /**
      * 更新组织
      * @param dept  组织
      * @return      返回实际被更新的记录条数，返回 1，否则，返回 0
@@ -67,12 +75,12 @@ public class ISysDeptService extends BaseServiceImpl<SysDept> {
             }
         }
         // 检查组织唯一编码是否唯一
-        if (Strings.sBlank(oldDept.getCode()).equalsIgnoreCase(dept.getCode())) {
+        if (!Strings.sBlank(oldDept.getCode()).equalsIgnoreCase(dept.getCode())) {
             if (this.count(Cnd.where("code",EQ, dept.getCode())) > 0) {
                 throw new BizException("组织唯一编码已存在");
             }
             // 默认组织禁止更改
-            if(!dept.getCode().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_DEPT)){
+            if(!oldDept.getCode().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_DEPT)){
                 throw new BizException("默认组织禁止更改");
             }
         }

@@ -43,7 +43,7 @@ public class Initializer implements ApplicationRunner {
             dept.setParentId("");
             dept.setName("总部");
             dept.setCode(GlobalConstant.DEFAULT_SYSADMIN_DEPT);
-            dept.setNote("总公司");
+            dept.setNote("总部");
             SysDept dbdept = dao.insert(dept);
 
             // 初始化角色
@@ -58,7 +58,7 @@ public class Initializer implements ApplicationRunner {
             SysUser user = new SysUser();
             user.setNickname("超级管理员");
             user.setNote("超级管理员,拥有所有操作权限 ^_^");
-            user.setName(GlobalConstant.DEFAULT_SYSADMIN_NAME);
+            user.setUsername(GlobalConstant.DEFAULT_SYSADMIN_NAME);
             user.setSalt("61ho2vejfah1pq6dh781jds0t5");
             user.setPassword("dd02eeb82a6d4084fde09796915afbb79f7a4d0afd3ed211d52ab1a736e91ade");
             user.setDisabled(true);

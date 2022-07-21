@@ -185,7 +185,7 @@
 </template>
 
 <script>
-import region from '@/common/data/region'
+import region from '@/design/data/region'
 export default {
   data() {
     return {

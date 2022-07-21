@@ -9,8 +9,20 @@
       </div>
       <u-filtered>
         <el-form :inline="true" :model="listQuery" class="search-form">
+          <el-form-item prop="deptId" label="系统组织">
+            <el-cascader
+              v-model="listQuery.deptId"
+              style="width: 100%"
+              :options="deptData"
+              :props="{value:'id', label:'name', disabled:true , children:'children', checkStrictly: true, }"
+              :show-all-levels="false"
+              placeholder="请选择系统组织"
+              clearable
+              @change="handleDeptChange"
+            />
+          </el-form-item>
           <el-form-item label="账号">
-            <el-input v-model="listQuery.name" placeholder="请输入账号" clearable />
+            <el-input v-model="listQuery.username" placeholder="请输入账号" clearable />
           </el-form-item>
 
           <el-form-item label="姓名">
@@ -37,12 +49,12 @@
                 <el-row>
                   <el-col :span="8">
                     <el-form-item label="账号">
-                      <span>{{ row.name }} </span>
+                      <span>{{ row.username }} </span>
                     </el-form-item>
                     <el-form-item label="姓名">
                       <span>{{ row.nickname }}</span>
                     </el-form-item>
-                    <el-form-item label="机构">
+                    <el-form-item label="组织">
                       <span v-if="row.dept">{{ row.dept.name }}</span>
                     </el-form-item>
                     <el-form-item label="手机">
@@ -106,21 +118,21 @@
         <el-row>
           <el-col :span="12">
             <el-form-item prop="name" label="账号">
-              <el-input v-model="dataForm.name" placeholder="请输入账号" clearable minlength="4" maxlength="20" show-word-limit />
+              <el-input v-model="dataForm.username" placeholder="请输入账号" clearable minlength="4" maxlength="20" show-word-limit />
             </el-form-item>
 
             <el-form-item v-if="dialogStatus==='create'" prop="password" label="密码">
               <el-input v-model="dataForm.password" type="password" placeholder="请输入登录密码" show-password clearable />
             </el-form-item>
 
-            <el-form-item prop="deptId" label="机构">
+            <el-form-item prop="deptId" label="组织">
               <el-cascader
                 v-model="dataForm.deptId"
                 style="width: 100%"
                 :options="deptData"
                 :props="{value:'id', label:'name', disabled:true , children:'children', checkStrictly: true, }"
                 :show-all-levels="false"
-                placeholder="请选择机构"
+                placeholder="请选择组织"
                 clearable
                 @change="handleCascaderChange"
               />
@@ -211,7 +223,7 @@ export default {
       // 表格
       columns: [
         {
-          prop: 'name',
+          prop: 'username',
           label: '账号',
           align: 'left'
         },
@@ -222,7 +234,7 @@ export default {
         },
         {
           prop: 'dept',
-          label: '机构',
+          label: '组织',
           align: 'left',
           formatter: (row, column) => {
             if (row.dept != null) {
@@ -230,7 +242,7 @@ export default {
             }
           }
         },
-        {
+        /*{
           prop: 'online',
           label: '在线状态',
           render: (h, params) => {
@@ -240,7 +252,7 @@ export default {
               return h('u-icon-svg', { props: { name: 'round-fill' }, style: { color: '#FF0000' }})
             }
           }
-        },
+        },*/
         {
           prop: 'disabled',
           label: '状态',
@@ -261,10 +273,10 @@ export default {
         stripe: true // boolean 斑马纹
       },
       listQuery: {
-        pageNumber: 1,
+        page: 1,
         pageSize: 20,
         totalCount: 1,
-        name: '',
+        username: '',
         nickname: ''
       },
 
@@ -277,9 +289,9 @@ export default {
       dataForm: {},
       rules: {
         /* deptId: [
-          { required: true, message: '请选择机构', trigger: ['blur', 'change'] }
+          { required: true, message: '请选择组织', trigger: ['blur', 'change'] }
         ],*/
-        name: [
+        username: [
           { required: true, message: '请输入账号', trigger: ['blur', 'change'] },
           { validator: validateName, trigger: ['blur', 'change'] }
         ],
@@ -304,7 +316,7 @@ export default {
         ]
       },
 
-      // 机构:渲染数据
+      // 组织:渲染数据
       deptData: [],
       // 角色:渲染数据
       roleData: [],
@@ -324,7 +336,7 @@ export default {
     this.loadrRole()
   },
   methods: {
-    // 初始化机构选项
+    // 初始化组织选项
     loadDept() {
       this.api.dept().then(res => {
         this.deptData = this.$u.tree(res.data)
@@ -392,8 +404,9 @@ export default {
       self.$refs['dialogForm'].validate((valid) => {
         if (valid) {
           const data = Object.assign({}, self.dataForm)
-          data.dept = {}
+          delete data.dept
           delete data.roles
+          delete data.depts
           data.roleIds = data.roleIds.toString()
           // 提交更新数据
           self.api.update(data).then(() => {
@@ -419,9 +432,13 @@ export default {
       }).catch(() => {
       })
     },
-    // 监听机构变化
+    // 编辑功能:监听组织变化
     handleCascaderChange(value) {
       this.dataForm.deptId = value[value.length - 1] || ''
+    },
+    // 搜索功能:监听组织变化
+    handleDeptChange(value) {
+      this.listQuery.deptId = value[value.length - 1] || ''
     }
   }
 }

@@ -9,7 +9,7 @@
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
     "lint": "eslint --ext .js,.vue src",
-    "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
+    "svgo": "svgo -f src/design/svg/icons --config=src/design/svg/svgo.yml",
     "test:unit": "jest --clearCache && vue-cli-service test:unit",
     "test:ci": "npm run lint && npm run test:unit"
   },
@@ -21,7 +21,7 @@
     "driver.js": "0.9.5",
     "dropzone": "5.5.1",
     "echarts": "4.2.1",
-    "element-ui": "^2.15.1",
+    "element-ui": "2.15.8",
     "file-saver": "2.0.1",
     "fuse.js": "3.4.4",
     "js-cookie": "^2.2.1",

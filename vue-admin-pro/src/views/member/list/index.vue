@@ -17,7 +17,7 @@
             <el-input v-model="listQuery.mobile" placeholder="请输入手机号" clearable style="width: 160px" maxlength="11" show-word-limit />
           </el-form-item>
           <el-form-item label="OPENID" prop="openid">
-            <el-input v-model="listQuery.openid" placeholder="请输入OPENID" clearable />
+            <el-input v-model="listQuery.openid" placeholder="请输入OPENID" style="width: 160px" clearable />
           </el-form-item>
           <el-form-item label="等级" prop="status">
             <el-select v-model="listQuery.level" placeholder="请选择等级" class="status" clearable>
@@ -28,6 +28,27 @@
                 :value="item.level"
               />
             </el-select>
+          </el-form-item>
+          <el-form-item label="注册渠道" prop="channel">
+            <el-select v-model="listQuery.channel" placeholder="请选择渠道" class="status" clearable>
+              <el-option
+                v-for="item in channel"
+                :key="item.value"
+                :label="item.name"
+                :value="item.type"
+              />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="注册时间" prop="inputDateRange">
+            <el-date-picker
+              v-model="inputDateRange"
+              type="daterange"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              align="right"
+              value-format="timestamp"
+              style="width:240px"
+            />
           </el-form-item>
           <el-form-item label="状态" prop="status">
             <el-select v-model="listQuery.status" placeholder="请选择状态" class="status" clearable>
@@ -40,7 +61,7 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="hdlFilter">查询</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
           </el-form-item>
           <el-dropdown>
             <el-button type="primary">
@@ -48,6 +69,7 @@
             </el-button>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item @click.native="openMerge">会员合并</el-dropdown-item>
+              <el-dropdown-item @click.native="openWxInfo">获取微信</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </el-form>
@@ -64,14 +86,14 @@
       >
         <template v-slot:right>
           <el-table-column label="操作" align="center" fixed="right">
-            <template slot-scope="{ row }">
+            <template  slot-scope="{ row }">
               <el-button type="text" @click="hdlEdit(row)">编辑</el-button>
               <el-dropdown>
                 <el-button type="text">更多</el-button>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item @click.native="handleOpenDisable(row)">更改会员状态</el-dropdown-item>
-                  <el-dropdown-item @click.native="handleHealth(row)">检查健康状态</el-dropdown-item>
-                  <el-dropdown-item @click.native="handleUnbindOpenid(row)">解绑OPENID</el-dropdown-item>
+                  <el-dropdown-item @click.native="handleOpenDisable(row)">更改状态</el-dropdown-item>
+                  <el-dropdown-item @click.native="handleHealth(row)">健康状态</el-dropdown-item>
+                  <el-dropdown-item divided @click.native="handleUnbindOpenid(row)">解绑微信</el-dropdown-item>
                   <el-dropdown-item divided @click.native="handleOpenCredit(row)">积分操作</el-dropdown-item>
                   <el-dropdown-item @click.native="handleCreditDetaile(row)">积分明细</el-dropdown-item>
                 </el-dropdown-menu>
@@ -300,6 +322,25 @@
       />
     </u-dialog>
 
+    <!-- 扫码获取会员微信信息-->
+    <u-dialog title="扫码获取会员微信信息" :show.sync="dialogWxInfoVisible" width="1040px" @confirm="handleOpenid">
+      <el-container>
+        <el-aside width="260px" style="text-align: center">
+          <el-image :src="wxinfourl" />
+          <el-button type="primary" icon="el-icon-search" @click="handleWxInfoList">获取信息</el-button>
+        </el-aside>
+        <el-main>
+          <u-table
+            :data="wxInfoList"
+            :loading="wxInfoListLoading"
+            :options="listOptions"
+            :columns="wxInfoColumns"
+            @selection-change="hdlSelectChange"
+          />
+        </el-main>
+      </el-container>
+    </u-dialog>
+
     <!-- 积分明细 -->
     <u-dialog :title="creditTitle" :show.sync="dialogCreditVisible" :footer="false">
       <u-table
@@ -462,9 +503,10 @@ export default {
         cardno: '',
         mobile: '',
         status: '0',
-        level: ''
+        level: '',
+        channel: ''
       },
-
+      inputDateRange: [],
       dialogFormVisible: false,
       dialogStatus: '',
       textMap: {
@@ -598,13 +640,59 @@ export default {
         password: true,
         realname: true,
         idcard: true
-      }
+      },
+      // 获取微信OPENID
+      dataWxInfoForm: {},
+      // 获取微信弹窗状态
+      dialogWxInfoVisible: false,
+      // 获取微信信息列表加载状态
+      wxInfoListLoading: false,
+      wxinfourl: 'http://qgr.stchicony.com:9001/QRCode/QRCode?data=https://wx.chiconysquare.net/Public/GetOpenIdForQR.html',
+      // 获取微信信息列表
+      wxInfoList: [],
+      // 微信信息列表-绑定表格
+      wxInfoColumns: [
+        {
+          prop: 'avatar',
+          label: '头像',
+          width: '140',
+          render: (h, params) => {
+            const { avatar } = params.row
+            return h('el-avatar', { props: { src: avatar }})
+          }
+        },
+        {
+          prop: 'name',
+          label: '微信名称',
+          width: '140'
+        },
+        {
+          prop: 'openid',
+          label: 'OPENID',
+          width: '230'
+        },
+        {
+          prop: 'createdAt',
+          label: '扫码时间',
+          timestamp: true
+        }
+      ]
     }
   },
   created() {
     this.loadData()
   },
   methods: {
+    // 注册时间格式转换
+    inputdateFormat() {
+      if (this.inputDateRange) {
+        this.listQuery.beginTime = this.inputDateRange[0]
+        this.listQuery.endTime = this.inputDateRange[1]
+      } else {
+        this.listQuery.beginTime = ''
+        this.listQuery.endTime = ''
+      }
+    },
     // 加载数据
     loadData() {
       this.initData()
@@ -642,6 +730,11 @@ export default {
         })
       }
       return title
+    },
+    // 搜索事件
+    handleFilter() {
+      this.inputdateFormat()
+      this.hdlFilter()
     },
     // 打开更改会员状态弹窗
     handleOpenDisable(row) {
@@ -703,7 +796,7 @@ export default {
     // 检查会员健康状态
     handleHealth(row) {
       const self = this
-      self.$confirm('此操作将检测 【' + row.member_name + '】 的健康状态，是否继续？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
+      self.$confirm('此操作将检测 【' + row.member_name + '】 账号的健康状态，是否继续？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
         self.api.health(row).then(res => {
           const { isMobile, isOpenid } = res.data
           const content = '检测手机号:' + (isMobile ? '已重复' : '正常')
@@ -839,10 +932,12 @@ export default {
     // 打开积分操作弹窗
     handleOpenCredit(row) {
       const self = this
-      row.status = 0
-      row.credit = 0
-      row.note = '权益直充与扣减'
-      self.rechargeForm = Object.assign({}, row)
+      // fix:修复积分数值异常为零
+      const data = Object.assign({}, row)
+      data.status = 0
+      data.credit = 0
+      data.note = '权益直充与扣减'
+      self.rechargeForm = data
       // 打开弹框状态
       self.dialogRechargeVisible = true
       this.$nextTick(() => {
@@ -884,6 +979,37 @@ export default {
         })
       }).catch(() => {
       })
+    },
+    // 获取微信-打开获取会员微信信息弹窗
+    openWxInfo() {
+      // 打开弹框状态
+      this.dialogWxInfoVisible = true
+    },
+    // 获取微信-获取会员微信信息方法
+    handleWxInfoList() {
+      const self = this
+      // 打开加载状态
+      self.wxInfoListLoading = true
+      // 查询分页数据
+      self.api.wxinfoList().then(res => {
+        // 获取分页列表数据
+        self.wxInfoList = res.data
+        // 关闭加载状态
+        setTimeout(() => {
+          self.wxInfoListLoading = false
+        }, 0.5 * 1000)
+      })
+    },
+    // 获取微信-选择会员返回openid
+    handleOpenid() {
+      if (this.selectData.length === 0) {
+        this.$u.msg('请选择一个用户', 'error')
+      } else if (this.selectData.length !== 1) {
+        this.$u.msg('仅可选择一个用户', 'error')
+      } else {
+        this.listQuery.openid = this.selectData[0].openid
+        this.dialogWxInfoVisible = false
+      }
     }
   }
 }
@@ -892,18 +1018,19 @@ export default {
 .el-select .el-input {
   width: 220px;
 }
+
 </style>
 <style lang="scss" scoped>
-  .app-container{
-    .item >>> .el-form-item__content {
-      display: flex;
-    }
-    .status {
-      ::v-deep{
-        .el-input{
-          width: 100px;
-        }
+.app-container{
+  .item >>> .el-form-item__content {
+    display: flex;
+  }
+  .status {
+    ::v-deep{
+      .el-input{
+        width: 140px;
       }
     }
   }
+}
 </style>

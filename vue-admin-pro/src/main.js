@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 import Cookies from 'js-cookie'
-
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 
 import Element from 'element-ui'
@@ -51,6 +50,7 @@ import httpInterceptor from '@/common/http.interceptor'
 Vue.use(httpInterceptor, app)
 
 // http接口API抽离，免于写url或者一些固定的参数
-import api from '@/common/http.api'
-Vue.use(api, app)
+import apis from '@/design/api'
+Vue.use(apis, app)
+
 app.$mount()

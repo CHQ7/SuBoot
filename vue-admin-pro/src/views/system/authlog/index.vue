@@ -9,7 +9,6 @@
               v-model="searchDate"
               type="daterange"
               :picker-options="pickerOptions"
-              range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
               align="right"
@@ -33,7 +32,7 @@
         :options="listOptions"
         :columns="columns"
         :pagination.sync="listQuery"
-        :fetch="getList"
+        :fetch="hdlList"
       >
         <template v-slot:right>
           <el-table-column label="操作" align="center" fixed="right">
@@ -74,7 +73,7 @@
 export default {
   data: function() {
     return {
-      api: this.$u.api.SystemAuthLog,
+      api: this.$u.api.SystemAuthlog,
       // 表格
       columns: [
         {
@@ -109,7 +108,7 @@ export default {
           align: 'left'
         },
         {
-          prop: 'createAt',
+          prop: 'createdAt',
           label: '操作时间',
           sortable: true,
           timestamp: true,
@@ -167,12 +166,12 @@ export default {
     }
   },
   created() {
-    this.getList()
+    this.hdlList()
   },
   methods: {
-    // 初始化数据
-    getList() {
-      this.listLoading = true
+    // 搜索事件
+    handleFilter() {
+      // 获取时间控件的开始日期至结束日期
       if (this.searchDate) {
         this.listQuery.beginTime = this.searchDate[0]
         this.listQuery.endTime = this.searchDate[1]
@@ -180,12 +179,7 @@ export default {
         this.listQuery.beginTime = ''
         this.listQuery.endTime = ''
       }
-      this.hdlList()
-    },
-    // 搜索事件
-    handleFilter() {
-      this.listQuery.page = 1
-      this.getList()
+      this.hdlFilter()
     }
   }
 }

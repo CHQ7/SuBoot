@@ -9,7 +9,6 @@
               v-model="searchDate"
               type="daterange"
               :picker-options="pickerOptions"
-              range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
               align="right"
@@ -39,7 +38,7 @@
         :options="listOptions"
         :columns="columns"
         :pagination.sync="listQuery"
-        :fetch="getList"
+        :fetch="hdlList"
       >
         <template v-slot:right>
           <el-table-column label="操作" align="center" fixed="right">
@@ -68,7 +67,7 @@
         </el-form-item>
 
         <el-form-item label="操作信息">
-          {{ dataForm.name }} / {{ dataForm.ip }} / {{ dataForm.location }}
+          {{ dataForm.createdBy }} / {{ dataForm.ip }} / {{ dataForm.location }}
         </el-form-item>
 
         <el-form-item label="请求地址">
@@ -92,7 +91,7 @@
         </el-form-item>
 
         <el-form-item label="请求耗时">
-          <el-tag type="success">{{ dataForm.processingAt }} ms</el-tag>
+          <el-tag type="success">{{ dataForm.executeTime }} ms</el-tag>
         </el-form-item>
 
       </el-form>
@@ -135,7 +134,7 @@ export default {
           align: 'left'
         },
         {
-          prop: 'name',
+          prop: 'createdBy',
           label: '操作人',
           sortable: true,
           align: 'left'
@@ -155,11 +154,11 @@ export default {
           }
         },
         {
-          prop: 'processingAt',
+          prop: 'executeTime',
           label: '耗时',
           align: 'left',
           render: (h, params) => {
-            return h('el-tag', { props: { size: 'small', type: 'success' }}, params.row.processingAt + 'ms')
+            return h('el-tag', { props: { size: 'small', type: 'success' }}, params.row.executeTime + 'ms')
           }
         }
       ],
@@ -214,12 +213,12 @@ export default {
     }
   },
   created() {
-    this.getList()
+    this.hdlList()
   },
   methods: {
-    // 初始化数据
-    getList() {
-      this.listLoading = true
+    // 搜索事件
+    handleFilter() {
+      // 获取时间控件的开始日期至结束日期
       if (this.searchDate) {
         this.listQuery.beginTime = this.searchDate[0]
         this.listQuery.endTime = this.searchDate[1]
@@ -227,12 +226,7 @@ export default {
         this.listQuery.beginTime = ''
         this.listQuery.endTime = ''
       }
-      this.hdlList()
-    },
-    // 搜索事件
-    handleFilter() {
-      this.listQuery.page = 1
-      this.getList()
+      this.hdlFilter()
     }
   }
 }

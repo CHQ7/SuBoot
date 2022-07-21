@@ -48,7 +48,7 @@ public class SysAuthController {
         sysUserService.loginInfo(user);
 
         // 设置session
-        SecurityUtil.setUserName(user.getName());
+        SecurityUtil.setUserName(user.getUsername());
         SecurityUtil.setUserNickname(user.getNickname());
 
         NutMap map = new NutMap();

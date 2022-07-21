@@ -3,7 +3,7 @@
 
     <u-page title="参数列表">
       <div slot="header">
-        <el-button type="primary" icon="el-icon-edit" @click="hdlOpen(newForm)">
+        <el-button type="primary" icon="el-icon-edit" @click="hdlOpen()">
           {{ textMap['create'] }}
         </el-button>
       </div>
@@ -11,8 +11,8 @@
       <u-filtered>
 
         <el-form :inline="true" :model="listQuery" class="search-form">
-          <el-form-item label="参数标题">
-            <el-input v-model="listQuery.configName" placeholder="请输入参数标题" clearable />
+          <el-form-item label="标题">
+            <el-input v-model="listQuery.configName" placeholder="请输入标题" clearable />
           </el-form-item>
           <el-form-item label="唯一编码">
             <el-input v-model="listQuery.configKey" placeholder="请输入参数唯一编码" clearable />

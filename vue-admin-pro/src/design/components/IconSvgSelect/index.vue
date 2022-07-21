@@ -126,7 +126,7 @@ export default {
     },
     // 过滤后的图标
     iconFilted() {
-      return this.$IconSvg.filter(icon => icon.indexOf(this.searchText) >= 0)
+      return this.$svg.filter(icon => icon.indexOf(this.searchText) >= 0)
     }
   },
   watch: {

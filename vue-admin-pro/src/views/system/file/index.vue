@@ -99,7 +99,7 @@ export default {
           align: 'left'
         },
         {
-          prop: 'createAt',
+          prop: 'createdAt',
           label: '创建时间',
           sortable: true,
           timestamp: true,
