@@ -1,3 +1,8 @@
+// --------------------------------------
+// Babel 配置
+// Babel 的主要作用就是规避这些问题，可以确保 JavaScript 代码兼容所有的浏览器，比如 IE 11
+// --------------------------------------
+
 module.exports = {
   presets: [
     // https://github.com/vuejs/vue-cli/tree/master/packages/@vue/babel-preset-app

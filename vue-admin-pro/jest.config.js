@@ -1,3 +1,8 @@
+// --------------------------------------
+// Jest 配置
+// 单元测试
+// --------------------------------------
+
 module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json', 'vue'],
   transform: {

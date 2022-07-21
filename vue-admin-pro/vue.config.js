@@ -1,40 +1,45 @@
-'use strict'
-const path = require('path')
-const defaultSettings = require('./src/config/settings.js')
-
-function resolve(dir) {
-  return path.join(__dirname, dir)
-}
-
-// 获取配置文件config/settings.js 默认配置数据
-
-// 获取默认网站名称
-const name = defaultSettings.title || ''
-// 获取默认启动端口号
-const devPort = defaultSettings.devPort || '75'
-
+// --------------------------------------
+// vue  配置
 // 所有配置项解释都可以在 https://cli.vuejs.org/config/
+// --------------------------------------
+// 如果计划在子路径下部署站点，则需要设置publicPath，
+// 例如GitHub页面。如果您计划将站点部署到https://foo.github.io/bar/，
+// 那么publicPath应该设置为“/bar/”。
+// 在大多数情况下，请使用“/”！！！
+// 详细信息: https://cli.vuejs.org/config/#publicpath
+// --------------------------------------
+// JavaScript 严格模式
+'use strict'
+
+// 获取配置文件的网站名称、端口号
+const { title, devPort } = require('./src/config/settings.js')
+const resolve = dir => { return require('path').join(__dirname, dir) }
+
 module.exports = {
-  /**
-   * 如果计划在子路径下部署站点，则需要设置publicPath，
-   * 例如GitHub页面。如果您计划将站点部署到https://foo.github.io/bar/，
-   * 那么publicPath应该设置为“/bar/”。
-   * 在大多数情况下，请使用“/”！！！
-   * 详细信息: https://cli.vuejs.org/config/#publicpath
-   */
+
   publicPath: '/',
+  // 打包输出文件目录
   outputDir: 'dist',
+  // 打包后生成的静态资源目录
   assetsDir: 'static',
+  // 是否在保存的时候检查
   lintOnSave: process.env.NODE_ENV === 'development',
+  // 生产环境的 source map
   productionSourceMap: false,
+  // 反向代理(解决前后端跨域问题)
   devServer: {
+    // 默认打开端口号
     port: devPort,
+    // 自动打开浏览器
     open: true,
+    // 设置让浏览器 overlay 同时显示错误
     overlay: {
       warnings: false,
       errors: true
     },
+    // 跳过检查host
     disableHostCheck: true,
+    // 代理配置
     proxy: {
       '/nt': {
         target: 'http://127.0.0.1:90',
@@ -56,20 +61,13 @@ module.exports = {
   configureWebpack: {
     // 在webpack的name字段中提供应用程序的标题，以便
     // 可以在index.html中访问它以插入正确的标题。
-    name: name,
+    name: title,
     resolve: {
       alias: {
         '@': resolve('src')
       }
     }
   },
-/*  css: {
-    loaderOptions: {
-      sass: {
-        prependData: `@import "~@/assets/css/veribles.scss";`
-      }
-    }
-  },*/
   chainWebpack(config) {
     // 它可以提高第一屏的速度，建议开启预加载
     config.plugin('preload').tap(() => [
