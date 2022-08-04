@@ -4,6 +4,7 @@ import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.starter.common.constant.Globals;
 import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.common.lang.Strings;
+import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysConfig;
 import org.nutz.dao.Cnd;
@@ -26,7 +27,7 @@ public class ISysConfigService extends BaseServiceImpl<SysConfig> {
      * @param conf       name:用户账号,nickname:用户姓名
      * @return           分页列表
      */
-    public Object list(Integer page, int pageSize, SysConfig conf) {
+    public Pagination<SysConfig> list(Integer page, int pageSize, SysConfig conf) {
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:系统参数唯一编码
         if(Strings.isNotBlank(conf.getConfigKey())){

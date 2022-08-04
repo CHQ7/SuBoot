@@ -4,11 +4,11 @@ import cn.hutool.http.useragent.UserAgent;
 import cn.hutool.http.useragent.UserAgentUtil;
 import com.yunqi.starter.common.lang.Lang;
 import com.yunqi.starter.common.lang.Strings;
+import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.common.utils.IPUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysAuthLog;
 import org.nutz.dao.Cnd;
-import org.nutz.lang.Times;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,7 @@ public class ISysAuthLogService extends BaseServiceImpl<SysAuthLog> {
      * @param sysAuthLog    操作人
      * @return              分页列表
      */
-    public Object list(Integer page, int pageSize, String beginTime, String endTime, SysAuthLog sysAuthLog){
+    public Pagination<SysAuthLog> list(Integer page, int pageSize, String beginTime, String endTime, SysAuthLog sysAuthLog){
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:操作人
         if (Strings.isNotBlank(sysAuthLog.getName())) {

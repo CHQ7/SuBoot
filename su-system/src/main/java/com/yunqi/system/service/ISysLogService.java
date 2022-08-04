@@ -1,11 +1,11 @@
 package com.yunqi.system.service;
 
 import com.yunqi.starter.common.lang.Strings;
+import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.starter.log.model.SysLog;
 import com.yunqi.starter.log.provider.ISysLogProvider;
 import org.nutz.dao.Cnd;
-import org.nutz.lang.Times;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,7 +28,7 @@ public class ISysLogService extends BaseServiceImpl<SysLog>  implements ISysLogP
      * @param sysLog        IP、操作人、IP地址
      * @return              分页列表
      */
-    public Object list(Integer page, int pageSize, String beginTime, String endTime,SysLog sysLog){
+    public Pagination<SysLog> list(Integer page, int pageSize, String beginTime, String endTime, SysLog sysLog){
         Cnd cnd =  Cnd.NEW();
         // 查询:IP
         if (Strings.isNotBlank(sysLog.getIp())) {

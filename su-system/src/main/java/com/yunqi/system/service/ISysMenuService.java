@@ -56,7 +56,7 @@ public class ISysMenuService extends BaseServiceImpl<SysMenu> {
      * @param id    菜单ID
      * @return      菜单
      */
-    public Object fetchById(String id){
+    public NutMap fetchById(String id){
         SysMenu menu = this.fetch(id);
         NutMap map = Lang.obj2nutmap(menu);
         map.put("parentName", "无");

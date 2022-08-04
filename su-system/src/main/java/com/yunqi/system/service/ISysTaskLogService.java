@@ -1,6 +1,7 @@
 package com.yunqi.system.service;
 
 import com.yunqi.starter.common.lang.Strings;
+import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysTaskLog;
 import org.nutz.dao.Cnd;
@@ -21,7 +22,7 @@ public class ISysTaskLogService extends BaseServiceImpl<SysTaskLog> {
      * @param taskLog    jobName:任务名称
      * @return           分页列表
      */
-    public Object list(Integer page, int pageSize, SysTaskLog taskLog){
+    public Pagination<SysTaskLog> list(Integer page, int pageSize, SysTaskLog taskLog){
         Cnd cnd =  Cnd.NEW();
         // 根据任务名称查询
         if(Strings.isNotBlank(taskLog.getJobName())){

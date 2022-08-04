@@ -4,8 +4,8 @@ package com.yunqi.system.service;
 import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.common.lang.Strings;
+import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.database.service.BaseServiceImpl;
-import com.yunqi.system.models.SysDept;
 import com.yunqi.system.models.SysMenu;
 import com.yunqi.system.models.SysRole;
 import org.nutz.dao.Chain;
@@ -29,7 +29,7 @@ public class ISysRoleService extends BaseServiceImpl<SysRole> {
      * @param role       name:角色名称,code:角色唯一编码
      * @return           分页列表
      */
-    public Object list(Integer page, int pageSize, SysRole role) {
+    public Pagination<SysRole> list(Integer page, int pageSize, SysRole role) {
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:角色名称
         if(Strings.isNotBlank(role.getName())){

@@ -9,6 +9,7 @@ import com.yunqi.starter.common.lang.Lang;
 import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.common.lang.mvc.Mvcs;
 import com.yunqi.starter.common.lang.util.NutMap;
+import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.common.utils.IPUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.starter.security.utils.SecurityUtil;
@@ -45,7 +46,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      * @param user       name:用户账号,nickname:用户姓名
      * @return           分页列表
      */
-    public Object list(Integer page, int pageSize, SysUser user) {
+    public Pagination<SysUser> list(Integer page, int pageSize, SysUser user) {
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:用户账号
         if(Strings.isNotBlank(user.getDeptId())){
