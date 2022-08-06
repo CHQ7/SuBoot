@@ -3,19 +3,18 @@
 
 import { MessageBox } from 'element-ui'
 import store from '@/store'
+import { getToken } from '@/common/auth'
 
 const install = (Vue, vm) => {
   Vue.prototype.$u.http.setConfig({
     // 请求的根域名
-    baseURL: vm.domain + '/nt',
-    headers: {
-      'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
-    },
-    dataType: 'form'
+    baseURL: vm.domain + '/nt'
   })
   // 请求拦截，配置Token等参数
   Vue.prototype.$u.http.interceptors.request = (config) => {
-    config.headers['x-token2'] = '2222222'
+    if (getToken()) {
+      config.headers['x-token'] = getToken()
+    }
     return config
   }
   // 响应拦截，判断状态码是否通过

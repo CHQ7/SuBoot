@@ -1,5 +1,6 @@
 package com.yunqi.system.controller;
 
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
@@ -7,10 +8,7 @@ import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysConfig;
 import com.yunqi.system.service.ISysConfigService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -26,15 +24,15 @@ public class SysConfigController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.conf")
-    public Result list(Integer page,Integer pageSize, SysConfig conf) {
-        return Result.success().addData(sysConfigService.list(page, pageSize, conf));
+    public Result list(@RequestBody QueryBody query) {
+        return Result.success().addData(sysConfigService.list(query));
     }
 
 
     @PostMapping("/create")
     @RequiresPermissions("sys.conf.create")
     @SLog(tag = "系统参数",  type = LogType.INSERT)
-    public Result create(@Validated SysConfig conf) {
+    public Result create(@Validated @RequestBody SysConfig conf) {
         sysConfigService.create(conf);
         return Result.success();
     }
@@ -50,7 +48,7 @@ public class SysConfigController {
     @PostMapping("/update")
     @RequiresPermissions("sys.conf.update")
     @SLog(tag = "系统参数",  type = LogType.UPDATE)
-    public Result update(@Validated SysConfig conf) {
+    public Result update(@Validated @RequestBody SysConfig conf) {
         sysConfigService.update(conf);
         return Result.success();
     }

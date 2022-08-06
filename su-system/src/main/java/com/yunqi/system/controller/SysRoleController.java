@@ -1,5 +1,6 @@
 package com.yunqi.system.controller;
 
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
@@ -32,15 +33,15 @@ public class SysRoleController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.role")
-    public Result list(Integer page,Integer pageSize, SysRole role) {
-        return Result.success().addData(sysRoleService.list(page, pageSize, role));
+    public Result list(@RequestBody QueryBody query) {
+        return Result.success().addData(sysRoleService.list(query));
     }
 
 
     @PostMapping("/create")
     @RequiresPermissions("sys.role.create")
     @SLog(tag = "系统角色", type = LogType.INSERT)
-    public Result create(@Validated SysRole role) {
+    public Result create(@Validated @RequestBody SysRole role) {
         sysRoleService.create(role);
         return Result.success();
     }
@@ -56,7 +57,7 @@ public class SysRoleController {
     @PostMapping("/update")
     @RequiresPermissions("sys.role.update")
     @SLog(tag = "系统角色",  type = LogType.UPDATE)
-    public Result update(@Validated SysRole role) {
+    public Result update(@Validated @RequestBody SysRole role) {
         sysRoleService.update(role);
         return Result.success();
     }
@@ -85,8 +86,8 @@ public class SysRoleController {
 
     @PostMapping("/doMenu")
     @RequiresPermissions("sys.role.menu")
-    public Result doMenu(@RequestParam String menuIds, @RequestParam String roleId) {
-        sysRoleService.saveMenu(menuIds.split(","), roleId);
+    public Result doMenu(@RequestBody QueryBody query) {
+        sysRoleService.saveMenu(query.getString("menuIds").split(","), query.getString("roleId"));
         return Result.success();
     }
 

@@ -2,6 +2,7 @@ package com.yunqi.system.controller;
 
 
 import com.yunqi.starter.common.lang.util.NutMap;
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.security.annotation.RequiresAuthentication;
 import com.yunqi.starter.security.spi.StpUtil;
@@ -10,10 +11,7 @@ import com.yunqi.system.models.SysUser;
 import com.yunqi.system.service.ISysMenuService;
 import com.yunqi.system.service.ISysUserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -31,15 +29,19 @@ public class SysAuthController {
     @Resource
     ISysMenuService sysMenuService;
 
+
     /**
-     * 用户登录
-     * @param username
-     * @param password
-     * @return
+     * 账号密码登录
+     * @param query         请求参数
+     * @return              统一数据返回格式
+     * <br>
+     * 请求参数：<br>
+     * username             账号<br>
+     * passowrd             密码
      */
     @PostMapping("/login")
-    public Result login(@RequestParam("username") String username, @RequestParam("password") String password) {
-        SysUser user = sysUserService.loginByPassword(username, password);
+    public Result login(@RequestBody QueryBody query) {
+        SysUser user = sysUserService.loginByPassword(query.getString("username"), query.getString("password"));
         // 登录并检查当前会话是否已经登录
         StpUtil.login(user.getId());
         StpUtil.checkLogin();
@@ -51,14 +53,7 @@ public class SysAuthController {
         SecurityUtil.setUserName(user.getUsername());
         SecurityUtil.setUserNickname(user.getNickname());
 
-        NutMap map = new NutMap();
-        map.addv("token", StpUtil.getTokenValue());
-        map.addv("user", user);
-        map.addv("menus", sysMenuService.all());
-        map.addv("avatar", user.getAvatar());
-        map.addv("nickname", user.getNickname());
-        map.addv("roles", sysUserService.getRoleList(user.getId()));
-        return Result.success().addData(map);
+        return Result.success().addData(StpUtil.getTokenValue());
     }
 
 
@@ -76,14 +71,13 @@ public class SysAuthController {
 
     /**
      * 修改密码
-     * @param oldPassword 原密码
-     * @param newPassword 新密码
-     * @return            操作结果
+     * @param query         请求参数
+     * @return              操作结果
      */
-    @PostMapping("/updatePwd")
+    @PostMapping("/updatePassword")
     @RequiresAuthentication
-    public Result updatePwd(@RequestParam("oldPassword") String oldPassword, @RequestParam("newPassword") String newPassword) {
-        sysUserService.updatePwd(oldPassword,newPassword);
+    public Result updatePassword(@RequestBody QueryBody query) {
+        sysUserService.updatePassword(query.getString("oldPassword"),query.getString("newPassword"));
         return Result.success();
     }
 

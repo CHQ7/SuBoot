@@ -1,10 +1,11 @@
 package com.yunqi.system.controller;
 
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.security.annotation.RequiresPermissions;
-import com.yunqi.system.models.SysAuthLog;
 import com.yunqi.system.service.ISysAuthLogService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,8 @@ public class SysAuthLogController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.auth.log")
-    public Result list(Integer page, Integer pageSize, String beginTime, String endTime, SysAuthLog sysAuthLog) {
-        return Result.success().addData(sysAuthLogService.list(page, pageSize, beginTime, endTime, sysAuthLog));
+    public Result list(@RequestBody QueryBody query) {
+        return Result.success().addData(sysAuthLogService.list(query));
     }
 
 }

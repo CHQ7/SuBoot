@@ -111,13 +111,13 @@
       </u-table>
     </u-page>
 
-    <u-dialog :title="textMap[dialogStatus]" :show.sync="dialogFormVisible" @confirm="dialogStatus==='create'?hdlCreate():hdlUpdate()">
+    <u-dialog :title="textMap[dialogStatus]" :show.sync="dialogFormVisible" @confirm="dialogStatus==='create'?hdlCreate():handleUpdate()">
 
       <el-form ref="dialogForm" :rules="rules" :model="dataForm" label-width="80px">
 
         <el-row>
           <el-col :span="12">
-            <el-form-item prop="name" label="账号">
+            <el-form-item prop="username" label="账号">
               <el-input v-model="dataForm.username" placeholder="请输入账号" clearable minlength="4" maxlength="20" show-word-limit />
             </el-form-item>
 
@@ -139,7 +139,7 @@
             </el-form-item>
 
             <el-form-item prop="roleIds" label="角色">
-              <el-select v-model="dataForm.roleIds" multiple placeholder="请选择角色" style="width: 100%">
+              <el-select v-model="dataForm.roleIds" multiple placeholder="请选择角色" style="width: 100%" @change="handleSelectRole">
                 <el-option
                   v-for="item in roleData"
                   :key="item.id"
@@ -242,7 +242,7 @@ export default {
             }
           }
         },
-        /*{
+        /* {
           prop: 'online',
           label: '在线状态',
           render: (h, params) => {
@@ -348,34 +348,17 @@ export default {
         this.roleData = res.data
       })
     },
-    // 获取列表数据
-    hdlList() {
-      const self = this
-      // 打开加载状态
-      self.listLoading = true
-      // 查询分页数据
-      self.api.list(self.listQuery).then(res => {
-        // 获取分页列表数据
-        self.list = res.data.list
-        self.list.forEach((item, index) => {
-          self.list[index].roleIds = item.roles.map(v => {
-            return v.id
-          })
-        })
-        console.log(JSON.stringify(self.list))
-        /* item.roles.map(item => })
-         if (item1.id === item) {
-           item1.fcate = fcate
-           item1.scate = scate
-           item1.tcate = tcate
-         }*/
-        // 获取分页数据,总页数
-        self.listQuery.totalCount = res.data.totalCount
-        // 关闭加载状态
-        setTimeout(() => {
-          self.listLoading = false
-        }, 0.5 * 1000)
-      })
+    // 角色选择事件
+    handleSelectRole(ids) {
+      // 处理数据角色显示问题
+      // 匹配角色信息
+      const roles = ids.map(item => this.roleData.filter(role => role.id === item)[0])
+      // 赋值角色组
+      this.dataForm.roles = roles
+      // 回显角色
+      this.dataForm.roleIds = roles.map(item => { return item.id })
+
+      console.log(this.dataForm)
     },
     // 提交创建数据事件
     hdlCreate() {
@@ -397,28 +380,36 @@ export default {
         }
       })
     },
-    // 提交更新数据事件
-    hdlUpdate() {
+    /**
+     * 获取列表数据
+     */
+    hdlList() {
       const self = this
-      // 效验数据格式
-      self.$refs['dialogForm'].validate((valid) => {
-        if (valid) {
-          const data = Object.assign({}, self.dataForm)
-          delete data.dept
-          delete data.roles
-          delete data.depts
-          data.roleIds = data.roleIds.toString()
-          // 提交更新数据
-          self.api.update(data).then(() => {
-            // 刷新数据列表
-            self.hdlList()
-            // 关闭弹窗状态
-            self.dialogFormVisible = false
-            // 通知信息
-            self.$u.msg('更新成功')
-          })
-        }
+      // 打开加载状态
+      self.listLoading = true
+      // 查询分页数据
+      self.api.list(self.listQuery).then(res => {
+        // 获取分页列表数据
+        self.list = res.data.list
+        // 获取分页数据,总页数
+        self.listQuery.totalCount = res.data.totalCount
+        // 处理数据角色显示问题
+        self.list.forEach((item, index) => {
+          self.list[index].roleIds = item.roles.map(v => { return v.id })
+        })
+        // 关闭加载状态
+        setTimeout(() => {
+          self.listLoading = false
+        }, 0.5 * 1000)
       })
+    },
+    // 提交更新数据事件
+    handleUpdate() {
+      const self = this
+      const data = Object.assign({}, self.dataForm)
+      delete data.dept
+      delete data.depts
+      this.hdlUpdate()
     },
     // 重置用户密码事件
     handleResetPassword(row) {

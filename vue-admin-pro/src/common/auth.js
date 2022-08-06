@@ -1,6 +1,6 @@
 import cookies from '@/design/libs/function/cookies'
 
-const TokenKey = 'Admin-Token'
+const TokenKey = 'x-token'
 
 export function getToken() {
   return cookies.get(TokenKey)

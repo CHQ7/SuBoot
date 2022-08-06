@@ -1,6 +1,7 @@
 package com.yunqi.system.controller;
 
 
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
@@ -9,10 +10,7 @@ import com.yunqi.system.models.SysTask;
 import com.yunqi.system.service.ISysTaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -30,15 +28,15 @@ public class SysTaskController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.task")
-    public Result list(Integer page, Integer pageSize, SysTask sysTask) {
-        return Result.success().addData(sysTaskService.list(page, pageSize, sysTask));
+    public Result list(@RequestBody QueryBody query) {
+        return Result.success().addData(sysTaskService.list(query));
     }
 
 
     @PostMapping("/create")
     @RequiresPermissions("sys.task.create")
     @SLog(tag = "系统任务",  type = LogType.INSERT)
-    public Result create(@Validated SysTask task) {
+    public Result create(@Validated @RequestBody SysTask task) {
         sysTaskService.create(task);
         return Result.success();
     }
@@ -54,7 +52,7 @@ public class SysTaskController {
     @PostMapping("/update")
     @RequiresPermissions("sys.task.update")
     @SLog(tag = "系统任务",  type = LogType.UPDATE)
-    public Result update(@Validated SysTask task) {
+    public Result update(@Validated @RequestBody SysTask task) {
         sysTaskService.update(task);
         return Result.success();
     }

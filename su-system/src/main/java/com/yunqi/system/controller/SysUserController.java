@@ -1,5 +1,6 @@
 package com.yunqi.system.controller;
 
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
@@ -9,10 +10,7 @@ import com.yunqi.system.service.ISysDeptService;
 import com.yunqi.system.service.ISysRoleService;
 import com.yunqi.system.service.ISysUserService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -35,15 +33,15 @@ public class SysUserController {
 
     @PostMapping("/list")
     @RequiresPermissions("sys.user")
-    public Result list(Integer page, Integer pageSize, SysUser user) {
-        return Result.success().addData(sysUserService.list(page,pageSize,user));
+    public Result list(@RequestBody QueryBody query) {
+        return Result.success().addData(sysUserService.list(query));
     }
 
     @PostMapping("/create")
     @RequiresPermissions("sys.user.create")
     @SLog(tag = "系统用户",  type = LogType.INSERT)
-    public Result create(@Validated SysUser user, String roleIds) {
-        sysUserService.create(user, roleIds.split(","));
+    public Result create(@Validated @RequestBody SysUser user) {
+        sysUserService.create(user);
         return Result.success();
     }
 
@@ -57,8 +55,8 @@ public class SysUserController {
     @PostMapping("/update")
     @RequiresPermissions("sys.user.update")
     @SLog(tag = "系统用户",  type = LogType.UPDATE)
-    public Result update(@Validated SysUser user, String roleIds) {
-        sysUserService.update(user, roleIds.split(","));
+    public Result update(@Validated @RequestBody SysUser user) {
+        sysUserService.update(user);
         return Result.success();
     }
 

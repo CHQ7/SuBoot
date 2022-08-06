@@ -1,6 +1,7 @@
 package com.yunqi.system.controller;
 
 
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
 import com.yunqi.starter.log.enums.LogType;
@@ -8,10 +9,7 @@ import com.yunqi.starter.security.annotation.RequiresPermissions;
 import com.yunqi.system.models.SysMenu;
 import com.yunqi.system.service.ISysMenuService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -36,7 +34,7 @@ public class SysMenuController {
     @PostMapping("/create")
     @RequiresPermissions("sys.menu.create")
     @SLog(tag = "系统菜单",  type = LogType.INSERT)
-    public Result create(@Validated SysMenu menu) {
+    public Result create(@Validated @RequestBody SysMenu menu) {
         sysMenuService.create(menu);
         return Result.success();
     }
@@ -51,7 +49,7 @@ public class SysMenuController {
     @PostMapping("/update")
     @RequiresPermissions("sys.menu.update")
     @SLog(tag = "系统菜单",  type = LogType.UPDATE)
-    public Result update(@Validated SysMenu menu) {
+    public Result update(@Validated @RequestBody SysMenu menu) {
         sysMenuService.update(menu);
         return Result.success();
     }
@@ -67,8 +65,8 @@ public class SysMenuController {
     @PostMapping("/sort")
     @RequiresPermissions("sys.menu.sort")
     @SLog(tag = "系统菜单",  type = LogType.SORT)
-    public Result sort(String ids){
-        sysMenuService.sort(ids);
+    public Result sort(@RequestBody QueryBody query){
+        sysMenuService.sort(query.getString("ids"));
         return Result.success();
     }
 

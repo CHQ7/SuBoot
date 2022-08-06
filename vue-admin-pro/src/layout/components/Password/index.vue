@@ -53,7 +53,7 @@ export default {
       self.$refs['dialogForm'].validate((valid) => {
         if (valid) {
           self.$confirm('确认更改密码 ', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
-            self.api.changePassword(self.dataForm).then(() => {
+            self.api.updatePassword(self.dataForm).then(() => {
               self.$u.msg('更改成功')
               self.dataForm = {}
             })

@@ -38,7 +38,6 @@ public class ISysMenuService extends BaseServiceImpl<SysMenu> {
     /**
      * 创建菜单
      * @param menu  菜单
-     * @return      插入后的对象
      */
     @Transactional
     public void create(SysMenu menu) {
@@ -126,14 +125,16 @@ public class ISysMenuService extends BaseServiceImpl<SysMenu> {
      */
     @Transactional
     public void sort(String ids){
-        String[] menuIds =  ids.split(",");
-        int i = 0;
-        // 批量更新
-        this.execute(Sqls.create("update ims_sys_menu set location=0"));
-        for (String s : menuIds) {
-            if (Strings.isNotBlank(s)) {
-                this.update(Chain.make("location", i), Cnd.where("id", "=", s));
-                i++;
+        if(Strings.isNotBlank(ids)){
+            String[] menuIds =  ids.split(",");
+            int i = 0;
+            // 批量更新
+            this.execute(Sqls.create("update ims_sys_menu set location=0"));
+            for (String s : menuIds) {
+                if (Strings.isNotBlank(s)) {
+                    this.update(Chain.make("location", i), Cnd.where("id", "=", s));
+                    i++;
+                }
             }
         }
     }

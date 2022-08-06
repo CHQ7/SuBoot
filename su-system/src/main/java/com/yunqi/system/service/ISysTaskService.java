@@ -3,6 +3,7 @@ package com.yunqi.system.service;
 
 import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.common.lang.Strings;
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.starter.quartz.entity.QuartzJob;
@@ -28,20 +29,18 @@ public class ISysTaskService extends BaseServiceImpl<SysTask> {
 
     /**
      * 任务列表
-     * @param page       页码
-     * @param pageSize   每页几条数据
-     * @param task       name:任务名称
-     * @return           分页列表
+     * @param query         请求参数
+     * @return              分页列表
      */
-    public Pagination<SysTask> list(Integer page, int pageSize, SysTask task){
+    public Pagination<SysTask> list(QueryBody query){
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:任务名称
-        if(Strings.isNotBlank(task.getName())){
-            cnd.and("name", "like", "%" + task.getName() + "%");
+        if(Strings.isNotBlank(query.getString("name"))){
+            cnd.and("name", "like", "%" + query.getString("name") + "%");
         }
         // 创建时间倒序
         cnd.desc("createdAt");
-        return this.listPage(page, pageSize, cnd);
+        return this.listPage(query.page(), query.pageSize(), cnd);
     }
 
     /**

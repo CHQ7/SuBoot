@@ -12,7 +12,7 @@ export default {
   // 获取数据
   info: (token) => http.post(BASE_URL + '/info', { token }),
   // 更新密码
-  changePassword: data => http.post(BASE_URL + '/updatePwd', data),
+  updatePassword: data => http.post(BASE_URL + '/updatePassword', data),
   // 验证码
   captcha: BASE_URL + '/captcha'
 }

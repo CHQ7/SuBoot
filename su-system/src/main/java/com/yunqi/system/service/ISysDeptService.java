@@ -80,7 +80,7 @@ public class ISysDeptService extends BaseServiceImpl<SysDept> {
                 throw new BizException("组织唯一编码已存在");
             }
             // 默认组织禁止更改
-            if(!oldDept.getCode().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_DEPT)){
+            if(oldDept.getCode().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_DEPT)){
                 throw new BizException("默认组织禁止更改");
             }
         }
@@ -109,17 +109,20 @@ public class ISysDeptService extends BaseServiceImpl<SysDept> {
 
     /**
      * 组织排序
-     * @param ids   组织ID数组
+     * @param ids   组织ID字符串数组
      */
     @Transactional
-    public void sort(String[] ids){
-        int i = 0;
-        // 批量更新
-        this.execute(Sqls.create("update ims_sys_dept set location=0"));
-        for (String s : ids) {
-            if (Strings.isNotBlank(s)) {
-                this.update(Chain.make("location", i), Cnd.where("id", EQ, s));
-                i++;
+    public void sort(String ids){
+        if(Strings.isNotBlank(ids)){
+            String[] idArr = ids.split(",");
+            int i = 0;
+            // 批量更新
+            this.execute(Sqls.create("update ims_sys_dept set location=0"));
+            for (String s : idArr) {
+                if (Strings.isNotBlank(s)) {
+                    this.update(Chain.make("location", i), Cnd.where("id", EQ, s));
+                    i++;
+                }
             }
         }
     }

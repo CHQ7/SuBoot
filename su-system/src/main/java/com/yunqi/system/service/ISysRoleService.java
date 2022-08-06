@@ -4,6 +4,7 @@ package com.yunqi.system.service;
 import com.yunqi.starter.common.constant.GlobalConstant;
 import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.common.lang.Strings;
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysMenu;
@@ -24,24 +25,22 @@ public class ISysRoleService extends BaseServiceImpl<SysRole> {
 
     /**
      * 角色列表
-     * @param page       页码
-     * @param pageSize   每页几条数据
-     * @param role       name:角色名称,code:角色唯一编码
-     * @return           分页列表
+     * @param query         请求参数
+     * @return              分页列表
      */
-    public Pagination<SysRole> list(Integer page, int pageSize, SysRole role) {
+    public Pagination<SysRole> list(QueryBody query ) {
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:角色名称
-        if(Strings.isNotBlank(role.getName())){
-            cnd.and("name", "like", "%" + role.getName() + "%");
+        if(Strings.isNotBlank(query.getString("name"))){
+            cnd.and("name", "like", "%" + query.getString("name") + "%");
         }
         // 模糊查询:角色唯一编码
-        if(Strings.isNotBlank(role.getCode())){
-            cnd.and("code", "like", "%" + role.getCode() + "%");
+        if(Strings.isNotBlank(query.getString("code"))){
+            cnd.and("code", "like", "%" + query.getString("code") + "%");
         }
         // 创建时间倒序
         cnd.desc("location").desc("createdAt");
-        return this.listPage(page, pageSize, cnd);
+        return this.listPage(query.page(),query.pageSize(), cnd);
     }
 
 

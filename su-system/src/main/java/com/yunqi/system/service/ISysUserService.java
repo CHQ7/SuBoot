@@ -9,6 +9,7 @@ import com.yunqi.starter.common.lang.Lang;
 import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.common.lang.mvc.Mvcs;
 import com.yunqi.starter.common.lang.util.NutMap;
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.common.utils.IPUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
@@ -16,6 +17,7 @@ import com.yunqi.starter.security.utils.SecurityUtil;
 import com.yunqi.system.models.SysAuthLog;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.models.SysUser;
+import lombok.extern.slf4j.Slf4j;
 import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
 import org.nutz.lang.random.R;
@@ -30,6 +32,7 @@ import java.util.List;
 /**
  * Created by @author CHQ on 2022/6/15
  */
+@Slf4j
 @Service
 public class ISysUserService extends BaseServiceImpl<SysUser> {
 
@@ -41,28 +44,26 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
 
     /**
      * 用户列表
-     * @param page       页码
-     * @param pageSize   每页几条数据
-     * @param user       name:用户账号,nickname:用户姓名
-     * @return           分页列表
+     * @param query         请求参数
+     * @return              分页列表
      */
-    public Pagination<SysUser> list(Integer page, int pageSize, SysUser user) {
+    public Pagination<SysUser> list(QueryBody query ) {
         Cnd cnd =  Cnd.NEW();
         // 模糊查询:用户账号
-        if(Strings.isNotBlank(user.getDeptId())){
-            cnd.and("deptId", "=",  user.getDeptId() );
+        if(Strings.isNotBlank(query.getString("deptId"))){
+            cnd.and("deptId", "=", query.getString("deptId") );
         }
         // 模糊查询:用户账号
-        if(Strings.isNotBlank(user.getNickname())){
-            cnd.and("username", "like", "%" + user.getUsername() + "%");
+        if(Strings.isNotBlank(query.getString("username"))){
+            cnd.and("username", "like", "%" + query.getString("username") + "%");
         }
         // 模糊查询:用户姓名
-        if(Strings.isNotBlank(user.getNickname())){
-            cnd.and("nickname", "like", "%" + user.getNickname() + "%");
+        if(Strings.isNotBlank(query.getString("nickname"))){
+            cnd.and("nickname", "like", "%" + query.getString("nickname") + "%");
         }
         // 创建时间倒序
         cnd.desc("createdAt");
-        return this.listPageLinks(page, pageSize, cnd,"^(dept|roles)$");
+        return this.listPageLinks(query.page(), query.pageSize(), cnd,"^(dept|roles)$");
     }
 
     /**
@@ -76,10 +77,10 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
 
     /**
      * 创建用户
-     * @param user 用户
+     * @param user      创建用户信息
      */
     @Transactional
-    public void create(SysUser user,  String[] roleIds) {
+    public void create(SysUser user) {
         // 检查:账号是否存在
         if (this.count(Cnd.where("username","=", user.getUsername())) > 0) {
             throw new BizException("账号已存在");
@@ -106,20 +107,21 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         // 初始化登录次数
         user.setLoginCount(0);
         this.insert(user);
+
         // 创建用户关联角色
-        if (roleIds != null) {
-            for (String roleId : roleIds) {
-                this.dao().insert("ims_sys_user_role", Chain.from(NutMap.NEW().addv("roleId", roleId).addv("userId", user.getId())));
+        if (user.getRoles() != null) {
+            for (SysRole role : user.getRoles()) {
+                this.dao().insert("ims_sys_user_role", Chain.from(NutMap.NEW().addv("roleId", role.getId()).addv("userId", user.getId())));
             }
         }
     }
 
     /**
      * 更新用户
-     * @param user 用户
+     * @param user      更新用户信息
      */
     @Transactional
-    public void update(SysUser user, String[] roleIds) {
+    public void update(SysUser user) {
         SysUser oldUser = this.fetch(user.getId());
         if(oldUser == null){
             throw new BizException("未知用户");
@@ -140,11 +142,13 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         user.setPassword(null);
         user.setSalt(null);
         this.updateIgnoreNull(user);
-        // 清除该管理员对应角色
+        // 清除该用户对应角色
         this.dao().clear("ims_sys_user_role", Cnd.where("userId", "=", user.getId()));
-        // 为管理员添加对应角色
-        for (String roleId : roleIds) {
-            this.dao().insert("ims_sys_user_role", Chain.from(NutMap.NEW().addv("roleId", roleId).addv("userId", user.getId())));
+        // 为用户添加对应角色
+        if (user.getRoles() != null) {
+            for (SysRole role : user.getRoles()) {
+                this.dao().insert("ims_sys_user_role", Chain.from(NutMap.NEW().addv("roleId", role.getId()).addv("userId", user.getId())));
+            }
         }
     }
 
@@ -226,16 +230,16 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
 
     /**
      * 账号密码登录
-     * @param username     账号
-     * @param passowrd      密码
-     * @return              用户
+     * @param username      用户账号
+     * @param password      用户密码
+     * @return              用户信息
      */
-    public SysUser loginByPassword(String username, String passowrd) {
+    public SysUser loginByPassword(String username, String password) {
         SysUser user = this.fetchByUsername(username);
         if (user == null) {
             throw new BizException("账号不存在");
         }
-        String hashedPassword = hashPassword(passowrd, user.getSalt());
+        String hashedPassword = hashPassword(password, user.getSalt());
         if (!Strings.sNull(hashedPassword).equalsIgnoreCase(user.getPassword())) {
             throw new BizException("账号密码不正确");
         }
@@ -270,7 +274,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         user.setLoginOs(ua.getPlatform().getName() + "_"  + ua.getOsVersion());
         // 标记登录状态
         user.setOnline(true);
-        this.update(user);
+        this.updateIgnoreNull(user);
         // *========异步记录数据库日志=========*
         SysAuthLog log = new SysAuthLog();
         log.setTag("用户登陆");
@@ -330,7 +334,10 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         return password;
     }
 
-    public void updatePwd(String oldPwd, String newPwd){
+    public void updatePassword(String oldPwd, String newPwd){
+        if(Strings.isBlank(oldPwd) || Strings.isBlank(newPwd)){
+            throw new BizException("缺少参数");
+        }
         if(!(newPwd.length() >= 6 && newPwd.length()<= 20)){
             throw new BizException("新密码长度必须是6-20位");
         }
