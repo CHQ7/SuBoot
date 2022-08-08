@@ -13,11 +13,11 @@ import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.common.utils.IPUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
+import com.yunqi.starter.security.spi.StpUtil;
 import com.yunqi.starter.security.utils.SecurityUtil;
 import com.yunqi.system.models.SysAuthLog;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.models.SysUser;
-import lombok.extern.slf4j.Slf4j;
 import org.nutz.dao.Chain;
 import org.nutz.dao.Cnd;
 import org.nutz.lang.random.R;
@@ -32,12 +32,14 @@ import java.util.List;
 /**
  * Created by @author CHQ on 2022/6/15
  */
-@Slf4j
 @Service
 public class ISysUserService extends BaseServiceImpl<SysUser> {
 
     @Resource
     ISysRoleService sysRoleService;
+
+    @Resource
+    ISysMenuService sysMenuService;
 
     @Resource
     ISysAuthLogService sysAuthLogService;
@@ -236,26 +238,35 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      * 账号密码登录
      * @param username      用户账号
      * @param password      用户密码
-     * @return              用户信息
+     * @return              当前会话的Token信息
      */
-    public SysUser loginByPassword(String username, String password) {
+    public String loginByPassword(String username, String password) {
+        // 1、获取用户信息
         SysUser user = this.fetchByUsername(username);
+        // 2、验证用户账号
         if (user == null) {
-            throw new BizException("账号不存在");
+            throw new BizException("账号密码不正确");
         }
-        String hashedPassword = hashPassword(password, user.getSalt());
-        if (!Strings.sNull(hashedPassword).equalsIgnoreCase(user.getPassword())) {
+        if (!Strings.sNull(hashPassword(password, user.getSalt())).equalsIgnoreCase(user.getPassword())) {
             throw new BizException("账号密码不正确");
         }
         if (!user.isDisabled()) {
             throw new BizException("账号被禁用");
         }
-        return user;
+        // 3、登录账号
+        StpUtil.login(user.getId());
+        // 4、检验当前会话是否已经登录，如未登录，则抛出异
+        StpUtil.checkLogin();
+        // 5、设置当前会话用户ID
+        SecurityUtil.setUserName(user.getUsername());
+        // 6、设置当前会话用户名
+        SecurityUtil.setUserNickname(user.getNickname());
+        // 7、记录用户登录信息
+        loginInfo(user, "用户登录", "账号密码登录");
+        // 8、获取当前会话的Token信息
+        return StpUtil.getTokenValue();
     }
 
-    public void loginInfo(SysUser user,  String msg){
-        loginInfo(user, "用户登录", msg);
-    }
 
     /**
      * 记录用户登录信息
@@ -286,30 +297,60 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         user.setOnline(true);
         this.updateIgnoreNull(user);
         // *========异步记录数据库日志=========*
-        SysAuthLog log = new SysAuthLog();
-        log.setTag(tag);
-        log.setMsg(msg);
-        log.setName(user.getNickname());
-        sysAuthLogService.saveLog(req, log);
+        this.authLog(tag, msg);
     }
 
     /**
-     * 记录用户登出信息
-     * @param userId 用户ID
+     * 获取用户信息
+     * @return  返回组装信息
      */
-    public void logoutInfo(String userId){
-        // *========获取请求=========*
-        HttpServletRequest req  = Mvcs.getReq();
+    public NutMap userInfo(){
+        // 1、获取当前会话账号id
+        SysUser user = this.fetch(SecurityUtil.getUserId());
+        // 2、返回组装信息
+        NutMap map = new NutMap();
+        map.addv("avatar", user.getAvatar());
+        map.addv("menus", sysMenuService.all());
+        map.addv("nickname", user.getNickname());
+        map.addv("roles", this.getRoleList(user.getId()));
+        return map;
+    }
+
+    /**
+     * 用户退出登录
+     */
+    public void logout(){
+        // 1、获取当前会话账号id
+        String userId = SecurityUtil.getUserId();
+        // 2、记录用户退出信息
         SysUser user = this.fetch(userId);
-        // 标记退出状态
         user.setOnline(false);
         this.updateIgnoreNull(user);
-        // *========异步记录数据库日志=========*
-        SysAuthLog log = new SysAuthLog();
-        log.setTag("用户登出");
-        log.setMsg("退出系统");
-        log.setName(user.getNickname());
-        sysAuthLogService.saveLog(req, log);
+        // 3、异步记录登录日志
+        this.authLog("用户登出", "退出系统");
+        // 4、注销当前会话账号id
+        StpUtil.logout(userId);
+    }
+
+    /**
+     * 记录登录日志
+     * @param tag   日志标签
+     * @param msg   日志内容
+     */
+    public void authLog(String tag, String msg){
+        // *========异步记录数据库日志 begin =========*
+        SysAuthLog authLog = new SysAuthLog();
+        authLog.setTag(tag);
+        authLog.setMsg(msg);
+        authLog.setName(SecurityUtil.getUserNickname());
+        authLog.setCreatedById(SecurityUtil.getUserId());
+        authLog.setCreatedBy(SecurityUtil.getUserNickname());
+        authLog.setUpdatedById(SecurityUtil.getUserId());
+        authLog.setUpdatedBy(SecurityUtil.getUserNickname());
+        // 获取请求
+        HttpServletRequest req  = Mvcs.getReq();
+        sysAuthLogService.saveLog(req, authLog);
+        // *========异步记录数据库日志 end =========*
     }
 
 
@@ -344,6 +385,11 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         return password;
     }
 
+    /**
+     * 修改密码
+     * @param oldPwd    旧密码
+     * @param newPwd    新密码
+     */
     public void updatePassword(String oldPwd, String newPwd){
         if(Strings.isBlank(oldPwd) || Strings.isBlank(newPwd)){
             throw new BizException("缺少参数");

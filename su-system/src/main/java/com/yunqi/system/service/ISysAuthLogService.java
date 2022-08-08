@@ -46,29 +46,29 @@ public class ISysAuthLogService extends BaseServiceImpl<SysAuthLog> {
     }
 
     /**
-     * 异步创建日志
-     * @param log   日志
+     * 异步创建登录日志
+     * @param authLog   登录日志
      */
     @Async
-    public void saveLog(HttpServletRequest req,SysAuthLog log) {
+    public void saveLog(HttpServletRequest req,SysAuthLog authLog) {
         // ========================================== 开始请求日志 ==========================================
         // 获取终端信息
         final UserAgent ua = UserAgentUtil.parse(req.getHeader("User-Agent"));
 
         // *========数据库日志=========*
         // 获取请求地址
-        log.setUrl(req.getRequestURI());
+        authLog.setUrl(req.getRequestURI());
         // 获取请求方式
-        log.setMethod(req.getMethod());
+        authLog.setMethod(req.getMethod());
         // 获取客户端
-        log.setBrowser(ua.getBrowser().getName() + "_" + ua.getVersion());
+        authLog.setBrowser(ua.getBrowser().getName() + "_" + ua.getVersion());
         // 获取操作系统
-        log.setOs(ua.getPlatform().getName() + "_"  + ua.getOsVersion());
+        authLog.setOs(ua.getPlatform().getName() + "_"  + ua.getOsVersion());
         // 获取IP地址
         String ip = Lang.getIP(req);
-        log.setIp(ip);
+        authLog.setIp(ip);
         // 获取IP归属地
-        log.setLocation(IPUtil.getIPAddress(ip));
-        this.insert(log);
+        authLog.setLocation(IPUtil.getIPAddress(ip));
+        this.insert(authLog);
     }
 }
