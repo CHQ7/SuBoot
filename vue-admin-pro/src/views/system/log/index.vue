@@ -19,8 +19,8 @@
           <el-form-item label="操作人">
             <el-input v-model="listQuery.name" placeholder="请输入操作人" clearable />
           </el-form-item>
-          <el-form-item label="IP地址">
-            <el-input v-model="listQuery.ip" placeholder="请输入IP地址" clearable />
+          <el-form-item label="操作地址">
+            <el-input v-model="listQuery.ip" placeholder="请输入操作地址" clearable />
           </el-form-item>
           <el-form-item label="操作地点">
             <el-input v-model="listQuery.location" placeholder="请输入操作地点" clearable />
@@ -113,30 +113,22 @@ export default {
         },
         {
           prop: 'msg',
-          label: '执行动作',
-          align: 'left'
-        },
-        {
-          prop: 'ip',
-          label: 'IP地址',
-          align: 'left'
-        },
-        {
-          prop: 'location',
-          label: '操作地点',
-          align: 'left'
-        },
-        {
-          prop: 'createdAt',
-          label: '操作时间',
-          sortable: true,
-          timestamp: true,
+          label: '操作类型',
           align: 'left'
         },
         {
           prop: 'createdBy',
           label: '操作人',
-          sortable: true,
+          align: 'left'
+        },
+        {
+          prop: 'ip',
+          label: '操作地址',
+          align: 'left'
+        },
+        {
+          prop: 'location',
+          label: '操作地点',
           align: 'left'
         },
         {
@@ -152,6 +144,13 @@ export default {
             }
             return h('el-tag', { props: { size: 'small', type: type }}, title)
           }
+        },
+        {
+          prop: 'createdAt',
+          label: '操作时间',
+          sortable: true,
+          timestamp: true,
+          align: 'left'
         },
         {
           prop: 'executeTime',

@@ -84,12 +84,12 @@ export default {
         },
         {
           prop: 'ip',
-          label: 'IP',
+          label: '操作地址',
           align: 'left'
         },
         {
           prop: 'location',
-          label: 'IP地址',
+          label: '操作地点',
           align: 'left'
         },
         {

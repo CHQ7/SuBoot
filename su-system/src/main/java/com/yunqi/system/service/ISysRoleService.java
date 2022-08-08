@@ -38,6 +38,10 @@ public class ISysRoleService extends BaseServiceImpl<SysRole> {
         if(Strings.isNotBlank(query.getString("code"))){
             cnd.and("code", "like", "%" + query.getString("code") + "%");
         }
+        // 查询:角色状态
+        if(Strings.isNotBlank(query.getString("disabled"))){
+            cnd.and("disabled", "=",  query.getString("disabled") );
+        }
         // 创建时间倒序
         cnd.desc("location").desc("createdAt");
         return this.listPage(query.page(),query.pageSize(), cnd);

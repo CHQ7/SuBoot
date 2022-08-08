@@ -61,6 +61,10 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         if(Strings.isNotBlank(query.getString("nickname"))){
             cnd.and("nickname", "like", "%" + query.getString("nickname") + "%");
         }
+        // 查询:用户状态
+        if(Strings.isNotBlank(query.getString("disabled"))){
+            cnd.and("disabled", "=",  query.getString("disabled") );
+        }
         // 创建时间倒序
         cnd.desc("createdAt");
         return this.listPageLinks(query.page(), query.pageSize(), cnd,"^(dept|roles)$");
@@ -249,11 +253,17 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         return user;
     }
 
+    public void loginInfo(SysUser user,  String msg){
+        loginInfo(user, "用户登录", msg);
+    }
+
     /**
      * 记录用户登录信息
-     * @param user  用户ID
+     * @param user  用户信息
+     * @param tag   日志标签
+     * @param msg   日志内容
      */
-    public void loginInfo(SysUser user){
+    public void loginInfo(SysUser user, String tag, String msg){
         // *========获取请求=========*
         HttpServletRequest req  = Mvcs.getReq();
         // 获取终端信息
@@ -277,8 +287,8 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         this.updateIgnoreNull(user);
         // *========异步记录数据库日志=========*
         SysAuthLog log = new SysAuthLog();
-        log.setTag("用户登陆");
-        log.setMsg("登录系统");
+        log.setTag(tag);
+        log.setMsg(msg);
         log.setName(user.getNickname());
         sysAuthLogService.saveLog(req, log);
     }
@@ -293,7 +303,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         SysUser user = this.fetch(userId);
         // 标记退出状态
         user.setOnline(false);
-        this.update(user);
+        this.updateIgnoreNull(user);
         // *========异步记录数据库日志=========*
         SysAuthLog log = new SysAuthLog();
         log.setTag("用户登出");

@@ -28,6 +28,17 @@
           <el-form-item label="姓名">
             <el-input v-model="listQuery.nickname" placeholder="请输入姓名" clearable />
           </el-form-item>
+
+          <el-form-item label="状态" prop="disabled">
+            <el-select v-model="listQuery.disabled" placeholder="请选择状态" class="status" clearable>
+              <el-option
+                v-for="item in statusList"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
           <el-form-item>
             <el-button type="primary" icon="el-icon-search" @click="hdlFilter">查询</el-button>
           </el-form-item>
@@ -156,7 +167,7 @@
 
             <el-form-item prop="disabled" label="状态">
               <el-radio-group v-model="dataForm.disabled">
-                <el-radio :label="true">启用</el-radio>
+                <el-radio :label="true">正常</el-radio>
                 <el-radio :label="false">禁用</el-radio>
               </el-radio-group>
             </el-form-item>
@@ -277,7 +288,8 @@ export default {
         pageSize: 20,
         totalCount: 1,
         username: '',
-        nickname: ''
+        nickname: '',
+        disabled: ''
       },
 
       dialogFormVisible: false,
@@ -326,7 +338,16 @@ export default {
         sex: 0,
         disabled: true
       },
-      sexList: ['保密', '男', '女']
+      sexList: ['保密', '男', '女'],
+      statusList: [
+        {
+          value: true,
+          label: '正常'
+        }, {
+          value: false,
+          label: '禁用'
+        }
+      ]
 
     }
   },

@@ -47,7 +47,7 @@ public class SysAuthController {
         StpUtil.checkLogin();
 
         // 记录用户登录信息
-        sysUserService.loginInfo(user);
+        sysUserService.loginInfo(user, "账号密码登录");
 
         // 设置session
         SecurityUtil.setUserName(user.getUsername());
