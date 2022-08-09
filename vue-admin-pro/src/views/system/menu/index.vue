@@ -3,9 +3,7 @@
 
     <u-page title="菜单管理">
       <div slot="header">
-        <el-button type="primary" icon="el-icon-edit" @click="handleCreate()">
-          {{ textMap['create'] }}
-        </el-button>
+        <el-button type="primary" icon="el-icon-edit" @click="handleCreate()">{{ textMap['create'] }}</el-button>
         <el-button type="success" @click="handlePermission">批量新增权限</el-button>
         <el-button icon="el-icon-sort" @click="handleSort">排序</el-button>
       </div>
@@ -52,28 +50,14 @@
         </el-form-item>
 
         <el-form-item prop="name" label="名称">
-          <el-input
-            v-model="dataForm.name"
-            maxlength="100"
-            placeholder="菜单名称"
-            clearable
-          />
+          <el-input v-model="dataForm.name" maxlength="100" placeholder="菜单名称" clearable />
         </el-form-item>
 
         <el-form-item prop="permission" label="权限">
-          <el-input
-            v-model="dataForm.permission"
-            maxlength="100"
-            placeholder="权限标识,如 sys.menu"
-            clearable
-          />
+          <el-input v-model="dataForm.permission" maxlength="100" placeholder="权限标识,如 sys.menu" clearable />
         </el-form-item>
         <el-form-item v-if="dataForm.type ==='menu' " prop="router" label="路由">
-          <el-input
-            v-model="dataForm.router"
-            placeholder="请输入路由"
-            clearable
-          />
+          <el-input v-model="dataForm.router" placeholder="请输入路由" clearable />
         </el-form-item>
         <el-form-item v-if="dataForm.type ==='menu' " prop="keepAlive" label="缓存">
           <el-radio-group v-model="dataForm.keepAlive">
@@ -82,11 +66,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item v-if="dataForm.type ==='menu' " prop="path" label="路径">
-          <el-input
-            v-model="dataForm.path"
-            placeholder="请输入路径"
-            clearable
-          />
+          <el-input v-model="dataForm.path" placeholder="请输入路径" clearable />
         </el-form-item>
         <el-form-item v-if="dataForm.type ==='menu' " prop="icon" label="图标">
           <u-icon-svg-select v-model="dataForm.icon" user-input />
@@ -101,14 +81,7 @@
     </u-dialog>
 
     <u-dialog title="菜单排序" :show.sync="sortDialogVisible" @confirm="changeSort">
-      <el-tree
-        ref="sortMenuTree"
-        :data="menuData"
-        draggable
-        :allow-drop="sortAllowDrop"
-        node-key="id"
-        :props="props"
-      >
+      <el-tree ref="sortMenuTree" :data="menuData" draggable :allow-drop="sortAllowDrop" node-key="id" :props="props">
         <span slot-scope="scope" class="custom-tree-node">
           <span>{{ scope.node.label }}</span>
         </span>
@@ -116,28 +89,34 @@
     </u-dialog>
 
     <u-dialog title="批量新增权限" :show.sync="permissionVisible" width="600px" @confirm="batch">
-      <el-form ref="permissionForm" :rules="permissionRules" :model="permissionForm" label-width="80px">
+      <el-form ref="permissionForm" :rules="permissionRules" :model="permissionForm" label-width="60px">
 
-        <el-form-item prop="parentId" label="上级">
+        <el-form-item prop="parentId" label="菜单">
           <el-cascader
             v-model="permissionForm.parentId"
             :options="menu"
             :props="{value:'id', label:'name', disabled:true , children:'children', checkStrictly: true}"
-            placeholder="请选择上级菜单"
+            placeholder="请选择菜单"
             :show-all-levels="false"
             clearable
+            style="width: 100%"
             @change="handleCascaderPermissionChange"
           />
         </el-form-item>
 
-        <el-form-item prop="data" label="权限">
-          <el-input
-            v-model="permissionForm.data"
-            type="textarea"
-            :rows="4"
-            placeholder="权限名称,权限标识 每行一个"
-            clearable
-          />
+        <el-form-item prop="name" label="名称">
+          <el-input v-model="permissionForm.name" maxlength="100" placeholder="权限名称,例用户" clearable />
+        </el-form-item>
+
+        <el-form-item prop="permission" label="权限">
+          <el-input v-model="permissionForm.permission" maxlength="100" placeholder="权限标识,例sys.user" clearable />
+        </el-form-item>
+
+        <el-form-item label="批量">
+          <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAll">全选</el-checkbox>
+          <el-checkbox-group v-model="permissionForm.add" @change="handleCheckedData">
+            <el-checkbox v-for="d in dataTree" :key="d.value" :label="d.value">{{ d.label }}</el-checkbox>
+          </el-checkbox-group>
         </el-form-item>
 
       </el-form>
@@ -250,10 +229,19 @@ export default {
         parentId: [
           { required: true, message: '请选择上级菜单', trigger: 'blur' }
         ],
-        data: [
-          { required: true, message: '请输入权限参数项', trigger: 'blur' }
+        name: [
+          { required: true, message: '权限名称', trigger: 'blur' },
+          { pattern: /^[\u4E00-\u9FA5]+$/, message: '权限名称只能为中文' }
+        ],
+        permission: [
+          { required: true, message: '权限标识', trigger: ['blur', 'change'] },
+          { pattern: /^[a-z\.]+$/, message: '权限标识只能为小写字母加英文点' }
         ]
       },
+      isIndeterminate: true,
+      checkAll: false,
+      // 批量添加权限数据源
+      dataTree: [{ value: 'create', label: '新增' }, { value: 'update', label: '修改' }, { value: 'delete', label: '删除' }, { value: 'sort', label: '排序' }],
       // 排序
       sortDialogVisible: false,
       menuData: [],
@@ -311,10 +299,6 @@ export default {
     handleCascaderChange(value) {
       this.dataForm.parentId = value[value.length - 1] || ''
     },
-    // 批量级联选择器
-    handleCascaderPermissionChange(value) {
-      this.permissionForm.parentId = value[value.length - 1] || ''
-    },
     // 打开排序
     handleSort() {
       this.sortDialogVisible = true
@@ -339,13 +323,34 @@ export default {
     },
     // 打开批量新增权限
     handlePermission() {
-      // 初始化选项
+      // 初始化菜单权限选项
       this.initPermission()
+      // 打开弹窗
       this.permissionVisible = true
-      this.permissionForm = {}
+      // 初始化表单属性
+      this.permissionForm = {
+        add: []
+      }
+      // 清除表单验证
       this.$nextTick(() => {
         this.$refs['permissionForm'].clearValidate()
       })
+    },
+    // 批量新增权限事件:级联选择器
+    handleCascaderPermissionChange(value) {
+      this.permissionForm.parentId = value[value.length - 1] || ''
+    },
+    // 批量新增权限事件:全选事件
+    handleCheckAll(val) {
+      const all = this.dataTree.map(item => { return item.value })
+      this.permissionForm.add = val ? all : []
+      this.isIndeterminate = false
+    },
+    // 批量新增权限事件:监听是否全选
+    handleCheckedData(value) {
+      const checkedCount = value.length
+      this.checkAll = checkedCount === this.dataTree.length
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.dataTree.length
     },
     // 初始化选项
     initPermission() {
@@ -355,9 +360,24 @@ export default {
     },
     // 提交批量新增权限数据
     batch() {
+      // 获取表单数据
+      const { parentId, name, permission, add } = this.permissionForm
+
+      // 匹配批量快捷新增权限数据
+      const data = add.map(item => this.dataTree.filter(d => d.value === item)[0])
+      console.log(data)
+      // 格式化权限数据
+      const authData = JSON.parse(JSON.stringify(data))
+      authData.map(item => {
+        item.label = item.value === 'sort' ? name + item.label : item.label + name
+        item.value = permission + '.' + item.value
+      })
+      // 组装请求数据
+      const d = { parentId: parentId, permissionData: authData }
+
       this.$refs['permissionForm'].validate((valid) => {
         if (valid) {
-          this.api.batch(this.permissionForm).then(() => {
+          this.api.batch(d).then(() => {
             this.hdlList()
             this.permissionVisible = false
             this.$u.msg('批量新增成功')
