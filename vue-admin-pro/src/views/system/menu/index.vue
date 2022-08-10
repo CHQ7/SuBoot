@@ -113,7 +113,7 @@
         </el-form-item>
 
         <el-form-item label="批量">
-          <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAll">全选</el-checkbox>
+          <el-checkbox v-model="permissionForm.checkAll" :indeterminate="isIndeterminate" @change="handleCheckAll">全选</el-checkbox>
           <el-checkbox-group v-model="permissionForm.add" @change="handleCheckedData">
             <el-checkbox v-for="d in dataTree" :key="d.value" :label="d.value">{{ d.label }}</el-checkbox>
           </el-checkbox-group>
@@ -235,11 +235,10 @@ export default {
         ],
         permission: [
           { required: true, message: '权限标识', trigger: ['blur', 'change'] },
-          { pattern: /^[a-z\.]+$/, message: '权限标识只能为小写字母加英文点' }
+          { pattern: /^[a-z.]+$/, message: '权限标识只能为小写字母加英文点' }
         ]
       },
       isIndeterminate: true,
-      checkAll: false,
       // 批量添加权限数据源
       dataTree: [{ value: 'create', label: '新增' }, { value: 'update', label: '修改' }, { value: 'delete', label: '删除' }, { value: 'sort', label: '排序' }],
       // 排序
@@ -329,6 +328,7 @@ export default {
       this.permissionVisible = true
       // 初始化表单属性
       this.permissionForm = {
+        checkAll: false,
         add: []
       }
       // 清除表单验证
@@ -349,7 +349,7 @@ export default {
     // 批量新增权限事件:监听是否全选
     handleCheckedData(value) {
       const checkedCount = value.length
-      this.checkAll = checkedCount === this.dataTree.length
+      this.permissionForm.checkAll = checkedCount === this.dataTree.length
       this.isIndeterminate = checkedCount > 0 && checkedCount < this.dataTree.length
     },
     // 初始化选项

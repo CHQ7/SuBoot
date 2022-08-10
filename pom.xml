@@ -13,7 +13,7 @@
     <!-- GVA -->
     <groupId>com.yunqi</groupId>
     <artifactId>SuBoot</artifactId>
-    <version>1.3.5</version>
+    <version>1.3.6</version>
 
     <!-- 项目名称 -->
     <name>SuBoot</name>

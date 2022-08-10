@@ -1,6 +1,7 @@
 package com.yunqi.system.controller;
 
 
+import com.yunqi.starter.common.lang.util.NutMap;
 import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
 import com.yunqi.starter.log.annotation.SLog;
@@ -69,5 +70,15 @@ public class SysMenuController {
         sysMenuService.sort(query.getString("ids"));
         return Result.success();
     }
+
+
+    @PostMapping("/batch")
+    @RequiresPermissions("sys.menu.batch")
+    @SLog(tag = "系统菜单",  type = LogType.INSERT)
+    public Result batch(@RequestBody QueryBody query){
+        sysMenuService.batch(query.getString("parentId"), query.getList("permissionData", NutMap.class));
+        return Result.success();
+    }
+
 
 }

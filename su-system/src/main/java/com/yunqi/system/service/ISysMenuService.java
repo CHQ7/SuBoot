@@ -4,6 +4,7 @@ import com.yunqi.starter.common.exception.BizException;
 import com.yunqi.starter.common.lang.Lang;
 import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.common.lang.util.NutMap;
+import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysMenu;
 import org.nutz.dao.Chain;
@@ -136,6 +137,51 @@ public class ISysMenuService extends BaseServiceImpl<SysMenu> {
                     i++;
                 }
             }
+        }
+    }
+
+    /**
+     * 批量创建数据权限
+     * @param parentId  上级菜单ID
+     * @param data      数据权限Json数组
+     */
+    @Transactional
+    public void batch(String parentId,List<NutMap> data){
+        // 检查参数
+        if(Strings.isEmpty(parentId) ){
+            throw new BizException("菜单不能为空,必须挂靠上级菜单");
+        }
+        if(Lang.isEmpty(data)){
+            throw new BizException("权限数据不能为空");
+        }
+        // 检查菜单
+        if (this.count(Cnd.where("id", "=", parentId)) <= 0) {
+            throw new BizException("当前菜单不存在");
+        }
+        // 实例菜单对象
+        SysMenu menu = new SysMenu();
+        // 标识上级菜单
+        menu.setParentId(parentId);
+        // 循环注册数据权限
+        for (NutMap map: data) {
+            // 标记数据权限
+            menu.setType("data");
+            // 启用数据权限
+            menu.setDisabled(true);
+            // 获取数据权限名称
+            String name = map.getString("label");
+            // 获取数据权限标识
+            String permission = map.getString("value");
+
+            // 防御一下参数为空值
+            if(Strings.isEmpty(name) || Strings.isEmpty(permission)){
+                throw new BizException("数据权限为空");
+            }
+            menu.setName(name);
+            menu.setPermission(permission);
+
+            // 创建数据权限入库
+            this.create(menu);
         }
     }
 
