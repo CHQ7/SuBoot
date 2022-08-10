@@ -72,7 +72,7 @@ public class SysUserController {
     @RequiresPermissions("sys.user.password")
     @SLog(tag = "系统用户",  type = LogType.UPDATE)
     public Result resetPassword(@PathVariable("id") String id) {
-        return Result.success().addData(sysUserService.resetPwd(id));
+        return Result.success().addData(sysUserService.resetPassword(id));
     }
 
     @PostMapping("/dept")

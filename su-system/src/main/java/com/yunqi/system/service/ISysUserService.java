@@ -103,9 +103,9 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
                 throw new BizException("该邮箱已存在");
             }
         }
-        // -----------------------------
-        // 建立用户档案
-        // -----------------------------
+
+        // ------------ 建立用户档案 -----------------
+
         String salt = R.UU32(); // 密码盐
         String hashPassword = hashPassword(user.getPassword(),salt);
         user.setSalt(salt);
@@ -114,7 +114,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         user.setLoginCount(0);
         this.insert(user);
 
-        // 创建用户关联角色
+        // ------------ 创建用户关联角色 -----------------
         if (user.getRoles() != null) {
             for (SysRole role : user.getRoles()) {
                 this.dao().insert("ims_sys_user_role", Chain.from(NutMap.NEW().addv("roleId", role.getId()).addv("userId", user.getId())));
@@ -142,9 +142,9 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
                 throw new BizException("账号已存在");
             }
         }
-        // -----------------------------
-        // 更新用户档案
-        // -----------------------------
+
+        // ------------ 更新用户档案 -----------------
+
         user.setPassword(null);
         user.setSalt(null);
         this.updateIgnoreNull(user);
@@ -241,6 +241,9 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      * @return              当前会话的Token信息
      */
     public String loginByPassword(String username, String password) {
+        if(Strings.isBlank(username) || Strings.isBlank(password)){
+            throw new BizException("缺少参数");
+        }
         // 1、获取用户信息
         SysUser user = this.fetchByUsername(username);
         // 2、验证用户账号
@@ -261,9 +264,11 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         SecurityUtil.setUserName(user.getUsername());
         // 6、设置当前会话用户名
         SecurityUtil.setUserNickname(user.getNickname());
-        // 7、记录用户登录信息
-        loginInfo(user, "用户登录", "账号密码登录");
-        // 8、获取当前会话的Token信息
+        // 7、记录并更新用户登录信息
+        this.loginInfo(user);
+        // 8、异步记录登录日志
+        this.authLog("用户登录", "账号登录");
+        // 9、返回当前会话的Token信息
         return StpUtil.getTokenValue();
     }
 
@@ -271,33 +276,31 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
     /**
      * 记录用户登录信息
      * @param user  用户信息
-     * @param tag   日志标签
-     * @param msg   日志内容
      */
-    public void loginInfo(SysUser user, String tag, String msg){
-        // *========获取请求=========*
+    public void loginInfo(SysUser user){
+        // *======== 记录用户登录信息 begin =========*
         HttpServletRequest req  = Mvcs.getReq();
-        // 获取终端信息
-        final UserAgent ua = UserAgentUtil.parse(req.getHeader("User-Agent"));
-        // 最近登录时间
+
+        // 记录用户登录时间、累计登录次数、标记登录状态
         user.setLoginAt(System.currentTimeMillis());
-        // 累计登录次数
         user.setLoginCount(user.getLoginCount() + 1);
-        // 最近登录IP
-        // 获取IP地址
+        user.setOnline(true);
+
+        // 获取操作地址&操作地点
         String ip = Lang.getIP(req);
         user.setLoginIp(ip);
-        // 最近登录地区
         user.setLoginLocation(IPUtil.getIPAddress(ip));
-        // 获取客户端
+
+        // 获取终端信息
+        final UserAgent ua = UserAgentUtil.parse(req.getHeader("User-Agent"));
+
+        // 获取客户端信息&操作系统信息
         user.setLoginBrowser(ua.getBrowser().getName() + "_" + ua.getVersion());
-        // 获取操作系统
         user.setLoginOs(ua.getPlatform().getName() + "_"  + ua.getOsVersion());
-        // 标记登录状态
-        user.setOnline(true);
+
         this.updateIgnoreNull(user);
-        // *========异步记录数据库日志=========*
-        this.authLog(tag, msg);
+
+        // *======== 记录用户登录信息 end =========*
     }
 
     /**
@@ -319,6 +322,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
     /**
      * 用户退出登录
      */
+    @Transactional
     public void logout(){
         // 1、获取当前会话账号id
         String userId = SecurityUtil.getUserId();
@@ -337,7 +341,8 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      * @param tag   日志标签
      * @param msg   日志内容
      */
-    public void authLog(String tag, String msg){
+    private void authLog(String tag, String msg){
+        HttpServletRequest req  = Mvcs.getReq();
         // *========异步记录数据库日志 begin =========*
         SysAuthLog authLog = new SysAuthLog();
         authLog.setTag(tag);
@@ -347,9 +352,25 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         authLog.setCreatedBy(SecurityUtil.getUserNickname());
         authLog.setUpdatedById(SecurityUtil.getUserId());
         authLog.setUpdatedBy(SecurityUtil.getUserNickname());
-        // 获取请求
-        HttpServletRequest req  = Mvcs.getReq();
-        sysAuthLogService.saveLog(req, authLog);
+
+        // 获取请求地址&请求方式
+        authLog.setUrl(req.getRequestURI());
+        authLog.setMethod(req.getMethod());
+
+        // 获取操作地址&操作地点
+        String ip = Lang.getIP(req);
+        authLog.setIp(ip);
+        authLog.setLocation(IPUtil.getIPAddress(ip));
+
+        // 获取终端信息
+        final UserAgent ua = UserAgentUtil.parse(req.getHeader("User-Agent"));
+
+        // 获取客户端信息&操作系统信息
+        authLog.setBrowser(ua.getBrowser().getName() + "_" + ua.getVersion());
+        authLog.setOs(ua.getPlatform().getName() + "_"  + ua.getOsVersion());
+
+        // 异步入库
+        sysAuthLogService.asyncSaveLog(authLog);
         // *========异步记录数据库日志 end =========*
     }
 
@@ -359,9 +380,9 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      * @param userId    用户ID
      * @return          明文密码
      */
-    public String resetPwd(String userId) {
+    public String resetPassword(String userId) {
         String password = RandomUtil.randomNumbers(6);
-        return this.resetPwd(userId, password);
+        return this.resetPassword(userId, password);
     }
 
 
@@ -372,7 +393,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      * @return          明文密码
      */
     @Transactional
-    public String resetPwd(String userId, String password) {
+    public String resetPassword(String userId, String password) {
         SysUser user = this.fetch(userId);
         // 只能超级管理员自己操作
         if(!SecurityUtil.getUserName().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
@@ -404,7 +425,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
             throw new BizException("密码不正确");
         }
         // 更新密码
-        this.resetPwd(user.getId(), newPwd);
+        this.resetPassword(user.getId(), newPwd);
     }
 
 
@@ -414,7 +435,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      * @param salt      密码盐
      * @return          数字签名
      */
-    public String hashPassword(String password,String salt){
+    private String hashPassword(String password,String salt){
         return Lang.sha256BySalt(password, salt);
     }
 
