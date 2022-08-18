@@ -95,12 +95,17 @@
         <el-button size="mini" @click="menuRoleSelClear">清空</el-button>
       </el-row>
       <el-tree
-        ref="doMenuTree"
+        ref="tree"
+        node-key="id"
         :data="doMenuData"
         :default-checked-keys="doMenuCheckedData"
         show-checkbox
-        node-key="id"
-        :props="defaultProps"
+        highlight-current
+        accordion
+        check-strictly
+        :props="{ children: 'children',label: 'name',value:'id',disabled:true }"
+        :default-expand-all="true"
+        @check="clickDeal"
       >
         <span slot-scope="scope" class="custom-tree-node">
           <span>{{ scope.node.label }}</span>
@@ -176,7 +181,6 @@ export default {
         code: '',
         disabled: ''
       },
-
       dialogFormVisible: false,
       dialogStatus: '',
       textMap: {
@@ -203,11 +207,6 @@ export default {
       doMenuData: [],
       // 已分配的权限选中状态
       doMenuCheckedData: [],
-      defaultProps: {
-        children: 'children',
-        label: 'name',
-        disabled: true
-      },
 
       menuDialogTitle: '授权菜单',
       menuDialogVisible: false, // 分配权限
@@ -257,32 +256,63 @@ export default {
     menuLoad() {
       const self = this
       this.api.menu(this.roleId).then(res => {
-        self.doMenuData = res.data.menu
-        self.doMenuCheckedData = res.data.cmenu
+        const { menu, cmenu } = res.data
+        self.doMenuData = menu
+        self.doMenuCheckedData = cmenu
       })
     },
     // 授权菜单:全选
     menuRoleSelAll() {
       const ids = []
       this.$u.treeIds(ids, this.doMenuData)
-      this.$refs['doMenuTree'].setCheckedKeys(ids)
+      this.$refs.tree.setCheckedKeys(ids)
     },
     // 授权菜单:清空
     menuRoleSelClear() {
-      this.$refs['doMenuTree'].setCheckedKeys([])
+      this.$refs.tree.setCheckedKeys([])
     },
     // 授权菜单:提交数据
     menuSubmit() {
       const self = this
-      const ids = self.$refs['doMenuTree'].getCheckedKeys()
-      if (!ids || ids.length === 0) {
-        self.$u.toast('请选择菜单或数据权限', 'warning')
-        return
-      }
+      const ids = self.$refs.tree.getCheckedKeys()
+
       this.api.menuUpdate({ roleId: self.roleId, menuIds: ids.toString() }).then(res => {
         self.menuDialogVisible = false
         self.$u.msg('编辑成功')
       })
+    },
+    clickDeal(currentObj, treeStatus) {
+      // 用于：父子节点严格互不关联时，父节点勾选变化时通知子节点同步变化，实现单向关联。
+      const selected = treeStatus.checkedKeys.indexOf(currentObj.id) // -1未选中
+      // 选中
+      if (selected !== -1) {
+        // 子节点只要被选中父节点就被选中
+        this.selectedParent(currentObj)
+        // 统一处理子节点为相同的勾选状态
+        this.uniteChildSame(currentObj, true)
+      } else {
+        // 未选中 处理子节点全部未选中
+        if (currentObj.children.length !== 0) {
+          this.uniteChildSame(currentObj, false)
+        }
+      }
+    },
+    // 统一处理子节点为相同的勾选状态
+    uniteChildSame(treeList, isSelected) {
+      this.$refs.tree.setChecked(treeList.id, isSelected)
+      if (treeList.children) {
+        for (let i = 0; i < treeList.children.length; i++) {
+          this.uniteChildSame(treeList.children[i], isSelected)
+        }
+      }
+    },
+    // 统一处理父节点为选中
+    selectedParent(currentObj) {
+      const currentNode = this.$refs.tree.getNode(currentObj)
+      if (currentNode.parent.key !== undefined) {
+        this.$refs.tree.setChecked(currentNode.parent, true)
+        this.selectedParent(currentNode.parent)
+      }
     }
   }
 }
