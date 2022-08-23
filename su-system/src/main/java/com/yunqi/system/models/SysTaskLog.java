@@ -10,8 +10,9 @@ import java.io.Serializable;
  * 任务日志
  * Created by @author CHQ on 2022/6/15
  */
-@Table("ims_sys_task_log")
 @Data
+@Table("ims_sys_task_log")
+@TableMeta("{'mysql-charset':'utf8mb4'}")
 public class SysTaskLog extends BaseModel implements Serializable {
 
     private static final long serialVersionUID = 1L;

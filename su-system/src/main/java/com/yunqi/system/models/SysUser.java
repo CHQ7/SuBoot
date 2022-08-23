@@ -12,8 +12,9 @@ import java.util.List;
  * 系统用户
  * Created by @author CHQ on 2022/6/15
  */
-@Table("ims_sys_user")
 @Data
+@Table("ims_sys_user")
+@TableMeta("{'mysql-charset':'utf8mb4'}")
 public class SysUser extends BaseModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;

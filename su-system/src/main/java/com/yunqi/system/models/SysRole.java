@@ -12,8 +12,9 @@ import java.util.List;
  * 系统角色
  * Created by @author CHQ on 2022/6/15
  */
-@Table("ims_sys_role")
 @Data
+@Table("ims_sys_role")
+@TableMeta("{'mysql-charset':'utf8mb4'}")
 public class SysRole extends BaseModel implements Serializable{
 
     private static final long serialVersionUID = 1L;

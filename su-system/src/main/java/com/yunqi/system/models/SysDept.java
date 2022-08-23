@@ -13,8 +13,9 @@ import java.util.List;
  * 系统组织
  * Created by @author CHQ on 2022/6/15
  */
-@Table("ims_sys_dept")
 @Data
+@Table("ims_sys_dept")
+@TableMeta("{'mysql-charset':'utf8mb4'}")
 public class SysDept extends BaseModel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
