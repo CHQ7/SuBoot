@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class Startup implements ApplicationRunner {
+public class Setup implements ApplicationRunner {
 
     @Resource
     private Dao dao;
