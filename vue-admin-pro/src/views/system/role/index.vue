@@ -19,15 +19,9 @@
           </el-form-item>
 
           <el-form-item label="状态" prop="disabled">
-            <el-select v-model="listQuery.disabled" placeholder="请选择状态" class="status" clearable>
-              <el-option
-                v-for="item in statusList"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
+            <u-status v-model="listQuery.disabled" />
           </el-form-item>
+
           <el-form-item>
             <el-button type="primary" icon="el-icon-search" @click="hdlFilter">查询</el-button>
           </el-form-item>
@@ -81,7 +75,7 @@
 
         <el-form-item prop="disabled" label="状态">
           <el-radio-group v-model="dataForm.disabled">
-            <el-radio :label="true">正常</el-radio>
+            <el-radio :label="true">启用</el-radio>
             <el-radio :label="false">禁用</el-radio>
           </el-radio-group>
         </el-form-item>
@@ -154,7 +148,7 @@ export default {
           label: '状态',
           render: (h, params) => {
             if (params.row.disabled) {
-              return h('el-tag', { props: { type: 'success' }}, '正常')
+              return h('el-tag', { props: { type: 'success' }}, '已启用')
             } else {
               return h('el-tag', { props: { type: 'danger' }}, '禁用')
             }
@@ -210,16 +204,7 @@ export default {
 
       menuDialogTitle: '授权菜单',
       menuDialogVisible: false, // 分配权限
-      roleId: '', // 当前角色ID
-      statusList: [
-        {
-          value: true,
-          label: '正常'
-        }, {
-          value: false,
-          label: '禁用'
-        }
-      ]
+      roleId: '' // 当前角色ID
     }
   },
   created() {

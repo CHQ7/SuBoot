@@ -1,29 +1,32 @@
 <template>
   <div class="app-container">
 
-    <u-page title="会员等级">
+    <u-page title="用户等级">
       <div slot="header">
-        <el-button type="primary" icon="el-icon-refresh-left" @click="hdlSynchro()">
-          同步函云数据
+        <el-button type="primary" icon="el-icon-edit" @click="hdlOpen(newForm)">
+          {{ textMap['create'] }}
         </el-button>
       </div>
 
       <u-filtered>
         <el-form :inline="true" :model="listQuery" class="search-form">
-          <el-form-item label="等级名称" prop="levelName">
-            <el-input v-model="listQuery.levelName" placeholder="请输入等级名称" clearable />
+          <el-form-item label="等级名称" prop="name">
+            <el-input v-model="listQuery.name" placeholder="关键词查询" clearable />
+          </el-form-item>
+          <el-form-item label="等级状态" prop="status">
+            <u-status v-model="listQuery.status" />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="hdlFilter">查询</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="hdlFilter">搜索</el-button>
           </el-form-item>
-          <!--          <el-dropdown>
+          <el-dropdown>
             <el-button type="primary">
-              批量操作<i class="el-icon-arrow-down el-icon&#45;&#45;right" />
+              批量操作<i class="el-icon-arrow-down el-icon--right" />
             </el-button>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item :disabled="selectData.length===0" @click.native="hdlDel">批量删除</el-dropdown-item>
             </el-dropdown-menu>
-          </el-dropdown>-->
+          </el-dropdown>
         </el-form>
       </u-filtered>
 
@@ -39,8 +42,8 @@
         <template v-slot:right>
           <el-table-column label="操作" align="center" fixed="right">
             <template slot-scope="{ row }">
-              <!--              <el-button type="text" @click="hdlEdit(row)">编辑</el-button>-->
-              <el-button type="text" @click="hdlDelete(row.id, row.levelName)">删除</el-button>
+              <el-button type="text" @click="hdlEdit(row)">编辑</el-button>
+              <el-button v-if="row.id !== 0" type="text" @click="hdlDelete(row.id, row.name)">删除</el-button>
             </template>
           </el-table-column>
         </template>
@@ -51,19 +54,22 @@
     <u-dialog :title="textMap[dialogStatus]" :show.sync="dialogFormVisible" @confirm="dialogStatus==='create'?hdlCreate():hdlUpdate()">
       <el-form ref="dialogForm" :rules="rules" :model="dataForm" label-width="80px">
 
-        <el-form-item prop="level" label="级别">
-          <el-select v-model="dataForm.level" placeholder="请选择,数字越大等级越高" clearable>
-            <el-option
-              v-for="(item,index) in 100"
-              :key="index"
-              :label="index"
-              :value="index"
-            />
+        <el-form-item prop="id" label="等级权重">
+          <el-select v-model="dataForm.id" placeholder="请选择权重" clearable>
+            <el-option v-for="(item,index) in 100" :key="index" :label="index" :value="index" />
           </el-select>
+          <u-tip-info title="数字越大，等级权重越高，等级权重不可重复" />
         </el-form-item>
 
-        <el-form-item prop="levelName" label="等级名称">
-          <el-input v-model="dataForm.levelName" placeholder="请输入等级名称" clearable />
+        <el-form-item prop="name" label="等级名称">
+          <el-input v-model="dataForm.name" placeholder="请输入等级名称" clearable maxlength="6" show-word-limit style="width: 300px" />
+        </el-form-item>
+
+        <el-form-item v-if="dataForm.id !== 0" label="状态" prop="status">
+          <el-radio-group v-model="dataForm.status">
+            <el-radio :label="true">启用</el-radio>
+            <el-radio :label="false">禁用</el-radio>
+          </el-radio-group>
         </el-form-item>
 
       </el-form>
@@ -80,12 +86,29 @@ export default {
       // 表格
       columns: [
         {
-          prop: 'level',
-          label: '等级类型'
+          prop: 'id',
+          label: '等级',
+          formatter: (row) => {
+            if (row.id === 0) {
+              return '默认'
+            }
+            return row.id
+          }
         },
         {
-          prop: 'levelName',
+          prop: 'name',
           label: '等级名称'
+        },
+        {
+          prop: 'status',
+          label: '状态',
+          render: (h, params) => {
+            if (params.row.status) {
+              return h('el-tag', { props: { type: 'success' }}, '已启用')
+            } else {
+              return h('el-tag', { props: { type: 'danger' }}, '禁用')
+            }
+          }
         },
         {
           prop: 'createdAt',
@@ -104,7 +127,8 @@ export default {
         page: 1,
         pageSize: 10,
         totalCount: 1,
-        levelName: ''
+        name: '',
+        status: ''
       },
 
       dialogFormVisible: false,
@@ -115,38 +139,22 @@ export default {
       },
       dataForm: {},
       rules: {
-        level: [
-          { required: true, message: '请选择等级级别', trigger: ['blur'] }
+        id: [
+          { required: true, message: '请选择等级权重', trigger: ['blur'] }
         ],
-        levelName: [
+        name: [
           { required: true, message: '请输入等级名称', trigger: ['blur'] }
         ]
       },
       // 删除选中数据
       selectData: [],
       newForm: {
-        disabled: true
+        status: true
       }
     }
   },
   created() {
     this.hdlList()
-  },
-  methods: {
-    // 同步事件
-    hdlSynchro() {
-      const self = this
-      self.$confirm('此操作将同步数据是否继续，请谨慎操作？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
-        self.api.synchro().then(res => {
-          // 同步完成，刷新一下
-          self.hdlList()
-          self.$alert('同步数据成功', '提示', {
-            confirmButtonText: '知道了'
-          })
-        })
-      }).catch(() => {
-      })
-    }
   }
 }
 </script>

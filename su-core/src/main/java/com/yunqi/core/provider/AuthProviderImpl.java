@@ -1,4 +1,4 @@
-package com.yunqi.system.provider;
+package com.yunqi.core.provider;
 
 import com.yunqi.starter.security.provider.IAuthProvider;
 import com.yunqi.system.service.ISysUserService;

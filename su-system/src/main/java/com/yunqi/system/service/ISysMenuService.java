@@ -28,11 +28,21 @@ public class ISysMenuService extends BaseServiceImpl<SysMenu> {
     ISysRoleService sysRoleService;
 
     /**
-     * 查询全部组织
+     * 获取全部组织
      * @return 组织列表
      */
     public List<SysMenu> all() {
         List<SysMenu> list = this.query(Cnd.NEW().asc("location"));
+        return this.getChildPerms(list,"");
+    }
+
+    /**
+     * 根据用户ID获取全部组织
+     * @param userId 用户ID
+     * @return       组织列表
+     */
+    public List<SysMenu> all(String userId) {
+        List<SysMenu> list= getUserMenus(userId);
         return this.getChildPerms(list,"");
     }
 

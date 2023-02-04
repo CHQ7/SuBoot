@@ -82,7 +82,7 @@ const actions = {
 
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
-            reject('角色必须是非空数组!')
+            reject('角色不存在或者被禁用!')
           }
 
           var id = 'id'

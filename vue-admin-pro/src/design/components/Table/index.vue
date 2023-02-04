@@ -101,14 +101,15 @@
       <slot name="right" />
     </el-table>
 
-    <u-pagination
-      v-if="page"
-      v-show="data.length>0"
-      :total="pagination.totalCount"
-      :page.sync="pagination.page"
-      :limit.sync="pagination.pageSize"
-      @pagination="fetch"
-    />
+    <div v-if="page" class="v-pagination">
+      <u-pagination
+        v-show="data.length>0"
+        :total="pagination.totalCount"
+        :page.sync="pagination.page"
+        :limit.sync="pagination.pageSize"
+        @pagination="fetch"
+      />
+    </div>
 
   </div>
 </template>
@@ -217,6 +218,10 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.v-pagination{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 </style>

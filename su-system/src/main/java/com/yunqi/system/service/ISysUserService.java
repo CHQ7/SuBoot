@@ -313,7 +313,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         // 2、返回组装信息
         NutMap map = new NutMap();
         map.addv("avatar", user.getAvatar());
-        map.addv("menus", sysMenuService.all());
+        map.addv("menus", sysMenuService.all(user.getId()));
         map.addv("nickname", user.getNickname());
         map.addv("roles", this.getRoleList(user.getId()));
         return map;

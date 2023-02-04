@@ -3,7 +3,7 @@
 
     <u-page title="定时任务">
       <div slot="header">
-        <el-button type="primary" icon="el-icon-edit" @click="hdlOpen()">
+        <el-button type="primary" icon="el-icon-edit" @click="hdlOpen(newForm)">
           {{ textMap['create'] }}
         </el-button>
       </div>
@@ -12,6 +12,9 @@
         <el-form :inline="true" :model="listQuery" class="search-form">
           <el-form-item label="任务名称">
             <el-input v-model="listQuery.name" placeholder="请输入任务名称" clearable />
+          </el-form-item>
+          <el-form-item label="任务状态" prop="disabled">
+            <u-status v-model="listQuery.disabled" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" icon="el-icon-search" @click="hdlFilter">查询</el-button>
@@ -66,8 +69,11 @@
           <el-input v-model="dataForm.note" type="textarea" />
         </el-form-item>
 
-        <el-form-item label="启用状态" prop="disabled">
-          <el-switch v-model="dataForm.disabled" />
+        <el-form-item prop="disabled" label="状态">
+          <el-radio-group v-model="dataForm.disabled">
+            <el-radio :label="true">启用</el-radio>
+            <el-radio :label="false">禁用</el-radio>
+          </el-radio-group>
         </el-form-item>
       </el-form>
     </u-dialog>
@@ -104,9 +110,9 @@ export default {
           label: '状态',
           render: (h, params) => {
             if (params.row.disabled) {
-              return h('el-tag', { props: { type: 'success' }}, '启用')
+              return h('el-tag', { props: { type: 'success' }}, '已启用')
             } else {
-              return h('el-tag', { props: { type: 'danger' }}, '暂停')
+              return h('el-tag', { props: { type: 'danger' }}, '禁用')
             }
           }
         }
@@ -137,6 +143,10 @@ export default {
         cron: [
           { required: true, message: '执行周期', trigger: ['blur'] }
         ]
+      },
+
+      newForm: {
+        disabled: true
       }
     }
   },

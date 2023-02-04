@@ -5,16 +5,7 @@
 
         <el-form :inline="true" :model="listQuery" class="search-form">
           <el-form-item label="时间范围">
-            <el-date-picker
-              v-model="searchDate"
-              type="daterange"
-              :picker-options="pickerOptions"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              align="right"
-              value-format="timestamp"
-              style="width:300px"
-            />
+            <u-date-time-picker v-model="searchDate" @change="changeDate" />
           </el-form-item>
           <el-form-item label="操作人">
             <el-input v-model="listQuery.name" placeholder="请输入操作人" clearable />
@@ -26,7 +17,7 @@
             <el-input v-model="listQuery.location" placeholder="请输入操作地点" clearable />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="hdlFilter">查询</el-button>
           </el-form-item>
         </el-form>
 
@@ -179,33 +170,6 @@ export default {
         location: ''
       },
       searchDate: [],
-      pickerOptions: {
-        shortcuts: [{
-          text: '最近一周',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-            picker.$emit('pick', [start, end])
-          }
-        }, {
-          text: '最近一个月',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-            picker.$emit('pick', [start, end])
-          }
-        }, {
-          text: '最近三个月',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-            picker.$emit('pick', [start, end])
-          }
-        }]
-      },
       dialogFormVisible: false,
       dataForm: {}
 
@@ -215,17 +179,14 @@ export default {
     this.hdlList()
   },
   methods: {
-    // 搜索事件
-    handleFilter() {
-      // 获取时间控件的开始日期至结束日期
-      if (this.searchDate) {
-        this.listQuery.beginTime = this.searchDate[0]
-        this.listQuery.endTime = this.searchDate[1]
+    changeDate(item) {
+      if (item) {
+        this.listQuery.beginTime = item[0]
+        this.listQuery.endTime = item[1]
       } else {
         this.listQuery.beginTime = ''
         this.listQuery.endTime = ''
       }
-      this.hdlFilter()
     }
   }
 }

@@ -1,6 +1,7 @@
-package com.yunqi.common;
+package com.yunqi.core;
 
 import com.yunqi.starter.common.constant.GlobalConstant;
+import com.yunqi.starter.common.constant.Globals;
 import com.yunqi.system.models.SysDept;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.models.SysUser;
@@ -24,7 +25,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class Initializer implements ApplicationRunner {
+public class Startup implements ApplicationRunner {
 
     @Resource
     private Dao dao;
@@ -92,6 +93,13 @@ public class Initializer implements ApplicationRunner {
         // 初始化定时任务
         sysTaskService.init();
     }
+
+
+    private void initGlobals(){
+        // 当前项目路径的地址
+        Globals.AppRoot = System.getProperty("user.dir");
+    }
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

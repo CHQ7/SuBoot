@@ -67,7 +67,7 @@ const install = (Vue, vm) => {
             response.message = '拒绝访问'
             break
           case 404:
-            response.message = '请求错误,未找到该资源'
+            response.message = '接口请求失败'
             break
           case 405:
             response.message = '请求方法未允许'

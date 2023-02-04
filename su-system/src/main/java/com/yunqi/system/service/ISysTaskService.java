@@ -38,6 +38,10 @@ public class ISysTaskService extends BaseServiceImpl<SysTask> {
         if(Strings.isNotBlank(query.getString("name"))){
             cnd.and("name", "like", "%" + query.getString("name") + "%");
         }
+        // 查询:用户状态
+        if(Strings.isNotBlank(query.getString("disabled"))){
+            cnd.and("disabled", "=",  query.getString("disabled") );
+        }
         // 创建时间倒序
         cnd.desc("createdAt");
         return this.listPage(query.page(), query.pageSize(), cnd);

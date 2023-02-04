@@ -14,9 +14,5 @@ export default {
   // 删除单个
   delete: (id) => http.post(BASE_URL + '/delete/' + id),
   // 删除集合
-  del: data => http.post(BASE_URL + '/delete', data),
-  // 更新状态
-  disable: data => http.post(BASE_URL + '/disable', data),
-  // 同步数据
-  synchro: data => http.post(BASE_URL + '/synchro', data)
+  del: data => http.post(BASE_URL + '/delete', data)
 }

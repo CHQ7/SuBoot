@@ -11,10 +11,13 @@
       <u-filtered>
         <el-form :inline="true" :model="listQuery" class="search-form">
           <el-form-item label="标题" prop="title">
-            <el-input v-model="listQuery.title" placeholder="请输入标题" clearable />
+            <el-input v-model="listQuery.title" placeholder="关键词查询" clearable />
+          </el-form-item>
+          <el-form-item label="状态" prop="status">
+            <u-status v-model="listQuery.status" />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="hdlFilter">查询</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="hdlFilter">搜索</el-button>
           </el-form-item>
           <el-dropdown>
             <el-button type="primary">
@@ -67,8 +70,11 @@
           <el-input v-model="dataForm.url" placeholder="http://" clearable />
         </el-form-item>
 
-        <el-form-item label="状态" prop="disabled">
-          <el-switch v-model="dataForm.disabled" />
+        <el-form-item label="状态" prop="status">
+          <el-radio-group v-model="dataForm.status">
+            <el-radio :label="true">启用</el-radio>
+            <el-radio :label="false">禁用</el-radio>
+          </el-radio-group>
         </el-form-item>
 
       </el-form>
@@ -77,19 +83,13 @@
   </div>
 </template>
 <script>
-
 export default {
   data() {
     return {
       api: this.$u.api.PlatformNav,
       // 表格
       columns: [
-        {
-          prop: 'location',
-          label: '顺序',
-          width: '70',
-          sortable: true
-        },
+
         {
           prop: 'title',
           label: '标题'
@@ -104,16 +104,24 @@ export default {
           label: '链接'
         },
         {
-          prop: 'disabled',
+          prop: 'location',
+          label: '顺序',
+          width: '70'
+        },
+        {
+          prop: 'status',
           label: '状态',
-          switch: true,
-          change: (event, row) => {
-            this.hdlDisable(row, event, row.title, '1')
+          render: (h, params) => {
+            if (params.row.status) {
+              return h('el-tag', { props: { type: 'success' }}, '已启用')
+            } else {
+              return h('el-tag', { props: { type: 'danger' }}, '禁用')
+            }
           }
         },
         {
           prop: 'createAt',
-          label: '发布时间',
+          label: '创建时间',
           sortable: true,
           timestamp: true
         }
@@ -129,7 +137,8 @@ export default {
         pageNumber: 1,
         pageSize: 10,
         totalCount: 1,
-        title: ''
+        title: '',
+        status: ''
       },
 
       dialogFormVisible: false,
@@ -147,7 +156,7 @@ export default {
       // 删除选中数据
       selectData: [],
       newForm: {
-        disabled: true
+        status: true
       }
     }
   },

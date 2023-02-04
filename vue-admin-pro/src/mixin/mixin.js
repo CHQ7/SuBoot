@@ -40,6 +40,13 @@ const mixin = {
   },
   methods: {
     /**
+     * 表单重置
+     * @param formName 表单ref名称
+     */
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
+    },
+    /**
      * 获取列表数据
      */
     hdlList() {
@@ -163,7 +170,7 @@ const mixin = {
     hdlDelete(id, title) {
       const self = this
       // 模态对话框组件
-      self.$confirm('此操作将' + title + '删除后将不能恢复，是否继续删除？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
+      self.$confirm('【' + title + '】删除后将不能恢复，是否继续删除？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
         // 处理确认事件
         self.api.delete(id).then(() => {
           // 刷新数据列表
@@ -191,9 +198,9 @@ const mixin = {
         ids.push(val.id)
       })
       // 模态对话框组件
-      self.$confirm('此操作将删除 ' + ids.length + '条消息,删除后将不能恢复，是否继续删除？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
+      self.$confirm('批量删除【' + ids.length + '】条数据,删除后将不能恢复，是否继续删除？', '提示', { confirmButtonText: '确定', cancelButtonText: '取消', type: 'warning' }).then(() => {
         // 处理确认事件
-        self.api.del({ 'ids': JSON.stringify(ids) }).then(() => {
+        self.api.del({ 'ids': ids.toString() }).then(() => {
           // 刷新数据列表
           self.hdlList()
           // 通知信息

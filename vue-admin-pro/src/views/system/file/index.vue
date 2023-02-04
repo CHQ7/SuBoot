@@ -5,24 +5,13 @@
 
         <el-form :inline="true" :model="listQuery" class="search-form">
           <el-form-item label="时间范围">
-            <el-date-picker
-              v-model="timestampDate"
-              type="datetimerange"
-              :picker-options="pickerOptions"
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              align="right"
-              :default-time="['00:00:00', '23:59:59']"
-              value-format="yyyy-MM-dd HH:mm:ss"
-              style="width:300px"
-            />
+            <u-date-time-picker v-model="searchDate" @change="changeDate" />
           </el-form-item>
           <el-form-item label="文件名称">
             <el-input v-model="listQuery.fileName" placeholder="请输入文件名称" clearable />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="handleFilter">查询</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="hdlFilter">查询</el-button>
           </el-form-item>
           <el-dropdown>
             <el-button type="primary">
@@ -42,15 +31,15 @@
         :options="listOptions"
         :columns="columns"
         :pagination.sync="listQuery"
-        :fetch="getList"
+        :fetch="hdlList"
         @selection-change="hdlSelectChange"
       >
         <template v-slot:right>
           <el-table-column label="操作" align="center" fixed="right">
             <template slot-scope="{ row }">
+              <el-button v-if="row.fileType.match(RegExp(/image/))" type="text" @click="hdlEdit(row)">预览</el-button>
               <el-button type="text" @click="handleDownload(row.id)">下载</el-button>
               <el-button type="text" @click="hdlDelete(row.id, row.fileName)">删除</el-button>
-              <el-button v-if="row.fileType.match(RegExp(/image/))" type="text" @click="hdlEdit(row)">预览</el-button>
             </template>
           </el-table-column>
         </template>
@@ -75,23 +64,19 @@ export default {
       columns: [
         {
           prop: 'fileType',
-          label: '文件类型',
-          align: 'left'
+          label: '文件类型'
         },
         {
           prop: 'fileName',
-          label: '文件名称',
-          align: 'left'
+          label: '文件名称'
         },
         {
           prop: 'fileSuffix',
-          label: '文件后缀',
-          align: 'left'
+          label: '文件后缀'
         },
         {
           prop: 'fileSizeKb',
-          label: '文件大小',
-          align: 'left'
+          label: '文件大小'
         },
         {
           prop: 'filePath',
@@ -102,13 +87,12 @@ export default {
           prop: 'createdAt',
           label: '创建时间',
           sortable: true,
-          timestamp: true,
-          align: 'left'
+          timestamp: true
         }
       ],
 
       list: [],
-      listLoading: true,
+      listLoading: false,
       listOptions: {
         mutiSelect: true, // boolean 是否多选
         stripe: true // boolean 斑马纹
@@ -117,63 +101,25 @@ export default {
         pageNumber: 1,
         pageSize: 20,
         totalCount: 1,
-        time: '',
+        beginTime: '',
+        endTime: '',
         fileName: ''
       },
-      // 删除选中数据
-      selectData: [],
-      // 查询时间戳
-      timestampDate: [],
-      pickerOptions: {
-        shortcuts: [{
-          text: '最近一周',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-            picker.$emit('pick', [start, end])
-          }
-        }, {
-          text: '最近一个月',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-            picker.$emit('pick', [start, end])
-          }
-        }, {
-          text: '最近三个月',
-          onClick(picker) {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-            picker.$emit('pick', [start, end])
-          }
-        }]
-      },
+      // 查询时间范围
+      searchDate: [],
       dialogFormVisible: false,
       dataForm: {}
-
     }
   },
-  created() {
-    this.getList()
-  },
   methods: {
-    // 初始化数据
-    getList() {
-      this.listLoading = true
-      if (this.timestampDate) {
-        this.listQuery.time = this.timestampDate.toString()
+    changeDate(item) {
+      if (item) {
+        this.listQuery.beginTime = item[0]
+        this.listQuery.endTime = item[1]
       } else {
-        this.listQuery.time = ''
+        this.listQuery.beginTime = ''
+        this.listQuery.endTime = ''
       }
-      this.hdlList()
-    },
-    // 搜索事件
-    handleFilter() {
-      this.listQuery.page = 1
-      this.getList()
     },
     // 文件下载事件
     handleDownload(id) {

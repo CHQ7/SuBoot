@@ -73,8 +73,11 @@
           <span :class="dataForm.icon" />
         </el-form-item>
 
-        <el-form-item prop="disabled" label="状态">
-          <el-switch v-model="dataForm.disabled" />
+        <el-form-item label="状态" prop="disabled">
+          <el-radio-group v-model="dataForm.disabled">
+            <el-radio :label="true">启用</el-radio>
+            <el-radio :label="false">禁用</el-radio>
+          </el-radio-group>
         </el-form-item>
 
       </el-form>
@@ -176,11 +179,13 @@ export default {
         },
         {
           prop: 'disabled',
-          label: '启用状态',
-          align: 'left',
-          switch: true,
-          change: (event, row) => {
-            this.hdlDisable(row, event, row.name, '2')
+          label: '状态',
+          render: (h, params) => {
+            if (params.row.disabled) {
+              return h('el-tag', { props: { type: 'success' }}, '已启用')
+            } else {
+              return h('el-tag', { props: { type: 'danger' }}, '禁用')
+            }
           }
         },
         {
