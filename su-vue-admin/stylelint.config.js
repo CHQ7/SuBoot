@@ -1,3 +1,8 @@
+// --------------------------------------
+// stylelint 配置
+// CSS 检测工具
+// --------------------------------------
+
 module.exports = {
   root: true,
   plugins: ['stylelint-order'],

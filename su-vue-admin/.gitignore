@@ -1,3 +1,7 @@
+# --------------------------------------
+# Git 上传忽略规则
+# --------------------------------------
+
 .DS_Store
 node_modules
 /screenshots
@@ -23,5 +27,4 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-/components.d.ts
 /components.d.ts

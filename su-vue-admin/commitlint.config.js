@@ -1,3 +1,8 @@
+// --------------------------------------
+// commit lint  配置
+// git commit 校验工具
+// --------------------------------------
+
 module.exports = {
   ignores: [(commit) => commit.includes('init')],
   extends: ['@commitlint/config-conventional'],

@@ -1,10 +1,9 @@
 {
-  "name": "naive-ui-admin",
-  "version": "1.8.2",
+  "name": "vue-admin-pro",
+  "version": "1.0.0",
   "author": {
-    "name": "Ahjung",
-    "email": "735878602@qq.com",
-    "url": "https://github.com/jekip/naive-ui-admin"
+    "name": "Qin",
+    "email": "yunous@foxmail.com",
   },
   "private": true,
   "scripts": {
@@ -107,25 +106,10 @@
       "path": "./node_modules/cz-customizable"
     }
   },
-  "keywords": [
-    "vue",
-    "naive-ui",
-    "naive-ui-admin",
-    "vue3",
-    "ts",
-    "tsx",
-    "admin",
-    "typescript"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jekip/naive-ui-admin.git"
-  },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jekip/naive-ui-admin/issues"
+    "url": "https://github.com/CHQ7/SuBoot/issues"
   },
-  "homepage": "https://github.com/jekip/naive-ui-admin",
   "engines": {
     "node": "^12 || >=14"
   }

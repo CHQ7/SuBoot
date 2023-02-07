@@ -1,3 +1,8 @@
+// --------------------------------------
+// Tailwind 配置
+// Tailwind CSS 是一个功能类优先的 CSS 框架
+// --------------------------------------
+
 module.exports = {
   // darkMode: 'class',
   plugins: [createEnterPlugin()],

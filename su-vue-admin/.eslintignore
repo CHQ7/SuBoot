@@ -1,3 +1,6 @@
+# --------------------------------------
+# 忽略eslint的语法检查
+# --------------------------------------
 *.sh
 node_modules
 *.md
@@ -12,5 +15,4 @@ dist
 .local
 /bin
 Dockerfile
-components.d.ts
 components.d.ts
