@@ -11,7 +11,7 @@ import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.common.utils.DateUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
-import com.yunqi.starter.security.spi.Tokens;
+import com.yunqi.starter.security.spi.UserSecurityUtil;
 import com.yunqi.starter.wx.spi.Wxs;
 import lombok.extern.slf4j.Slf4j;
 import org.nutz.dao.Cnd;
@@ -262,12 +262,12 @@ public class IMemberService extends BaseServiceImpl<Member> {
         }
 
         // 标记当前会话登录的账号id
-        Tokens.login(member.getId());
-        Tokens.checkLogin();
+        UserSecurityUtil.login(member.getId());
+        UserSecurityUtil.checkLogin();
 
         // 组装返回数据
         NutMap nutMap = new NutMap();
-        nutMap.addv("token", Tokens.getTokenValue());
+        nutMap.addv("token", UserSecurityUtil.getTokenValue());
         nutMap.addv("userInfo",  member);
         return nutMap;
     }

@@ -4,8 +4,8 @@ import com.yunqi.member.service.IMemberService;
 import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.result.Result;
-import com.yunqi.starter.security.annotation.Token;
-import com.yunqi.starter.security.spi.Tokens;
+import com.yunqi.starter.security.annotation.Authentication;
+import com.yunqi.starter.security.spi.UserSecurityUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * 用户接口
  * Created by @author CHQ on 2022/11/3
  */
-@Token
+@Authentication
 @RestController
 @RequestMapping("/api/member")
 public class MemberApiController {
@@ -31,7 +31,7 @@ public class MemberApiController {
      */
     @PostMapping("/userInfo")
     public Result userInfo() {
-        return Result.success().addData(memberService.userInfo(Strings.sNull(Tokens.getLoginId())));
+        return Result.success().addData(memberService.userInfo(Strings.sNull(UserSecurityUtil.getLoginId())));
     }
 
 
@@ -45,7 +45,7 @@ public class MemberApiController {
         if(Strings.isBlank(query.getString("nickname"))){
             return Result.error("用户名不能为空");
         }
-        memberService.updateNickname(Strings.sNull(Tokens.getLoginId()), query.getString("nickname"));
+        memberService.updateNickname(Strings.sNull(UserSecurityUtil.getLoginId()), query.getString("nickname"));
         return Result.success();
     }
 
@@ -59,7 +59,7 @@ public class MemberApiController {
         if(Strings.isBlank(query.getString("sex"))){
             return Result.error("性别不能为空");
         }
-        memberService.updateSex(Strings.sNull(Tokens.getLoginId()), query.getInt("sex"));
+        memberService.updateSex(Strings.sNull(UserSecurityUtil.getLoginId()), query.getInt("sex"));
         return Result.success();
     }
 
@@ -73,7 +73,7 @@ public class MemberApiController {
         if(Strings.isBlank(query.getString("birthday"))){
             return Result.error("生日不能为空");
         }
-        memberService.updateBirthday(Strings.sNull(Tokens.getLoginId()), query.getString("birthday"));
+        memberService.updateBirthday(Strings.sNull(UserSecurityUtil.getLoginId()), query.getString("birthday"));
         return Result.success();
     }
 
@@ -89,7 +89,7 @@ public class MemberApiController {
                 Strings.isBlank(query.getString("area"))){
             return Result.error("地区不能为空");
         }
-        memberService.updateRegion(Strings.sNull(Tokens.getLoginId()), query.getString("province"), query.getString("city"), query.getString("area"));
+        memberService.updateRegion(Strings.sNull(UserSecurityUtil.getLoginId()), query.getString("province"), query.getString("city"), query.getString("area"));
         return Result.success();
     }
 

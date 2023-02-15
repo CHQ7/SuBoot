@@ -13,8 +13,8 @@ import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.page.Pagination;
 import com.yunqi.starter.common.utils.IPUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
-import com.yunqi.starter.security.spi.StpUtil;
-import com.yunqi.starter.security.utils.SecurityUtil;
+import com.yunqi.starter.security.spi.SecurityUtil;
+import com.yunqi.starter.security.utils.SecuritySessionUtil;
 import com.yunqi.system.models.SysAuthLog;
 import com.yunqi.system.models.SysRole;
 import com.yunqi.system.models.SysUser;
@@ -257,19 +257,19 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
             throw new BizException("账号被禁用");
         }
         // 3、登录账号
-        StpUtil.login(user.getId());
+        SecurityUtil.login(user.getId());
         // 4、检验当前会话是否已经登录，如未登录，则抛出异
-        StpUtil.checkLogin();
+        SecurityUtil.checkLogin();
         // 5、设置当前会话用户ID
-        SecurityUtil.setUserName(user.getUsername());
+        SecuritySessionUtil.setUserName(user.getUsername());
         // 6、设置当前会话用户名
-        SecurityUtil.setUserNickname(user.getNickname());
+        SecuritySessionUtil.setUserNickname(user.getNickname());
         // 7、记录并更新用户登录信息
         this.loginInfo(user);
         // 8、异步记录登录日志
         this.authLog("用户登录", "账号登录");
         // 9、返回当前会话的Token信息
-        return StpUtil.getTokenValue();
+        return SecurityUtil.getTokenValue();
     }
 
 
@@ -309,7 +309,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
      */
     public NutMap userInfo(){
         // 1、获取当前会话账号id
-        SysUser user = this.fetch(SecurityUtil.getUserId());
+        SysUser user = this.fetch(SecuritySessionUtil.getUserId());
         // 2、返回组装信息
         NutMap map = new NutMap();
         map.addv("avatar", user.getAvatar());
@@ -325,7 +325,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
     @Transactional
     public void logout(){
         // 1、获取当前会话账号id
-        String userId = SecurityUtil.getUserId();
+        String userId = SecuritySessionUtil.getUserId();
         // 2、记录用户退出信息
         SysUser user = this.fetch(userId);
         user.setOnline(false);
@@ -333,7 +333,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         // 3、异步记录登录日志
         this.authLog("用户登出", "退出系统");
         // 4、注销当前会话账号id
-        StpUtil.logout(userId);
+        SecurityUtil.logout(userId);
     }
 
     /**
@@ -347,11 +347,11 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         SysAuthLog authLog = new SysAuthLog();
         authLog.setTag(tag);
         authLog.setMsg(msg);
-        authLog.setName(SecurityUtil.getUserNickname());
-        authLog.setCreatedById(SecurityUtil.getUserId());
-        authLog.setCreatedBy(SecurityUtil.getUserNickname());
-        authLog.setUpdatedById(SecurityUtil.getUserId());
-        authLog.setUpdatedBy(SecurityUtil.getUserNickname());
+        authLog.setName(SecuritySessionUtil.getUserNickname());
+        authLog.setCreatedById(SecuritySessionUtil.getUserId());
+        authLog.setCreatedBy(SecuritySessionUtil.getUserNickname());
+        authLog.setUpdatedById(SecuritySessionUtil.getUserId());
+        authLog.setUpdatedBy(SecuritySessionUtil.getUserNickname());
 
         // 获取请求地址&请求方式
         authLog.setUrl(req.getRequestURI());
@@ -396,7 +396,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
     public String resetPassword(String userId, String password) {
         SysUser user = this.fetch(userId);
         // 只能超级管理员自己操作
-        if(!SecurityUtil.getUserName().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
+        if(!SecuritySessionUtil.getUserName().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
             if(user != null && user.getUsername().equalsIgnoreCase(GlobalConstant.DEFAULT_SYSADMIN_NAME)){
                 throw new BizException("超级管理员禁止操作");
             }
@@ -419,7 +419,7 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
             throw new BizException("新密码长度必须是6-20位");
         }
         // 获取当前登录的用户ID
-        SysUser user = this.fetch(SecurityUtil.getUserId());
+        SysUser user = this.fetch(SecuritySessionUtil.getUserId());
         String old = this.hashPassword(oldPwd, user.getSalt());
         if(!old.equals(user.getPassword())){
             throw new BizException("密码不正确");

@@ -2,7 +2,7 @@ package com.yunqi.core.provider;
 
 import com.yunqi.starter.security.provider.IAuthProvider;
 import com.yunqi.system.service.ISysUserService;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * 实现权限验证接口扩展
  * Created by @author CHQ on 2022/6/15
  */
-@Service
+@Component
 public class AuthProviderImpl implements IAuthProvider {
 
     @Resource
