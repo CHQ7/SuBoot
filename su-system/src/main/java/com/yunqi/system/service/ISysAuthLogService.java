@@ -1,20 +1,14 @@
 package com.yunqi.system.service;
 
-import cn.hutool.http.useragent.UserAgent;
-import cn.hutool.http.useragent.UserAgentUtil;
-import com.yunqi.starter.common.lang.Lang;
 import com.yunqi.starter.common.lang.Strings;
 import com.yunqi.starter.common.model.QueryBody;
 import com.yunqi.starter.common.page.Pagination;
-import com.yunqi.starter.common.utils.IPUtil;
 import com.yunqi.starter.database.service.BaseServiceImpl;
 import com.yunqi.system.models.SysAuthLog;
 import org.nutz.dao.Cnd;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * 登录日志

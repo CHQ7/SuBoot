@@ -123,13 +123,13 @@ export default {
           align: 'left'
         },
         {
-          prop: 'status',
+          prop: 'success',
           label: '状态',
           align: 'left',
           render: (h, params) => {
             let title = '异常'
             let type = 'danger'
-            if (params.row.status === 0) {
+            if (params.row.success) {
               title = '正常'
               type = 'success'
             }
