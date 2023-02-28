@@ -145,10 +145,10 @@ export default {
         },
         {
           prop: 'executeTime',
-          label: '耗时',
+          label: '耗时/ms',
           align: 'left',
           render: (h, params) => {
-            return h('el-tag', { props: { size: 'small', type: 'success' }}, params.row.executeTime + 'ms')
+            return h('el-tag', { props: { size: 'small', type: 'success' }}, params.row.executeTime)
           }
         }
       ],

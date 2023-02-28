@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.yunqi.starter</groupId>
         <artifactId>su-boot-starter-parent</artifactId>
-        <version>1.1.17</version>
+        <version>1.1.18</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <modelVersion>4.0.0</modelVersion>

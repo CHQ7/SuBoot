@@ -287,9 +287,8 @@ public class ISysUserService extends BaseServiceImpl<SysUser> {
         user.setOnline(true);
 
         // 获取操作地址&操作地点
-        String ip = Lang.getIP(req);
-        user.setLoginIp(ip);
-        user.setLoginLocation(IPUtil.getIPAddress(ip));
+        user.setLoginIp(Lang.getIP(req));
+        user.setLoginLocation(IPUtil.getIPAddress(user.getLoginIp()));
 
         // 获取终端信息
         final UserAgent ua = UserAgentUtil.parse(req.getHeader("User-Agent"));
