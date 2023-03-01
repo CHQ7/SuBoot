@@ -31,7 +31,7 @@ public class SysConfigController {
 
     @PostMapping("/create")
     @RequiresPermissions("sys.conf.create")
-    @SLog(tag = "系统参数",  type = LogType.INSERT)
+    @SLog(tag = "系统模块-系统参数",  type = LogType.INSERT)
     public Result create(@Validated @RequestBody SysConfig conf) {
         sysConfigService.create(conf);
         return Result.success();
@@ -47,7 +47,7 @@ public class SysConfigController {
 
     @PostMapping("/update")
     @RequiresPermissions("sys.conf.update")
-    @SLog(tag = "系统参数",  type = LogType.UPDATE)
+    @SLog(tag = "系统模块-系统参数",  type = LogType.UPDATE)
     public Result update(@Validated @RequestBody SysConfig conf) {
         sysConfigService.update(conf);
         return Result.success();
@@ -55,7 +55,7 @@ public class SysConfigController {
 
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.conf.delete")
-    @SLog(tag = "系统参数",  type = LogType.DELETE)
+    @SLog(tag = "系统模块-系统参数",  type = LogType.DELETE)
     public Result delete(@PathVariable("id") String id) {
         sysConfigService.deleteById(id);
         return Result.success();

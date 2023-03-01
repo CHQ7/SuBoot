@@ -32,7 +32,7 @@ public class SysDeptController {
 
     @PostMapping("/create")
     @RequiresPermissions("sys.dept.create")
-    @SLog(tag = "系统组织",  type = LogType.INSERT)
+    @SLog(tag = "系统模块-系统组织",  type = LogType.INSERT)
     public Result create(@Validated @RequestBody SysDept dept) {
         sysDeptService.create(dept);
         return Result.success();
@@ -48,7 +48,7 @@ public class SysDeptController {
 
     @PostMapping("/update")
     @RequiresPermissions("sys.dept.update")
-    @SLog(tag = "系统组织",  type = LogType.UPDATE)
+    @SLog(tag = "系统模块-系统组织",  type = LogType.UPDATE)
     public Result update(@Validated @RequestBody SysDept dept) {
         sysDeptService.update(dept);
         return Result.success();
@@ -56,7 +56,7 @@ public class SysDeptController {
 
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.dept.delete")
-    @SLog(tag = "系统组织",  type = LogType.DELETE)
+    @SLog(tag = "系统模块-系统组织",  type = LogType.DELETE)
     public Result delete(@PathVariable("id") String id) {
         sysDeptService.deleteById(id);
         return Result.success();
@@ -64,7 +64,7 @@ public class SysDeptController {
 
     @PostMapping("/sort")
     @RequiresPermissions("sys.dept.sort")
-    @SLog(tag = "系统组织",  type = LogType.SORT)
+    @SLog(tag = "系统模块-系统组织",  type = LogType.SORT)
     public Result sort(@RequestBody QueryBody query){
         sysDeptService.sort(query.getString("ids"));
         return Result.success();

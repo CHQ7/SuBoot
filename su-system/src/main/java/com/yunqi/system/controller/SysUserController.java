@@ -39,7 +39,7 @@ public class SysUserController {
 
     @PostMapping("/create")
     @RequiresPermissions("sys.user.create")
-    @SLog(tag = "系统用户",  type = LogType.INSERT)
+    @SLog(tag = "系统模块-系统用户",  type = LogType.INSERT)
     public Result create(@Validated @RequestBody SysUser user) {
         sysUserService.create(user);
         return Result.success();
@@ -54,7 +54,7 @@ public class SysUserController {
 
     @PostMapping("/update")
     @RequiresPermissions("sys.user.update")
-    @SLog(tag = "系统用户",  type = LogType.UPDATE)
+    @SLog(tag = "系统模块-系统用户",  type = LogType.UPDATE)
     public Result update(@Validated @RequestBody SysUser user) {
         sysUserService.update(user);
         return Result.success();
@@ -62,7 +62,7 @@ public class SysUserController {
 
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.user.delete")
-    @SLog(tag = "系统用户",  type = LogType.DELETE)
+    @SLog(tag = "系统模块-系统用户",  type = LogType.DELETE)
     public Result delete(@PathVariable("id") String id) {
         sysUserService.deleteById(id);
         return Result.success();
@@ -70,7 +70,7 @@ public class SysUserController {
 
     @PostMapping("/resetPassword/{id}")
     @RequiresPermissions("sys.user.password")
-    @SLog(tag = "系统用户",  type = LogType.UPDATE)
+    @SLog(tag = "系统模块-系统用户",  type = LogType.UPDATE)
     public Result resetPassword(@PathVariable("id") String id) {
         return Result.success().addData(sysUserService.resetPassword(id));
     }

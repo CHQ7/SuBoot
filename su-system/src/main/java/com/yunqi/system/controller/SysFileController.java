@@ -41,7 +41,7 @@ public class SysFileController {
 
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.file.delete")
-    @SLog(tag = "系统文件",  type = LogType.DELETE)
+    @SLog(tag = "系统模块-系统文件",  type = LogType.DELETE)
     public Result delete(@PathVariable("id") String id) {
         sysFileService.deleteById(id);
         return Result.success();
@@ -49,7 +49,7 @@ public class SysFileController {
 
     @PostMapping("/delete")
     @RequiresPermissions("sys.file.delete")
-    @SLog(tag = "系统文件",  type = LogType.DEL)
+    @SLog(tag = "系统模块-系统文件",  type = LogType.DEL)
     public Result delete(@RequestBody QueryBody query) {
         sysFileService.deleteByIds(query.getString("ids"));
         return Result.success();
@@ -57,7 +57,7 @@ public class SysFileController {
 
     @RequestMapping("/download/{id}")
     @RequiresPermissions("sys.file.download")
-    @SLog(tag = "系统文件",  type = LogType.IMPORT)
+    @SLog(tag = "系统模块-系统文件",  type = LogType.IMPORT)
     public void download(@PathVariable("id") String id, HttpServletResponse resp) throws IOException {
         File file = sysFileService.download(id);
         // 下载文件

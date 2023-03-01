@@ -34,7 +34,7 @@ public class SysMenuController {
 
     @PostMapping("/create")
     @RequiresPermissions("sys.menu.create")
-    @SLog(tag = "系统菜单",  type = LogType.INSERT)
+    @SLog(tag = "系统模块-系统菜单",  type = LogType.INSERT)
     public Result create(@Validated @RequestBody SysMenu menu) {
         sysMenuService.create(menu);
         return Result.success();
@@ -49,7 +49,7 @@ public class SysMenuController {
 
     @PostMapping("/update")
     @RequiresPermissions("sys.menu.update")
-    @SLog(tag = "系统菜单",  type = LogType.UPDATE)
+    @SLog(tag = "系统模块-系统菜单",  type = LogType.UPDATE)
     public Result update(@Validated @RequestBody SysMenu menu) {
         sysMenuService.update(menu);
         return Result.success();
@@ -57,7 +57,7 @@ public class SysMenuController {
 
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.menu.delete")
-    @SLog(tag = "系统菜单",  type = LogType.DELETE)
+    @SLog(tag = "系统模块-系统菜单",  type = LogType.DELETE)
     public Result delete(@PathVariable("id") String id) {
         sysMenuService.deleteAndChild(id);
         return Result.success();
@@ -65,7 +65,7 @@ public class SysMenuController {
 
     @PostMapping("/sort")
     @RequiresPermissions("sys.menu.sort")
-    @SLog(tag = "系统菜单",  type = LogType.SORT)
+    @SLog(tag = "系统模块-系统菜单",  type = LogType.SORT)
     public Result sort(@RequestBody QueryBody query){
         sysMenuService.sort(query.getString("ids"));
         return Result.success();
@@ -74,7 +74,7 @@ public class SysMenuController {
 
     @PostMapping("/batch")
     @RequiresPermissions("sys.menu.batch")
-    @SLog(tag = "系统菜单",  type = LogType.INSERT)
+    @SLog(tag = "系统模块-系统菜单",  type = LogType.INSERT)
     public Result batch(@RequestBody QueryBody query){
         sysMenuService.batch(query.getString("parentId"), query.getList("permissionData", NutMap.class));
         return Result.success();

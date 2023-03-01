@@ -40,7 +40,7 @@ public class SysRoleController {
 
     @PostMapping("/create")
     @RequiresPermissions("sys.role.create")
-    @SLog(tag = "系统角色", type = LogType.INSERT)
+    @SLog(tag = "系统模块-系统角色", type = LogType.INSERT)
     public Result create(@Validated @RequestBody SysRole role) {
         sysRoleService.create(role);
         return Result.success();
@@ -56,7 +56,7 @@ public class SysRoleController {
 
     @PostMapping("/update")
     @RequiresPermissions("sys.role.update")
-    @SLog(tag = "系统角色",  type = LogType.UPDATE)
+    @SLog(tag = "系统模块-系统角色",  type = LogType.UPDATE)
     public Result update(@Validated @RequestBody SysRole role) {
         sysRoleService.update(role);
         return Result.success();
@@ -64,7 +64,7 @@ public class SysRoleController {
 
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.role.delete")
-    @SLog(tag = "系统角色",  type = LogType.DELETE)
+    @SLog(tag = "系统模块-系统角色",  type = LogType.DELETE)
     public Result delete(@PathVariable("id") String id) {
         sysRoleService.deleteById(id);
         return Result.success();

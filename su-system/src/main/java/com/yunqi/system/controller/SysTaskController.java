@@ -35,7 +35,7 @@ public class SysTaskController {
 
     @PostMapping("/create")
     @RequiresPermissions("sys.task.create")
-    @SLog(tag = "系统任务",  type = LogType.INSERT)
+    @SLog(tag = "系统模块-系统任务",  type = LogType.INSERT)
     public Result create(@Validated @RequestBody SysTask task) {
         sysTaskService.create(task);
         return Result.success();
@@ -51,7 +51,7 @@ public class SysTaskController {
 
     @PostMapping("/update")
     @RequiresPermissions("sys.task.update")
-    @SLog(tag = "系统任务",  type = LogType.UPDATE)
+    @SLog(tag = "系统模块-系统任务",  type = LogType.UPDATE)
     public Result update(@Validated @RequestBody SysTask task) {
         sysTaskService.update(task);
         return Result.success();
@@ -59,7 +59,7 @@ public class SysTaskController {
 
     @PostMapping("/delete/{id}")
     @RequiresPermissions("sys.task.delete")
-    @SLog(tag = "系统任务",  type = LogType.DELETE)
+    @SLog(tag = "系统模块-系统任务",  type = LogType.DELETE)
     public Result delete(@PathVariable("id") String id) {
         sysTaskService.deleteById(id);
         return Result.success();
@@ -67,7 +67,7 @@ public class SysTaskController {
 
     @PostMapping("/run/{id}")
     @RequiresPermissions("sys.task.run")
-    @SLog(tag = "系统任务",  type = LogType.EXECUTE)
+    @SLog(tag = "系统模块-系统任务",  type = LogType.EXECUTE)
     public Result run(@PathVariable("id") String id) {
         sysTaskService.run(id);
         return Result.success();
